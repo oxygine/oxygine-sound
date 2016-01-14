@@ -1,0 +1,26 @@
+#!/usr/bin/env mkb
+# Builder mkb file for the openalext extension on windows
+platform WIN32
+
+options
+{
+    dll
+    x86
+    output-name="lib/win32/openalext.dll"
+    output-name-debug="lib/win32/openalext_d.dll"
+}
+define S3E_BUILD_EXT
+
+includepaths 
+{
+    ../openal/include/
+}
+
+library 
+{ 
+    ../lib/win32/openal32.lib 
+}
+
+
+
+subproject openalext_build

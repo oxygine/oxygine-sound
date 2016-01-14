@@ -1,0 +1,2 @@
+sudo apt-get install libogg-dev
+sudo apt-get install libvorbis-dev

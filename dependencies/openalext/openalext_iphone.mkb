@@ -1,0 +1,13 @@
+#!/usr/bin/env mkb
+# Builder mkb file for the openalext extension on iphone
+platform IPHONE
+
+options
+{
+    lib
+    output-name="lib/iphone/libopenalext.a"
+    output-name-debug="lib/iphone/libopenalext_d.a"
+}
+define S3E_BUILD_EXT
+
+subproject openalext_build

@@ -1,0 +1,32 @@
+#!/usr/bin/env mkb
+# Builder mkb file for the openalext extension on android
+platform LINUX
+
+buildtype (SCONS, ARM)
+
+define S3E_ANDROID
+
+options
+{
+    dll
+    output-name="lib/android/libopenalext.so"
+    output-name-debug="lib/android/libopenalext_d.so"
+}
+define S3E_BUILD_EXT
+
+includepaths 
+{
+    ../openal-android/jni/OpenAL/include/
+}
+librarypaths
+{
+	lib/android
+}
+library 
+{ 
+    openal
+    OpenSLES
+}
+
+
+subproject openalext_build

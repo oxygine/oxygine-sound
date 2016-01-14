@@ -1,0 +1,68 @@
+includepath src/
+includepath src/s3e/
+#includepath src/dependecies/
+
+options
+{
+	module_path="dependencies/libogg"
+	module_path="dependencies/libvorbis"
+	module_path="dependencies/tremor"
+	module_path="dependencies/marmalade"
+	module_path="dependencies/"
+	module_path="../oxygine-framework/oxygine/marmalade"
+}
+
+subproject iwutil
+subproject iwgl
+subproject libogg
+subproject libtremor
+subproject oxygine-framework
+
+
+subproject openalext
+
+debug_define MARMALADE
+define MARMALADE
+
+
+includepaths
+{
+	
+}
+
+files
+{
+	(src)
+	[src]
+	OggStream.cpp
+	OggStream.h
+	memorystream.cpp
+	memorystream.h
+	SoundPlayer.cpp
+	SoundPlayer.h
+	SoundInstance.cpp
+	SoundInstance.h
+	ResSound.cpp
+	ResSound.h
+	
+
+	(src/oal)
+	[src/oal]
+	Channel_oal.cpp
+	Sound_oal.cpp
+	SoundSystem_oal.cpp
+	Channel_oal.h
+	Sound_oal.h
+	SoundSystem_oal.h
+
+	(src/null)
+	[src/null]
+	ChannelNull.cpp
+	SoundNull.cpp
+	SoundSystemNull.cpp
+	ChannelNull.h
+	SoundNull.h
+	SoundSystemNull.h
+		
+# Add new source files here
+}
