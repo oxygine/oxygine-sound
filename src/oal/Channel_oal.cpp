@@ -103,7 +103,9 @@ namespace oxygine
             static int sid = 0;
             sid++;
             LOGDN("synchronization '%d' from %s...", sid, reason_);
-            /* int t = */ getTimeMS();
+#if CHANNEL_DEBUG
+			int t = getTimeMS();
+#endif
             _messages.send(evnt_sync, 0, 0);
             LOGDN("synchronization '%d' done: %d", sid, getTimeMS() - t);
 
