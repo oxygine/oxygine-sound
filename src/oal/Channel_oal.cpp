@@ -259,7 +259,7 @@ namespace oxygine
 
     int ChannelOAL::getPosition() const
     {
-        return 0;
+		return _stream.getCurrentMS();
     }
 
     void ChannelOAL::setVolume(float v)
@@ -335,6 +335,8 @@ namespace oxygine
             alSourcei(_alSource, AL_LOOPING, AL_FALSE);
             check();
             sound->initStream(_stream);
+			if (desc.seek != 0)
+				_stream.seekMS(desc.seek);
             alGenBuffers(STREAM_BUFFERS, _buffers);
             check();
 
