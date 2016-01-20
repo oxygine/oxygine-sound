@@ -20,8 +20,8 @@ namespace oxygine
 
         bool looping;
         bool paused;
-		
-		int seek;
+
+        int seek;
 
         sound_desc() : sound(0), looping(false), volume(1.0), paused(false), cbDone(0), cbUserData(0), cbAboutEnd(0), pitch(1.0f), seek(0) {}
     };

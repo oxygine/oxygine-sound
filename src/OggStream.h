@@ -23,15 +23,15 @@ namespace oxygine
 
         bool                isEmpty() const {return _empty;}
         int                 getCurrentPCM() const;
-		int                 getCurrentMS() const;
+        int                 getCurrentMS() const;
         int                 getTotalPCM() const;
-		int                 getTotalMS() const;
+        int                 getTotalMS() const;
         int                 getRate() const;
         int                 getNumChannels() const;
         void                getDetails(unsigned int* pcm, int* channels, int* rate, int* timeMS);
 
-		int                 seekPCM(int pcm);
-		int                 seekMS(int ms);
+        int                 seekPCM(int pcm);
+        int                 seekMS(int ms);
         int                 decodeNextBlock(bool looped, void* data, int bufferSize);
         void                decodeAll(void* data, int bufferSize);
 

@@ -104,7 +104,7 @@ namespace oxygine
             sid++;
             LOGDN("synchronization '%d' from %s...", sid, reason_);
 #if CHANNEL_DEBUG
-			int t = getTimeMS();
+            int t = getTimeMS();
 #endif
             _messages.send(evnt_sync, 0, 0);
             LOGDN("synchronization '%d' done: %d", sid, getTimeMS() - t);
@@ -261,7 +261,7 @@ namespace oxygine
 
     int ChannelOAL::getPosition() const
     {
-		return _stream.getCurrentMS();
+        return _stream.getCurrentMS();
     }
 
     void ChannelOAL::setVolume(float v)
@@ -337,8 +337,8 @@ namespace oxygine
             alSourcei(_alSource, AL_LOOPING, AL_FALSE);
             check();
             sound->initStream(_stream);
-			if (desc.seek != 0)
-				_stream.seekMS(desc.seek);
+            if (desc.seek != 0)
+                _stream.seekMS(desc.seek);
             alGenBuffers(STREAM_BUFFERS, _buffers);
             check();
 

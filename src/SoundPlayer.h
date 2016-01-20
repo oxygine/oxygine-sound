@@ -24,7 +24,7 @@ namespace oxygine
         PlayOptions& volume(float v)  { _volume = v; return *this; }
         PlayOptions& fade(timeMS fadeIn, timeMS fadeOut = 0) { _fadeIn = fadeIn; _fadeOut = fadeOut; return *this; }
         PlayOptions& pause() { _paused = true; return *this; }
-		PlayOptions& seek(timeMS ms) { _seek = ms; return *this; }
+        PlayOptions& seek(timeMS ms) { _seek = ms; return *this; }
 
 
         float _pitch;
@@ -33,7 +33,7 @@ namespace oxygine
         timeMS _fadeOut;
         bool _paused;
         bool _looped;
-		timeMS _seek;
+        timeMS _seek;
     };
 
 
