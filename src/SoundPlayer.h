@@ -17,13 +17,14 @@ namespace oxygine
     class PlayOptions
     {
     public:
-        PlayOptions() : _looped(false), _pitch(1.0f), _fadeIn(0), _fadeOut(0), _paused(false), _volume(-1.0f) {}
+        PlayOptions() : _looped(false), _pitch(1.0f), _fadeIn(0), _fadeOut(0), _paused(false), _volume(-1.0f), _seek(0) {}
 
         PlayOptions& loop() { _looped = true; return *this; }
         PlayOptions& pitch(float v)  { _pitch = v; return *this; }
         PlayOptions& volume(float v)  { _volume = v; return *this; }
         PlayOptions& fade(timeMS fadeIn, timeMS fadeOut = 0) { _fadeIn = fadeIn; _fadeOut = fadeOut; return *this; }
         PlayOptions& pause() { _paused = true; return *this; }
+		PlayOptions& seek(timeMS ms) { _seek = ms; return *this; }
 
 
         float _pitch;
@@ -32,6 +33,7 @@ namespace oxygine
         timeMS _fadeOut;
         bool _paused;
         bool _looped;
+		timeMS _seek;
     };
 
 
