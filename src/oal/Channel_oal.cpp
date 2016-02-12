@@ -579,4 +579,14 @@ namespace oxygine
         alSourcef(_alSource, AL_GAIN, _desc.volume * masterVolume);
         check();
     }
+
+    void ChannelOAL::setCoord (float * const vpos)
+    {
+        AL_SOURCE_SET_POS(alSourcefv, vpos);
+    }
+
+    void  ChannelOAL::setCoord (float const x, float const y, float const z)
+    {
+        AL_SOURCE_SET_POS(alSource3f, x, y, z);
+    }
 }
