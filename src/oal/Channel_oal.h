@@ -56,7 +56,7 @@ namespace oxygine
         SoundSystemOAL* _soundSystem;
 
         int _index;
-        unsigned int _alSource;
+        ALuint _alSource;
 
         sound_desc _desc;
 

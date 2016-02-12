@@ -35,7 +35,7 @@ namespace oxygine
 
         std::string _fileName;
 
-        unsigned int _alBuffer;
+        ALuint _alBuffer;
         std::vector<unsigned char> _fileBuffer;
     };
 }
