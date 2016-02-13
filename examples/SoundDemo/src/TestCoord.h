@@ -45,7 +45,7 @@ public:
         else if (ev->type == TouchEvent::OUT)
         {
             orange->setColor(Color::Orange);
-            splayer.stop();
+            snd->stop();
 
         } else { // TouchEvent::MOVE
 
