@@ -14,14 +14,12 @@ namespace oxygine
 {
     void check();
 
-    SoundSystem*    SoundSystem::create()
+    SoundSystem* SoundSystem::create()
     {
-        return new SoundSystemOAL;
-    }
+        if (not SoundSystem::instance)
+                SoundSystem::instance = new SoundSystemOAL;
 
-    void SoundSystem::free(SoundSystem* s)
-    {
-        delete s;
+        return SoundSystem::instance;
     }
 
     SoundSystemOAL::SoundSystemOAL(): _device(0), _context(0), _volume(1.0)
