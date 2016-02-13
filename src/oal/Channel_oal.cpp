@@ -231,6 +231,7 @@ namespace oxygine
         _stream.release();
         _streamEnded = false;
 
+        setCoord (0, 0);
         alSourcei(_alSource, AL_BUFFER, 0);
 
         alDeleteBuffers(STREAM_BUFFERS, _buffers);
