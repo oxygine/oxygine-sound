@@ -41,12 +41,12 @@ public:
 
     void pause(Event*)
     {
-        SoundSystem::instance->pause();
+        SoundSystem::get()->pause();
     }
 
     void resume(Event*)
     {
-        SoundSystem::instance->resume();
+        SoundSystem::get()->resume();
     }
 
     void clicked(string id)
@@ -79,8 +79,7 @@ void example_init()
 {
     //initialize our sound system with 16 channels
 
-    SoundSystem::instance = SoundSystem::create();
-    SoundSystem::instance->init(16);
+    SoundSystem::create()->init(16);
 
     //initialize SoundPlayer
     SoundPlayer::initialize();
@@ -114,16 +113,17 @@ void example_init()
 
 void example_update()
 {
-    SoundSystem::instance->update();
+    SoundSystem::get()->update();
     splayer.update();
 }
 
 void example_destroy()
 {
     splayer.stop();
-    SoundSystem::instance->stop();
+    SoundSystem::get()->stop();
     resources.free();
-    SoundSystem::instance->release();
+    SoundSystem::get()->release();
+    SoundSystem::free();
     Test::free();
 }
 
