@@ -26,6 +26,7 @@ namespace oxygine
 
         void setVolume(float v);
         void setPitch(float v);
+        void setCoord(float x, float y, float z) {}
 
         bool isFree() const;
         void _updateMasterVolume(float) {}

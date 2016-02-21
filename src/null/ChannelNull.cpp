@@ -56,4 +56,9 @@ namespace oxygine
     {
 
     }
+
+    void ChannelNull::setCoord(float x, float y, float z)
+    {
+
+    }
 }

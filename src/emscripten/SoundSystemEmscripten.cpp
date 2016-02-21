@@ -11,11 +11,6 @@ namespace oxygine
         //return new SoundSystemNull;
     }
 
-    void SoundSystem::free(SoundSystem* s)
-    {
-        delete s;
-    }
-
     SoundSystemEmscripten::SoundSystemEmscripten()
     {
     }

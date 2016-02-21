@@ -14,24 +14,24 @@ extern SoundPlayer splayer;
 class TestCoord: public Test
 {
 public:
-    
-    spSprite orange; 
+
+    spSprite orange;
     spSoundInstance snd;
 
     TestCoord()
     {
-       orange = new ColorRectSprite;
-       orange->setColor (Color::Orange);
-       orange->setSize (Vector2 (800, 400));
-       orange->setPosition (Vector2 (960 / 2 - 800 / 2, 640 / 2 - 400 / 2));
+        orange = new ColorRectSprite;
+        orange->setColor(Color::Orange);
+        orange->setSize(getSize() - Vector2(100, 100));
+        orange->setPosition(getSize() / 2 - orange->getSize() / 2);
 
-       orange->addEventListener(TouchEvent::OVER, CLOSURE(this, &TestCoord::onEvent));
-       orange->addEventListener(TouchEvent::MOVE, CLOSURE(this, &TestCoord::onEvent));
-       orange->addEventListener(TouchEvent::OUT, CLOSURE(this, &TestCoord::onEvent));
+        orange->addEventListener(TouchEvent::OVER, CLOSURE(this, &TestCoord::onEvent));
+        orange->addEventListener(TouchEvent::MOVE, CLOSURE(this, &TestCoord::onEvent));
+        orange->addEventListener(TouchEvent::OUT, CLOSURE(this, &TestCoord::onEvent));
 
-       orange->setInputChildrenEnabled (false);
-       orange->attachTo(ui);
-     }
+        orange->setInputChildrenEnabled(false);
+        orange->attachTo(content);
+    }
 
     void onEvent(Event* ev)
     {
@@ -47,12 +47,14 @@ public:
             orange->setColor(Color::Orange);
             snd->stop();
 
-        } else { // TouchEvent::MOVE
+        }
+        else     // TouchEvent::MOVE
+        {
 
             Vector2 const center = orange->getSize() / 2;
             Vector2 const dir    = te->localPosition - center;
-  
-            snd->getChannel()->setCoord (dir.x / 10000, dir.y / 10000);
+
+            snd->setCoord(dir / 1000);
         }
     }
 };

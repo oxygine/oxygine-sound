@@ -91,6 +91,12 @@ namespace oxygine
             _channel->setVolume(_volume);
     }
 
+    void SoundInstance::setCoord(const Vector2& pos, float z)
+    {
+        if (_channel)
+            _channel->setCoord(pos.x, pos.y, z);
+    }
+
     void SoundInstance::setPitch(float v)
     {
         _desc.pitch = v;

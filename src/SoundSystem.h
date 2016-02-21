@@ -9,21 +9,18 @@ namespace oxygine
 
     class SoundSystem
     {
-    private:
+    public:
         static SoundSystem* instance;
 
     public:
         virtual ~SoundSystem() {}
 
         static SoundSystem* create();
-
-        static SoundSystem * get() {
-            return instance;
-        };
-
-        static void free() {
-            delete SoundSystem::instance;
-            SoundSystem::instance = nullptr;
+        static SoundSystem* get() {return instance;}
+        static void free()
+        {
+            delete instance;
+            instance = 0;
         }
 
 

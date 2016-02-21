@@ -16,8 +16,8 @@ namespace oxygine
 
     SoundSystem* SoundSystem::create()
     {
-        if (not SoundSystem::instance)
-                SoundSystem::instance = new SoundSystemOAL;
+        if (!SoundSystem::instance)
+            SoundSystem::instance = new SoundSystemOAL;
 
         return SoundSystem::instance;
     }

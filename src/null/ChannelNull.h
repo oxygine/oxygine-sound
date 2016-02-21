@@ -20,6 +20,7 @@ namespace oxygine
         int                 getPosition();
 
         void setVolume(float v);
+        void setCoord(float x, float y, float z);
 
     private:
     };

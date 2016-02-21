@@ -122,6 +122,7 @@
     <ClInclude Include="../src/TestStress.h" />
     <ClInclude Include="../src/example.h" />
     <ClInclude Include="../src/test.h" />
+    <ClInclude Include="..\src\TestCoord.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

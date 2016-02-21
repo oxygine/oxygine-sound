@@ -41,9 +41,8 @@ namespace oxygine
         int                 getPosition() const;
 
         void _updateMasterVolume(float masterVolume);
-        
-        void setCoord (float * const vpos);
-        void setCoord (float const x, float const y, float const z=0);
+
+        void setCoord(float x, float y, float z);
 
     protected:
         friend class SoundSystemOAL;
@@ -75,10 +74,5 @@ namespace oxygine
 
         void updateStreamBuffers(unsigned int* buffs, int num);
         bool _updateFromStream(OggStream* stream, unsigned int b);
-
-        template<typename Fun, typename... Arg>
-        void AL_SOURCE_SET_POS(Fun * fun, Arg... arg) {
-            fun(_alSource, AL_POSITION, arg...);
-        }
     };
 }

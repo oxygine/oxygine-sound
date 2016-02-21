@@ -101,7 +101,6 @@ void example_init()
     getStage()->addChild(Test::instance);
 
 
-
 #ifdef EMSCRIPTEN
     Resources::resources lst;
     resources.collect(lst);

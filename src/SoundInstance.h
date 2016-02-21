@@ -39,6 +39,7 @@ namespace oxygine
         bool        isPlaying();
 
         void    setVolume(float v);
+        void    setCoord(const Vector2& pos, float z = 0);
         void    setPitch(float v);
 
         /**called when sound done*/
