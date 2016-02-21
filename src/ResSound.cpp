@@ -11,7 +11,7 @@ namespace oxygine
     Resource* ResSound::createResSound(CreateResourceContext& context)
     {
         ResSound* rs = new ResSound;
-        rs->init(context, SoundSystem::instance);
+        rs->init(context, SoundSystem::get());
         setNode(rs, context.walker.getNode());
         context.resources->add(rs);
 
@@ -64,7 +64,7 @@ namespace oxygine
 
             if (_streaming)
             {
-                _sound = SoundSystem::instance->createSound(_file.c_str());
+                _sound = SoundSystem::get()->createSound(_file.c_str());
             }
             else
             {
@@ -72,7 +72,7 @@ namespace oxygine
                 file::read(_file.c_str(), fb);
 
                 if (fb.getSize())
-                    _sound = SoundSystem::instance->createSound(fb.data, true);
+                    _sound = SoundSystem::get()->createSound(fb.data, true);
             }
             if (_sound)
                 _sound->setRes(this);

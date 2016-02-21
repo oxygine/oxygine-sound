@@ -55,6 +55,8 @@ namespace oxygine
         virtual void setVolume(float v) = 0;
         virtual void setPitch(float v) = 0;
 
+        virtual void setCoord (float * const vpos) = 0;
+        virtual void setCoord (float const x, float const y, float const z=0) = 0;
     private:
     };
 }
