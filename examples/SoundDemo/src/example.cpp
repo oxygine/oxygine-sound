@@ -5,6 +5,7 @@
 #include "test.h"
 #include "TestSoundFormats.h"
 #include "TestStress.h"
+#include "TestCoord.h"
 #ifdef __S3E__
 #include "s3eKeyboard.h"
 #endif
@@ -33,6 +34,7 @@ public:
 
         addButton("sound_formats", "sound formats");
         addButton("stress_test", "stress test");
+        addButton("test_coord", "test coord");
         addButton("exit", "exit");
 
         getStage()->addEventListener(Stage::ACTIVATE, CLOSURE(this, &TestActor::resume));
@@ -61,6 +63,11 @@ public:
         if (id == "stress_test")
         {
             getStage()->addChild(new TestStress);
+        }
+
+        if (id == "test_coord")
+        {
+            getStage()->addChild(new TestCoord);
         }
 
         if (id == "exit")
