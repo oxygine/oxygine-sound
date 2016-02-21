@@ -95,21 +95,25 @@ void example_init()
     getStage()->addChild(Test::instance);
 
 
-    for (int i = 0; i < resources.getCount(); ++i)
+
+#ifdef EMSCRIPTEN
+    Resources::resources lst;
+    resources.collect(lst);
+    for (size_t i = 0; i < lst.size(); ++i)
     {
-        ResSound* rs = dynamic_cast<ResSound*>(resources.get(i));
+        ResSound* rs = dynamic_cast<ResSound*>(lst[i].get());
         if (!rs)
             continue;
 
-#ifdef EMSCRIPTEN
         EM_ASM_ARGS(
         {
             var p = Preloading("hello");
             p.add(Pointer_stringify($0));
             p.start();
         }, rs->getPath().c_str());
-#endif
     }
+
+#endif
 }
 
 void example_update()

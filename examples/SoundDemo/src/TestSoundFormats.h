@@ -18,9 +18,11 @@ class TestSoundFormats: public Test
 public:
     TestSoundFormats()
     {
-        for (int i = 0; i < resources.getCount(); ++i)
+        Resources::resources lst;
+        resources.collect(lst);
+        for (size_t i = 0; i < lst.size(); ++i)
         {
-            ResSound* rs = dynamic_cast<ResSound*>(resources.get(i));
+            ResSound* rs = dynamic_cast<ResSound*>(lst[i].get());
             if (!rs)
                 continue;
             if (rs->getName().find("track_") != 0 &&
