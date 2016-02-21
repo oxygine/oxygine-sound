@@ -145,7 +145,7 @@ namespace oxygine
 
     spSoundInstance SoundPlayer::play(Resource* res, const PlayOptions& opt)
     {
-        Channel* ch = SoundSystem::instance->getFreeChannel();
+        Channel* ch = SoundSystem::get()->getFreeChannel();
         spSoundInstance s = prepareSound(res, ch, opt);
         if (!s)
             return 0;
@@ -165,7 +165,7 @@ namespace oxygine
         if (!res)
             return 0;
 
-        Channel* ch = SoundSystem::instance->getFreeChannel();
+        Channel* ch = SoundSystem::get()->getFreeChannel();
         spSoundInstance s = prepareSound(res, ch, opt);
         if (!s)
             return 0;
