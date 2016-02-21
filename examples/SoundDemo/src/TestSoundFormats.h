@@ -65,7 +65,7 @@ public:
             return;
         }
 
-        spSoundInstance snd = splayer.play(id, PlayOptions().loop());
+        spSoundInstance snd = splayer.play(id);
         if (!snd)
             return;
         snd->setDoneCallback(CLOSURE(this, &TestSoundFormats::soundDone));

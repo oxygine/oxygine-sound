@@ -7,8 +7,10 @@ namespace oxygine
 {
     SoundSystem*    SoundSystem::create()
     {
-        return new SoundSystemEmscripten;
-        //return new SoundSystemNull;
+        if (!SoundSystem::instance)
+            SoundSystem::instance = new SoundSystemEmscripten;
+
+        return SoundSystem::instance;
     }
 
     SoundSystemEmscripten::SoundSystemEmscripten()
