@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9227000319C8627200392D45 /* bitwise.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000119C8627200392D45 /* bitwise.c */; };
-		9227000419C8627200392D45 /* framing.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000219C8627200392D45 /* framing.c */; };
-		9227000D19C8639300392D45 /* block.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000619C8639300392D45 /* block.c */; };
-		9227000E19C8639300392D45 /* codebook.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000719C8639300392D45 /* codebook.c */; };
-		9227000F19C8639300392D45 /* floor0.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000819C8639300392D45 /* floor0.c */; };
-		9227001019C8639300392D45 /* floor1.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000919C8639300392D45 /* floor1.c */; };
-		9227001119C8639300392D45 /* info.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000A19C8639300392D45 /* info.c */; };
-		9227001219C8639300392D45 /* mapping0.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000B19C8639300392D45 /* mapping0.c */; };
-		9227001319C8639300392D45 /* vorbisfile.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000C19C8639300392D45 /* vorbisfile.c */; };
-		9227001919C863BA00392D45 /* mdct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001419C863BA00392D45 /* mdct.c */; };
-		9227001A19C863BA00392D45 /* res012.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001519C863BA00392D45 /* res012.c */; };
-		9227001B19C863BA00392D45 /* sharedbook.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001619C863BA00392D45 /* sharedbook.c */; };
-		9227001C19C863BA00392D45 /* synthesis.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001719C863BA00392D45 /* synthesis.c */; };
-		9227001D19C863BA00392D45 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001819C863BA00392D45 /* window.c */; };
+		9227000319C8627200392D45 /* bitwise.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000119C8627200392D45 /* bitwise.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227000419C8627200392D45 /* framing.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000219C8627200392D45 /* framing.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227000D19C8639300392D45 /* block.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000619C8639300392D45 /* block.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227000E19C8639300392D45 /* codebook.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000719C8639300392D45 /* codebook.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227000F19C8639300392D45 /* floor0.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000819C8639300392D45 /* floor0.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227001019C8639300392D45 /* floor1.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000919C8639300392D45 /* floor1.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227001119C8639300392D45 /* info.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000A19C8639300392D45 /* info.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227001219C8639300392D45 /* mapping0.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000B19C8639300392D45 /* mapping0.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227001319C8639300392D45 /* vorbisfile.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000C19C8639300392D45 /* vorbisfile.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227001919C863BA00392D45 /* mdct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001419C863BA00392D45 /* mdct.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227001A19C863BA00392D45 /* res012.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001519C863BA00392D45 /* res012.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227001B19C863BA00392D45 /* sharedbook.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001619C863BA00392D45 /* sharedbook.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227001C19C863BA00392D45 /* synthesis.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001719C863BA00392D45 /* synthesis.c */; settings = {COMPILER_FLAGS = "-w"; }; };
+		9227001D19C863BA00392D45 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001819C863BA00392D45 /* window.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		9227001F19C863DC00392D45 /* registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001E19C863DC00392D45 /* registry.c */; };
 		92AF261C19C6383D0026E2CE /* Channel.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF25F119C6383D0026E2CE /* Channel.h */; };
 		92AF261D19C6383D0026E2CE /* Channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF25F219C6383D0026E2CE /* Channels.h */; };
@@ -258,7 +258,7 @@
 		92AF25E119C637F80026E2CE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = oxygine;
 			};
 			buildConfigurationList = 92AF25E419C637F80026E2CE /* Build configuration list for PBXProject "oxygine-sound" */;
@@ -319,7 +319,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -333,6 +332,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -348,7 +348,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "../src ../../oxygine-framework/oxygine/src ../dependencies/tremor/tremor ../dependencies/libogg/include ../dependencies/openal/include";
@@ -359,7 +359,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -383,7 +382,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "../src ../../oxygine-framework/oxygine/src ../dependencies/tremor/tremor ../dependencies/libogg/include ../dependencies/openal/include";
 			};
@@ -392,7 +391,7 @@
 		92AF25EE19C637F80026E2CE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -401,7 +400,7 @@
 		92AF25EF19C637F80026E2CE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

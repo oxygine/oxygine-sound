@@ -42,6 +42,7 @@ data.js
 proj.macosx/oxygine-sound.xcodeproj/xcuserdata/
 proj.ios/oxygine-sound.xcodeproj/xcuserdata/
 xcuserdata
+*.xcscmblueprint
 examples/SoundDemo/proj.win32/Release_vs*
 examples/SoundDemo/proj.win32/Debug_vs*
 */Debug_v*

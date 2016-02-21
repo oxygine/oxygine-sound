@@ -54,14 +54,14 @@ namespace oxygine
 
         void* data = &buff.front();
         size_t size = buff.size();
-        stream.decodeAll(data, size);
+        stream.decodeAll(data, (int)size);
 
         //const std::vector<char> &decoded = stream.getDecodedBuffer();
 
         alGenBuffers(1, &_alBuffer);
         check();
 
-        alBufferData(_alBuffer, _format, data, size, rate);
+        alBufferData(_alBuffer, _format, data, (ALsizei)size, rate);
         check();
 
         return false;
@@ -70,7 +70,7 @@ namespace oxygine
     void SoundOAL::init(std::vector<unsigned char>& buffer, bool swap)
     {
         OggStream stream;
-        stream.init(&buffer.front(), buffer.size());
+        stream.init(&buffer.front(), (unsigned int)buffer.size());
 
         bool streaming = _init(stream);
         if (streaming)

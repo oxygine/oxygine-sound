@@ -14,7 +14,7 @@ namespace oxygine
     unsigned int MemoryStream::read(void* ptr, size_t size, size_t count)
     {
         unsigned int real = (_bytesCount - _pos) / size;
-        real = count > real ? real * size : count * size;
+        real = (unsigned int)(count > real ? real* size : count * size);
         memcpy(ptr, _data + _pos, real);
         _pos += real;
         return real;

@@ -114,6 +114,7 @@ namespace oxygine
         desc.volume = volume;
         desc.paused = opt._paused;
         desc.pitch = opt._pitch;
+        desc.seek = opt._seek;
 
         s->_player = this;
         s->_desc = desc;

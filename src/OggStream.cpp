@@ -52,7 +52,7 @@ namespace oxygine
     size_t oxfile_ov_read_func(void* ptr, size_t size, size_t nmemb, void* datasource)
     {
         file::handle h = (file::handle)datasource;
-        return file::read(h, ptr, size * nmemb);
+        return file::read(h, ptr, (unsigned int)(size * nmemb));
     }
 
     int oxfile_ov_seek_func(void* datasource, ogg_int64_t offset, int whence)
@@ -147,7 +147,7 @@ namespace oxygine
 
         if (rate)
         {
-            *rate = vi->rate;
+            *rate = (int)vi->rate;
         }
 
         if (timeMS)
@@ -189,6 +189,9 @@ namespace oxygine
             return false;
 
         char** ptr = ov_comment(&_vorbisFile, -1)->user_comments;
+        if (ptr)
+        {
+        }
         _info = ov_info(&_vorbisFile, -1);
 
 
@@ -197,7 +200,7 @@ namespace oxygine
 
     int OggStream::getRate() const
     {
-        return _info->rate;
+        return (int)_info->rate;
     }
 
     int OggStream::getNumChannels() const
@@ -205,15 +208,26 @@ namespace oxygine
         return _info->channels;
     }
 
-    int OggStream::getCurrentPCM()
+    int OggStream::getCurrentPCM() const
     {
-        int r = (int)ov_pcm_tell(&_vorbisFile);
+        int r = (int)ov_pcm_tell(const_cast<OggVorbis_File*>(&_vorbisFile));
         return r;
     }
 
-    int OggStream::getTotalPCM()
+    int OggStream::getCurrentMS() const
     {
-        return (int)ov_pcm_total(&_vorbisFile, -1);
+        int r = (int)ov_time_tell(const_cast<OggVorbis_File*>(&_vorbisFile));
+        return r;
+    }
+
+    int OggStream::getTotalPCM() const
+    {
+        return (int)ov_pcm_total(const_cast<OggVorbis_File*>(&_vorbisFile), -1);
+    }
+
+    int OggStream::getTotalMS() const
+    {
+        return (int)ov_time_total(const_cast<OggVorbis_File*>(&_vorbisFile), -1);
     }
 
     void OggStream::decodeAll(void* data, int bufferSize)
@@ -262,6 +276,16 @@ namespace oxygine
         _streamEnded = false;
     }
 
+    int OggStream::seekPCM(int pcm)
+    {
+        return ov_pcm_seek(&_vorbisFile, pcm);
+    }
+
+    int OggStream::seekMS(int ms)
+    {
+        return ov_time_seek(&_vorbisFile, ms);
+    }
+
     int OggStream::decodeNextBlock(bool looped, void* data, int bufferSize)
     {
         unsigned int bytesUnpacked = 0;
@@ -270,7 +294,7 @@ namespace oxygine
 
         while (1)
         {
-            int r = ov_read(&_vorbisFile, (char*)data, bufferSize, &_section);
+            int r = (int)ov_read(&_vorbisFile, (char*)data, bufferSize, &_section);
             if (!r)
             {
                 if (looped)
