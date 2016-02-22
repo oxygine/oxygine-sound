@@ -33,11 +33,11 @@ proj.win32/Debug/
 examples/example1/proj.marmalade/build_example1_*
 examples/example1/proj.emscripten/data.js
 examples/SoundDemo/proj.marmalade/build_example1_vc12/
-*/proj.emscripten/build_release/
-*/proj.android/bin/
-*/proj.android/gen/
-*/proj.android/lib/
-*/proj.android/libs/
+**/proj.emscripten/build_release/
+**/proj.android/bin/
+**/proj.android/gen/
+**/proj.android/lib/
+**/proj.android/libs/
 data.js
 proj.macosx/oxygine-sound.xcodeproj/xcuserdata/
 proj.ios/oxygine-sound.xcodeproj/xcuserdata/
@@ -45,7 +45,7 @@ xcuserdata
 *.xcscmblueprint
 examples/SoundDemo/proj.win32/Release_vs*
 examples/SoundDemo/proj.win32/Debug_vs*
-*/Debug_v*
+**/Debug_v*
 examples/SoundDemo/proj.win32/Release_v*
 examples/SoundDemo/proj.emscripten/data/
 proj.win32/Release_v*
