@@ -61,7 +61,7 @@ namespace oxygine
 
     enum evnt
     {
-        evnt_exit,
+        evnt_exit = 1,
         evnt_stop,
         evnt_sync,
         evnt_decode,

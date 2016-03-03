@@ -130,10 +130,10 @@ void example_update()
 void example_destroy()
 {
     splayer.stop();
-    SoundSystem::get()->stop();
-    resources.free();
-    SoundSystem::get()->release();
+    SoundPlayer::free();
     SoundSystem::free();
+
+    resources.free();
     Test::free();
 }
 

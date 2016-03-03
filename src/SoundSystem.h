@@ -19,6 +19,7 @@ namespace oxygine
         static SoundSystem* get() {return instance;}
         static void free()
         {
+            instance->release();
             delete instance;
             instance = 0;
         }

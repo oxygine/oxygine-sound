@@ -147,8 +147,9 @@ namespace oxygine
 
     void SoundSystemOAL::release()
     {
-        ChannelOAL::stopThread();
+        stop();
 
+        ChannelOAL::stopThread();
         _channels._channels.clear();
         alcMakeContextCurrent(0);
         alcDestroyContext(_context);
