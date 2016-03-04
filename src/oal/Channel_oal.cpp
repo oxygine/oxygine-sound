@@ -55,8 +55,9 @@ namespace oxygine
 
     bool _synchronized = true;
     //const int BUFF_SIZE = 64000;
-    const int BUFF_SIZE = 12000;
+    int BUFF_SIZE = 12000;
     void* localMem = 0;
+
 
 
     enum evnt
@@ -111,6 +112,11 @@ namespace oxygine
 
             _synchronized = true;
         }
+    }
+
+    void ChannelOAL::setBufferSize(int v)
+    {
+        BUFF_SIZE = v;
     }
 
     void* ChannelOAL::_staticThreadFunc(void* t)
