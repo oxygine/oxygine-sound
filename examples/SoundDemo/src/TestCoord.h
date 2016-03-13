@@ -29,7 +29,7 @@ public:
         orange->addEventListener(TouchEvent::MOVE, CLOSURE(this, &TestCoord::onEvent));
         orange->addEventListener(TouchEvent::OUT, CLOSURE(this, &TestCoord::onEvent));
 
-        orange->setInputChildrenEnabled(false);
+        orange->setTouchChildrenEnabled(false);
         orange->attachTo(content);
     }
 
