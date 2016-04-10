@@ -18,13 +18,13 @@ namespace oxygine
         return rs;
     }
 
-	ResSound* ResSound::create(const std::string &file, bool streaming)
-	{
-		ResSound *rs = new ResSound;
-		rs->init(file, streaming);
-		rs->setName(file);
-		return rs;
-	}
+    ResSound* ResSound::create(const std::string& file, bool streaming)
+    {
+        ResSound* rs = new ResSound;
+        rs->init(file, streaming);
+        rs->setName(file);
+        return rs;
+    }
 
     ResSound::ResSound(): _sound(0), _streaming(false)
     {
@@ -36,12 +36,12 @@ namespace oxygine
         delete _sound;
     }
 
-	bool ResSound::init(const std::string &file, bool streaming)
-	{
-		_streaming = streaming;
-		_file = path::normalize(file);
-		return true;
-	}
+    bool ResSound::init(const std::string& file, bool streaming)
+    {
+        _streaming = streaming;
+        _file = path::normalize(file);
+        return true;
+    }
 
     bool ResSound::init(CreateResourceContext& context)
     {

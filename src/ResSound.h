@@ -11,12 +11,12 @@ namespace oxygine
     {
     public:
         static Resource* createResSound(CreateResourceContext& context);
-		static ResSound* create(const std::string &file, bool streaming);
+        static ResSound* create(const std::string& file, bool streaming);
 
         ResSound();
         ~ResSound();
 
-		bool init(const std::string &file, bool streaming);
+        bool init(const std::string& file, bool streaming);
         bool init(CreateResourceContext& context);
 
         Sound*              getSound();
