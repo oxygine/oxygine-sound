@@ -11,11 +11,13 @@ namespace oxygine
     {
     public:
         static Resource* createResSound(CreateResourceContext& context);
+		static ResSound* create(const std::string &file, bool streaming);
 
         ResSound();
         ~ResSound();
 
-        bool init(CreateResourceContext& context, SoundSystem* soundSystem);
+		bool init(const std::string &file, bool streaming);
+        bool init(CreateResourceContext& context);
 
         Sound*              getSound();
         const std::string&  getPath() const;
@@ -23,8 +25,6 @@ namespace oxygine
     private:
         void _load(LoadResourcesContext* context);
         void _unload();
-
-        SoundSystem* _soundSystem;
 
         std::string _file;
         bool _streaming;

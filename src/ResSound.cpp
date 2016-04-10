@@ -11,14 +11,22 @@ namespace oxygine
     Resource* ResSound::createResSound(CreateResourceContext& context)
     {
         ResSound* rs = new ResSound;
-        rs->init(context, SoundSystem::get());
+        rs->init(context);
         setNode(rs, context.walker.getNode());
         context.resources->add(rs);
 
         return rs;
     }
 
-    ResSound::ResSound(): _sound(0), _soundSystem(0), _streaming(false)
+	ResSound* ResSound::create(const std::string &file, bool streaming)
+	{
+		ResSound *rs = new ResSound;
+		rs->init(file, streaming);
+		rs->setName(file);
+		return rs;
+	}
+
+    ResSound::ResSound(): _sound(0), _streaming(false)
     {
 
     }
@@ -28,10 +36,15 @@ namespace oxygine
         delete _sound;
     }
 
-    bool ResSound::init(CreateResourceContext& context, SoundSystem* soundSystem)
-    {
-        _soundSystem = soundSystem;
+	bool ResSound::init(const std::string &file, bool streaming)
+	{
+		_streaming = streaming;
+		_file = path::normalize(file);
+		return true;
+	}
 
+    bool ResSound::init(CreateResourceContext& context)
+    {
         std::string file = context.walker.getNode().attribute("file").as_string();
         _streaming = context.walker.getNode().attribute("streaming").as_bool(_streaming);
 
@@ -58,8 +71,6 @@ namespace oxygine
     {
         if (!_sound)
         {
-            if (!_soundSystem)
-                return 0;
             //printf("loading sound: %S\n", _file.c_str());
 
             if (_streaming)
