@@ -39,7 +39,7 @@ namespace oxygine
     bool ResSound::init(const std::string& file, bool streaming)
     {
         _streaming = streaming;
-        _file = path::normalize(file);
+        //_file = path::normalize(file);
         return true;
     }
 
