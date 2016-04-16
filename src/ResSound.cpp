@@ -38,11 +38,11 @@ namespace oxygine
 
     bool ResSound::init(const std::string& file, bool streaming)
     {
-		_streaming = streaming;
-		char str[512];
-		path::normalize(file.c_str(), str);
-		_file = str;
-		return true;
+        _streaming = streaming;
+        char str[512];
+        path::normalize(file.c_str(), str);
+        _file = str;
+        return true;
     }
 
     bool ResSound::init(CreateResourceContext& context)
