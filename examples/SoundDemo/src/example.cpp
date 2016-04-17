@@ -1,18 +1,10 @@
 #include "oxygine-framework.h"
-
-#include "core/STDFileSystem.h"
+#include "oxygine-sound.h"
 
 #include "test.h"
 #include "TestSoundFormats.h"
 #include "TestStress.h"
 #include "TestCoord.h"
-#ifdef __S3E__
-#include "s3eKeyboard.h"
-#endif
-
-
-#include "SoundPlayer.h"
-#include "SoundSystem.h"
 
 using namespace oxygine;
 
