@@ -30,6 +30,7 @@ namespace oxygine
         void resume();
         bool update();
         void stop();
+        void seek(int tm);
 
         bool isFree() const;
 

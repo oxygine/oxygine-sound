@@ -45,6 +45,7 @@ namespace oxygine
         virtual void pause() = 0;
         virtual void resume() = 0;
         virtual void stop() = 0;
+        virtual void seek(int tm) = 0;
 
         virtual Sound*              getSound() const = 0;
         virtual float               getVolume()const = 0;

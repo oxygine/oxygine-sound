@@ -441,6 +441,24 @@ namespace oxygine
         stop(true);
     }
 
+    void ChannelOAL::seek(int tm)
+    {
+        /*
+        if (_streaming)
+        {
+            _desc.seek = tm;
+            continuePlay(_desc);
+        }
+        else
+        {
+            SoundOAL* sound = (SoundOAL*)_desc.sound;
+            //alSourcei(_alSource, AL_BYTE_OFFSET, v);
+        }
+
+        check();
+        */
+    }
+
     void ChannelOAL::finished(bool needSync)
     {
         LOG2DN("%d ChannelOAL::finished", _index);

@@ -49,6 +49,13 @@ namespace oxygine
         }
     }
 
+    void SoundInstance::resume()
+    {
+        if (!_channel)
+            return;
+        _channel->resume();
+    }
+
     void SoundInstance::stop()
     {
         if (!_channel)
@@ -103,6 +110,12 @@ namespace oxygine
 
         if (_channel)
             _channel->setPitch(_volume);
+    }
+
+    void SoundInstance::seek(int tm)
+    {
+        if (_channel)
+            _channel->seek(tm);
     }
 
     void SoundInstance::update()

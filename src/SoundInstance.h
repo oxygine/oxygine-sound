@@ -27,6 +27,7 @@ namespace oxygine
         SoundInstance();
         ~SoundInstance();
 
+        void resume();
         void stop();
         void fadeOut(int fadeOutMS);
 
@@ -41,6 +42,7 @@ namespace oxygine
         void    setVolume(float v);
         void    setCoord(const Vector2& pos, float z = 0);
         void    setPitch(float v);
+        void    seek(int tm);
 
         /**called when sound done*/
         void    setDoneCallback(EventCallback cb) {_cbDone = cb;}
