@@ -18,6 +18,8 @@ namespace oxygine
         void stop();
         bool update();
 
+        void seek(int tm) {}
+
         Sound*  getSound() const;
         float               getVolume() const;
         float               getPitch() const;
