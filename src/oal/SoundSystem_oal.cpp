@@ -201,7 +201,7 @@ namespace oxygine
         if (DebugActor::instance)
         {
             char str[255];
-            safe_sprintf(str, "channels: %d\n", _channels._channels.size() - getFreeChannelsNum());
+            safe_sprintf(str, "channels: %d", _channels._channels.size() - getFreeChannelsNum());
             DebugActor::instance->addDebugString(str);
         }
     }
