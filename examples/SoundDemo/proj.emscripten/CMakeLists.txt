@@ -15,7 +15,7 @@ include_directories(${OXYGINESOUND_INCLUDE_DIRS})
 SET(CMAKE_EXECUTABLE_SUFFIX ".html")
 
 add_executable(SoundDemo
-	../src/entry_point.cpp
+	../src/main.cpp
 	../src/example.h 
 	../src/example.cpp
 	../src/test.cpp

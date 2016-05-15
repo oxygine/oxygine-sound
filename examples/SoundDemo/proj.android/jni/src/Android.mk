@@ -8,7 +8,7 @@ SDK_ROOT = ../../../../../../
 SRC := ../../../src
 
 LOCAL_SRC_FILES :=  $(SDK_ROOT)/SDL/src/main/android/SDL_android_main.c \
-					$(SRC)/entry_point.cpp \
+					$(SRC)/main.cpp \
 					$(SRC)/example.cpp \
 					$(SRC)/test.cpp
 

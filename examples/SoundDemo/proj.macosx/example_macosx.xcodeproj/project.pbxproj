@@ -16,7 +16,7 @@
 		049B57321871FBE900EF3C66 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049B57311871FBE900EF3C66 /* Cocoa.framework */; };
 		049B574A1871FBE900EF3C66 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049B57491871FBE900EF3C66 /* Images.xcassets */; };
 		1E839D002B2BA83FC83A695A /* demo in Resources */ = {isa = PBXBuildFile; fileRef = 04FE4D4FB640E0DF92DFB865 /* demo */; };
-		2DC477AC10D6C07B3FE008F6 /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360377333740D8A2FD15BBE6 /* entry_point.cpp */; };
+		2DC477AC10D6C07B3FE008F6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360377333740D8A2FD15BBE6 /* main.cpp */; };
 		3A631A475DE035FC53ADE5EA /* ext in Resources */ = {isa = PBXBuildFile; fileRef = 7F3B12E3C9D554D9FE28101D /* ext */; };
 		9227FFFD19C85FF100392D45 /* liboxygine-sound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9227FFFC19C85FD800392D45 /* liboxygine-sound.a */; };
 		9227FFFF19C8602A00392D45 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9227FFFE19C8602A00392D45 /* OpenAL.framework */; };
@@ -105,7 +105,7 @@
 		04FE4D4FB640E0DF92DFB865 /* demo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = demo; path = ../data/demo; sourceTree = "<group>"; };
 		0BF9628FC8D38F9748F0CDEB /* example.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = example.cpp; path = ../src/example.cpp; sourceTree = "<group>"; };
 		2CE4BD5BB9DEF92439C0AB58 /* example.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example.h; path = ../src/example.h; sourceTree = "<group>"; };
-		360377333740D8A2FD15BBE6 /* entry_point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = entry_point.cpp; path = ../src/entry_point.cpp; sourceTree = "<group>"; };
+		360377333740D8A2FD15BBE6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
 		4DA100C319512824B7570663 /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test.cpp; path = ../src/test.cpp; sourceTree = "<group>"; };
 		5DE458993031811A4C7D28C1 /* xmls */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = xmls; path = ../data/xmls; sourceTree = "<group>"; };
 		7F3B12E3C9D554D9FE28101D /* ext */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = ext; path = ../data/ext; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 		04A57D391871FF8B0068B1E5 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				360377333740D8A2FD15BBE6 /* entry_point.cpp */,
+				360377333740D8A2FD15BBE6 /* main.cpp */,
 				0BF9628FC8D38F9748F0CDEB /* example.cpp */,
 				4DA100C319512824B7570663 /* test.cpp */,
 				BA41FC88D76540A6905224D6 /* TestSoundFormats.h */,
@@ -365,7 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DC477AC10D6C07B3FE008F6 /* entry_point.cpp in Sources */,
+				2DC477AC10D6C07B3FE008F6 /* main.cpp in Sources */,
 				DA49ED8903C628BA578C8670 /* example.cpp in Sources */,
 				C8860D93875589970329DCCD /* test.cpp in Sources */,
 			);

@@ -19,7 +19,7 @@ files
 {
 	../src/example.cpp
 	../src/example.h
-	../src/entry_point.cpp
+	../src/main.cpp
 	../src/test.cpp
 	../src/TestSoundFormats.h
 	../src/test.h
