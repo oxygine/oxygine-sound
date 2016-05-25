@@ -113,7 +113,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="../src/entry_point.cpp" />
+    <ClCompile Include="../src/main.cpp" />
     <ClCompile Include="../src/example.cpp" />
     <ClCompile Include="../src/test.cpp" />
   </ItemGroup>
