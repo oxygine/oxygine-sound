@@ -8,6 +8,7 @@ function myb64(bytes)
     return window.btoa( binary );    
 }
 
+
 var sound = {
 	_handles:{},
 
@@ -36,7 +37,9 @@ var sound = {
 			}, false);
 		}
 
-		return js2cpp.create(a);
+		var obj = {instance:a, looped:loop};
+
+		return js2cpp.create(obj);
 	},
 	get: function(id){
 		return js2cpp.get(id);
@@ -45,31 +48,32 @@ var sound = {
 		var s = sound.get(id);
 		if (!s)
 			return;
-		s.volume = volume;
+		s.instance.volume = volume;
 	},
 	pause: function(id){
 		var s = sound.get(id);
 		if (!s)
 			return;
-		s.pause();
+		s.instance.pause();
 	},
 	resume: function(id){
 		var s = sound.get(id);
 		if (!s)
 			return;
-		s.play();
+		s.instance.play();
 	},
 	stop: function(id){
 		var s = sound.get(id);
 		if (!s)
 			return;
-		s.pause(); 
+		s.instance.pause(); 
 	},
 	update: function(id){
 		var s = sound.get(id);
 		if (!s)
 			return;
-		return s.ended;
+		var ended = s.instance.ended;
+		return ended;
 	},	
 	free: function(id){
 		js2cpp.free(id);

@@ -52,7 +52,7 @@ namespace oxygine
         {
             return sound.update($0);
         }, _handle);
-        if (r == 1)
+        if (r == 1 && !_desc.looping)
         {
             log::messageln("sound done");
             if (_desc.cbDone)

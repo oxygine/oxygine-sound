@@ -18,6 +18,8 @@ class TestSoundFormats: public Test
 public:
     TestSoundFormats()
     {
+        _x = 400;
+
         Resources::resources lst;
         resources.collect(lst);
         for (size_t i = 0; i < lst.size(); ++i)
@@ -35,6 +37,8 @@ public:
                     s[i] = ' ';
             addButton(rs->getName(), s);
         }
+
+        addButton("looped", "looped");
 
         addButton("stop", "stop");
         addButton("pause", "pause");
@@ -65,7 +69,14 @@ public:
             return;
         }
 
-        spSoundInstance snd = splayer.play(id);
+        PlayOptions opt;
+
+        if (id == "looped")
+        {
+            opt.loop();
+        }
+
+        spSoundInstance snd = splayer.play(id, opt);
         if (!snd)
             return;
         snd->setDoneCallback(CLOSURE(this, &TestSoundFormats::soundDone));

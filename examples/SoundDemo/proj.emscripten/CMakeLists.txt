@@ -23,7 +23,7 @@ add_executable(SoundDemo
 )
 
 
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Wno-warn-absolute-paths -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OXYGINE_CXX_FLAGS}")
 
 if (CMAKE_BUILD_TYPE STREQUAL Debug)
 	SET(linkFlags "-g4 ")
@@ -38,7 +38,7 @@ set_target_properties(SoundDemo PROPERTIES LINK_FLAGS "${linkFlags}")
 
 
 target_link_libraries(SoundDemo ${OXYGINE_CORE_LIBS} ${OXYGINESOUND_LIBS})
-em_link_pre_js(SoundDemo ${CMAKE_CURRENT_SOURCE_DIR}/data.js
-	${CMAKE_CURRENT_SOURCE_DIR}/sound.js
-	${CMAKE_CURRENT_SOURCE_DIR}/js2cpp.js
-	${CMAKE_CURRENT_SOURCE_DIR}/preloading.js)
+em_link_pre_js(SoundDemo ${CMAKE_CURRENT_SOURCE_DIR}/data.js)
+#	${CMAKE_CURRENT_SOURCE_DIR}/sound.js
+#	${CMAKE_CURRENT_SOURCE_DIR}/js2cpp.js
+#	${CMAKE_CURRENT_SOURCE_DIR}/preloading.js)
