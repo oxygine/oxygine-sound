@@ -94,22 +94,7 @@ void example_init()
 
 
 #ifdef EMSCRIPTEN
-    Resources::resources lst;
-    resources.collect(lst);
-    for (size_t i = 0; i < lst.size(); ++i)
-    {
-        ResSound* rs = dynamic_cast<ResSound*>(lst[i].get());
-        if (!rs)
-            continue;
-
-        EM_ASM_ARGS(
-        {
-            var p = Preloading("hello");
-            p.add(Pointer_stringify($0));
-            p.start();
-        }, rs->getPath().c_str());
-    }
-
+    emscStartSoundsPreloading(resources);
 #endif
 }
 

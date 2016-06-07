@@ -31,4 +31,7 @@ namespace oxygine
 
         Sound* _sound;
     };
+
+
+    void emscStartSoundsPreloading(Resources& res);
 }
