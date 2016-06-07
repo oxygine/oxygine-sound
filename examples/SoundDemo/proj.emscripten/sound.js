@@ -9,6 +9,12 @@ function myb64(bytes)
 }
 
 
+function looped()
+{
+	this.currentTime = 0;
+	this.play();
+}
+
 var sound = {
 	_handles:{},
 
@@ -31,10 +37,7 @@ var sound = {
 
 		if (loop)
 		{
-			a.addEventListener('ended', function() {
-			    this.currentTime = 0;
-			    this.play();
-			}, false);
+			a.addEventListener('ended', looped, false);
 		}
 
 		var obj = {instance:a, looped:loop};
@@ -66,6 +69,8 @@ var sound = {
 		var s = sound.get(id);
 		if (!s)
 			return;
+		if (s.looped)
+			s.instance.removeEventListener('ended', looped);
 		s.instance.pause(); 
 	},
 	update: function(id){
