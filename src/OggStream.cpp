@@ -172,7 +172,7 @@ namespace oxygine
         _file = fopen(name, "rb");
         return _init(cb_fileStream, _file);
 #else
-        _oxfile = file::open(name, "rb");
+        _oxfile = file::open(name, "srb");
         if (_oxfile)
             return _init(cb_oxfile, _oxfile);
         return false;
