@@ -239,7 +239,7 @@ namespace oxygine
 
         setCoord(0, 0, 0);
         alSourcei(_alSource, AL_BUFFER, 0);
-		check();
+        check();
 
         alDeleteBuffers(STREAM_BUFFERS, _buffers);
         check();
