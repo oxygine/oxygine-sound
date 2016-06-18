@@ -24,17 +24,7 @@ add_executable(SoundDemo
 
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OXYGINE_CXX_FLAGS}")
-
-if (CMAKE_BUILD_TYPE STREQUAL Debug)
-	SET(linkFlags "-g4 ")
-else() # Either MinSizeRel, RelWithDebInfo or Release, all which run with optimizations enabled.
-	SET(linkFlags "-O2 ")
-endif()
-
-set(linkFlags "${linkFlags} -s NO_EXIT_RUNTIME=1 -s FULL_ES2=1 -s WARN_ON_UNDEFINED_SYMBOLS=1 --memory-init-file 0 -Wno-warn-absolute-paths -s TOTAL_MEMORY=64435456")
-
-set_target_properties(SoundDemo PROPERTIES LINK_FLAGS "${linkFlags}")
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s NO_EXIT_RUNTIME=1 -s WARN_ON_UNDEFINED_SYMBOLS=1 --memory-init-file 0 -s TOTAL_MEMORY=50331648")
 
 
 target_link_libraries(SoundDemo ${OXYGINE_CORE_LIBS} ${OXYGINESOUND_LIBS})
