@@ -67,7 +67,6 @@ namespace oxygine
 
         bool _free;
         bool _paused;
-        bool _stopped;
         bool _streaming;
 
         OggStream _stream;
