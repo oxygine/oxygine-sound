@@ -18,7 +18,7 @@
 		9227001319C8639300392D45 /* vorbisfile.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000C19C8639300392D45 /* vorbisfile.c */; };
 		9227001919C863BA00392D45 /* mdct.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001419C863BA00392D45 /* mdct.c */; };
 		9227001A19C863BA00392D45 /* res012.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001519C863BA00392D45 /* res012.c */; };
-		9227001B19C863BA00392D45 /* sharedbook.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001619C863BA00392D45 /* sharedbook.c */; };
+		9227001B19C863BA00392D45 /* sharedbook.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001619C863BA00392D45 /* sharedbook.c */; settings = {COMPILER_FLAGS = "-Wno-absolute-value"; }; };
 		9227001C19C863BA00392D45 /* synthesis.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001719C863BA00392D45 /* synthesis.c */; };
 		9227001D19C863BA00392D45 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001819C863BA00392D45 /* window.c */; };
 		9227001F19C863DC00392D45 /* registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001E19C863DC00392D45 /* registry.c */; };
