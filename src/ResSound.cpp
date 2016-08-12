@@ -82,7 +82,7 @@ namespace oxygine
             else
             {
                 file::buffer fb;
-                file::read(_file.c_str(), fb);
+                file::read(_file, fb);
 
                 if (fb.getSize())
                     _sound = SoundSystem::get()->createSound(fb.data, true);
