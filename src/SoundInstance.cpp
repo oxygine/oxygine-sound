@@ -66,8 +66,8 @@ namespace oxygine
 
     void SoundInstance::fadeOut(int fadeOutMS)
     {
-        _state = FadingOut;
         _startFadeOut = _player->getTime() - _startTime;
+        _state = FadingOut;
         _fadeOutMS = fadeOutMS;
     }
 
