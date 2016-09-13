@@ -19,10 +19,13 @@ namespace oxygine
         bool init(const std::string& file, bool streaming);
         bool init(CreateResourceContext& context);
 
-        Sound*              getSound();
+        Sound*              getSound() const;
         const std::string&  getPath() const;
+        timeMS              getDuration() const;
 
     private:
+        Sound* _getSound();
+
         void _load(LoadResourcesContext* context);
         void _unload();
 

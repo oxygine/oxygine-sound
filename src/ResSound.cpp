@@ -69,7 +69,13 @@ namespace oxygine
         return _file;
     }
 
-    Sound* ResSound::getSound()
+    timeMS  ResSound::getDuration() const
+    {
+        return getSound()->getDuration();
+    }
+
+
+    Sound* ResSound::_getSound()
     {
         if (!_sound)
         {
@@ -92,6 +98,11 @@ namespace oxygine
         }
 
         return _sound;
+    }
+
+    Sound* ResSound::getSound() const
+    {
+        return const_cast<ResSound*>(this)->_getSound();
     }
 
     void ResSound::_load(LoadResourcesContext* context)
