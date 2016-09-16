@@ -64,11 +64,24 @@ namespace oxygine
         _channel = 0;
     }
 
-    void SoundInstance::fadeOut(int fadeOutMS)
+    void SoundInstance::fadeOut(int fadeOutMS, bool stop)
     {
         _startFadeOut = _player->getTime() - _startTime;
-        _state = FadingOut;
+        _state = stop ? FadingOut : FadingOutPause;
         _fadeOutMS = fadeOutMS;
+    }
+
+    void SoundInstance::fadeIn(int fadeInMS)
+    {
+        OX_ASSERT(_channel);
+        OX_ASSERT(_state == Paused);
+        if (!_channel)
+            return;
+
+        _channel->resume();
+        _startFadeIn = _player->getTime() - _startTime;
+        _fadeInMS = fadeInMS;
+        _state = FadingIn;
     }
 
     bool SoundInstance::isPlaying()
@@ -124,13 +137,19 @@ namespace oxygine
         if (!_channel)
             return;
 
-        int lenMS = _desc.sound->getDuration();
+        int duration = _desc.sound->getDuration();
         unsigned int globalTime = _player->getTime();
 
         int soundTime = globalTime - _startTime;
 
         switch (_state)
         {
+            case Paused:
+            {
+
+            }
+            break;
+
             case FadingIn:
             {
                 float p = (soundTime - _startFadeIn) / (float)_fadeInMS;
@@ -144,13 +163,12 @@ namespace oxygine
                 //printf("fade in\n");
                 float volume = p * _volume;
                 _channel->setVolume(volume);
-
             }
             break;
 
             case Normal:
             {
-                if (!_desc.looping && soundTime >= _startFadeOut && lenMS != _startFadeOut)
+                if (!_desc.looping && soundTime >= _startFadeOut && duration != _startFadeOut)
                 {
                     _state = FadingOut;
                     if (_cbDone)
@@ -161,16 +179,26 @@ namespace oxygine
                 }
             }
             break;
+
+            case FadingOutPause:
             case FadingOut:
             {
-                //printf("fade out\n");
                 float p = (soundTime - _startFadeOut) / (float)_fadeOutMS;
 
                 if (p > 1.0)
                 {
-                    _channel->stop();
-                    finished();
-                    return;
+                    if (_state == FadingOutPause)
+                    {
+                        _channel->setVolume(0);
+                        _channel->pause();
+                        _state = Paused;
+                        _startFadeOut = duration;
+                    }
+                    else
+                    {
+                        _channel->stop();
+                        finished();
+                    }
                 }
                 else
                 {

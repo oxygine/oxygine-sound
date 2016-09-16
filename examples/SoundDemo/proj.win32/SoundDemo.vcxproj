@@ -123,6 +123,7 @@
     <ClInclude Include="../src/example.h" />
     <ClInclude Include="../src/test.h" />
     <ClInclude Include="..\src\TestCoord.h" />
+    <ClInclude Include="..\src\TestSoundInstance.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

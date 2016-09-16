@@ -5,6 +5,7 @@
 #include "TestSoundFormats.h"
 #include "TestStress.h"
 #include "TestCoord.h"
+#include "TestSoundInstance.h"
 
 using namespace oxygine;
 
@@ -27,6 +28,7 @@ public:
         addButton("sound_formats", "sound formats");
         addButton("stress_test", "stress test");
         addButton("test_coord", "test coord");
+        addButton("test_si", "test sound instance");
         addButton("exit", "exit");
 
         getStage()->addEventListener(Stage::ACTIVATE, CLOSURE(this, &TestActor::resume));
@@ -60,6 +62,11 @@ public:
         if (id == "test_coord")
         {
             getStage()->addChild(new TestCoord);
+        }
+
+        if (id == "test_si")
+        {
+            getStage()->addChild(new TestSoundInstance);
         }
 
         if (id == "exit")

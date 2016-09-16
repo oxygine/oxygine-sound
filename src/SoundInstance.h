@@ -29,7 +29,12 @@ namespace oxygine
 
         void resume();
         void stop();
-        void fadeOut(int fadeOutMS);
+
+        /**if stop==false Event::COMPLETE won't be dispatched*/
+        void fadeOut(int fadeOutMS, bool stop = true);
+
+        /**could be used after fadeOut with stop=false*/
+        void fadeIn(int fadeInMS);
 
         Channel*    getChannel() const;
         int         getDuration() const;
@@ -76,7 +81,9 @@ namespace oxygine
         {
             FadingIn,
             FadingOut,
-            Normal
+            FadingOutPause,
+            Normal,
+            Paused,
         };
         State _state;
     };
