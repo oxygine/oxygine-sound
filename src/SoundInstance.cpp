@@ -64,32 +64,53 @@ namespace oxygine
         _channel = 0;
     }
 
-    void SoundInstance::fadeOut(int fadeOutMS, bool stop)
+    void SoundInstance::fadeOut(int fadeOutMS)
     {
         _startFadeOut = _player->getTime() - _startTime;
-        _state = stop ? FadingOut : FadingOutPause;
+        _state = FadingOutStop;
         _fadeOutMS = fadeOutMS;
+    }
+
+    void SoundInstance::fadeOutPause(int fadeOutMS)
+    {
+        if (_state == Normal || _state == FadingIn || _state == FadingOutStop)
+        {
+            _startFadeOut = _player->getTime() - _startTime;
+            _state = FadingOutPause;
+            _fadeOutMS = fadeOutMS;
+        }
     }
 
     void SoundInstance::fadeIn(int fadeInMS)
     {
         OX_ASSERT(_channel);
-        OX_ASSERT(_state == Paused);
         if (!_channel)
             return;
 
-        _channel->resume();
+        if (_state == Paused)
+            _channel->resume();
+
         _startFadeIn = _player->getTime() - _startTime;
         _fadeInMS = fadeInMS;
         _state = FadingIn;
     }
 
-    bool SoundInstance::isPlaying()
+    bool SoundInstance::isPlaying() const
     {
         if (_channel)
             return true;
 
         return false;
+    }
+
+    bool SoundInstance::isPaused() const
+    {
+        return _state == Paused;
+    }
+
+    bool SoundInstance::isFadingOut() const
+    {
+        return _state == FadingOutPause || _state == FadingOutStop;
     }
 
     float SoundInstance::getVolume() const
@@ -170,7 +191,7 @@ namespace oxygine
             {
                 if (!_desc.looping && soundTime >= _startFadeOut && duration != _startFadeOut)
                 {
-                    _state = FadingOut;
+                    _state = FadingOutStop;
                     if (_cbDone)
                     {
                         Event ev(Event::COMPLETE);
@@ -181,7 +202,7 @@ namespace oxygine
             break;
 
             case FadingOutPause:
-            case FadingOut:
+            case FadingOutStop:
             {
                 float p = (soundTime - _startFadeOut) / (float)_fadeOutMS;
 

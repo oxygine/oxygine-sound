@@ -30,7 +30,7 @@ public:
     {
         if (id == "fop")
         {
-            snd->fadeOut(300, false);
+            snd->fadeOutPause(300);
         }
         if (id == "for")
         {

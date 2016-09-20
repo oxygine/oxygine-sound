@@ -30,8 +30,10 @@ namespace oxygine
         void resume();
         void stop();
 
-        /**if stop==false Event::COMPLETE won't be dispatched*/
-        void fadeOut(int fadeOutMS, bool stop = true);
+
+        void fadeOut(int fadeOutMS);
+        /**Event::COMPLETE won't be dispatched*/
+        void fadeOutPause(int fadeOutMS);
 
         /**could be used after fadeOut with stop=false*/
         void fadeIn(int fadeInMS);
@@ -42,7 +44,9 @@ namespace oxygine
         float       getVolume() const;
         float       getPitch() const;
         const sound_desc& getDesc() const {return _desc;}
-        bool        isPlaying();
+        bool        isPlaying() const;
+        bool        isPaused() const;
+        bool        isFadingOut() const;
 
         void    setVolume(float v);
         void    setCoord(const Vector2& pos, float z = 0);
@@ -80,7 +84,7 @@ namespace oxygine
         enum State
         {
             FadingIn,
-            FadingOut,
+            FadingOutStop,
             FadingOutPause,
             Normal,
             Paused,
