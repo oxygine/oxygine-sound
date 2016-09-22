@@ -132,7 +132,7 @@ namespace oxygine
         s->_fadeOutMS = opt._fadeOut;
 
         s->_volume = volume;// *_volume;
-        s->_state = SoundInstance::Normal;
+        s->_state = desc.paused ? SoundInstance::Paused : SoundInstance::Normal;
 
         if (opt._fadeIn)
         {

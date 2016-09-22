@@ -53,6 +53,9 @@ namespace oxygine
     {
         if (!_channel)
             return;
+        if (_state != Paused)
+            return;
+        _state = Normal;
         _channel->resume();
     }
 
@@ -66,9 +69,22 @@ namespace oxygine
 
     void SoundInstance::fadeOut(int fadeOutMS)
     {
-        _startFadeOut = _player->getTime() - _startTime;
-        _state = FadingOutStop;
-        _fadeOutMS = fadeOutMS;
+        //OX_ASSERT(_channel);
+        if (!_channel)
+            return;
+
+        if (_state == Paused)
+        {
+            //we don't need sound, emulate fade out for silent sound
+            setVolume(0);
+        }
+
+        if (_state == Normal || _state == FadingIn || _state == FadingOutStop || _state == Paused)
+        {
+            _startFadeOut = _player->getTime() - _startTime;
+            _state = FadingOutStop;
+            _fadeOutMS = fadeOutMS;
+        }
     }
 
     void SoundInstance::fadeOutPause(int fadeOutMS)
