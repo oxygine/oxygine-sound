@@ -11,7 +11,6 @@ namespace oxygine
     class SoundSystemOAL;
     class OggStream;
 
-    const int STREAM_BUFFERS = 3;
 
     class ChannelOAL: public Channel
     {

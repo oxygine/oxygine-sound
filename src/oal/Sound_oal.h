@@ -1,13 +1,16 @@
 #pragma once
 #include <vector>
 #include <string>
-
+#include "OggStream.h"
 #include "../Sound.h"
 #include "../oal.h"
 
 
 namespace oxygine
 {
+
+    const int STREAM_BUFFERS = 3;
+
     class OggStream;
 
     class SoundOAL: public Sound
@@ -39,12 +42,56 @@ namespace oxygine
         std::vector<unsigned char> _fileBuffer;
     };
 
+    class SoundHandleOAL;
+
+    class StreamOAL : public Object
+    {
+    public:
+        virtual bool play(SoundHandleOAL*) = 0;
+        virtual void update(SoundHandleOAL*) = 0;
+    };
+
+    class StaticStreamOAL : public StreamOAL
+    {
+    public:
+
+        StaticStreamOAL(ALuint buffer): _buffer(buffer) {}
+
+        bool play(SoundHandleOAL* s);
+        void update(SoundHandleOAL* s);
+
+    protected:
+        ALuint _buffer;
+    };
+
+
+
+
+    class OggStreamOAL: public StreamOAL
+    {
+    public:
+        OggStreamOAL(SoundOAL*);
+        bool play(SoundHandleOAL*) override;
+        void update(SoundHandleOAL*) override;
+
+    protected:
+        void decode(SoundHandleOAL* s, ALuint* items, int num);
+
+        SoundOAL* _snd;
+        OggStream _stream;
+        ALuint _buffers[STREAM_BUFFERS];
+    };
+
     class SoundHandleOAL : public SoundHandle
     {
     public:
         SoundHandleOAL();
 
     protected:
+        friend class StaticStreamOAL;
+        friend class OggStreamOAL;
+
+
         void _init();
         void _play();
         void _pause();
@@ -54,7 +101,9 @@ namespace oxygine
         void _updatePitch();
 
         ALuint _alSource;
-
         ALint _pos;
+
+        StreamOAL* _stream;
     };
+
 }

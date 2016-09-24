@@ -57,7 +57,6 @@ namespace oxygine
         bool _looping;
 
         std::list<Sound*> _sounds;
-
         sound_state _state;
     };
 }

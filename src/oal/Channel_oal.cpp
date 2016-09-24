@@ -66,6 +66,7 @@ namespace oxygine
         evnt_stop,
         evnt_sync,
         evnt_decode,
+        evnt_decode2,
     };
 
     void wrapSourceQueueBuffers(ALuint sid, ALsizei numEntries, const ALuint* bids)
@@ -171,6 +172,11 @@ namespace oxygine
 
                     ChannelOAL* channel = (ChannelOAL*)msg.arg1;
                     channel->reset();
+                }
+                break;
+                case evnt_decode2:
+                {
+
                 }
                 break;
             }
@@ -286,6 +292,14 @@ namespace oxygine
         _desc.pitch = v;
         alSourcef(_alSource, AL_PITCH, v);
         check();
+    }
+
+    void* getSoundStreamTempBuffer(int& size)
+    {
+        void* data = pthread_getspecific(_tls);
+
+        size = BUFF_SIZE;
+        return data;
     }
 
     bool ChannelOAL::_updateFromStream(OggStream* stream, ALuint b)
