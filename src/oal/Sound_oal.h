@@ -38,4 +38,23 @@ namespace oxygine
         ALuint _alBuffer;
         std::vector<unsigned char> _fileBuffer;
     };
+
+    class SoundHandleOAL : public SoundHandle
+    {
+    public:
+        SoundHandleOAL();
+
+    protected:
+        void _init();
+        void _play();
+        void _pause();
+
+        void _update();
+        void _updateVolume();
+        void _updatePitch();
+
+        ALuint _alSource;
+
+        ALint _pos;
+    };
 }

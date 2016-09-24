@@ -190,6 +190,12 @@ namespace oxygine
         return sound;
     }
 
+    oxygine::SoundHandleOAL* SoundSystemOAL::createHandle()
+    {
+        SoundHandleOAL* h = new SoundHandleOAL;
+        return h;
+    }
+
     void SoundSystemOAL::update()
     {
         if (!_device)
@@ -217,4 +223,26 @@ namespace oxygine
         check();
         return channel;
     }
+
+
+    ALuint SoundSystemOAL::getSource()
+    {
+        ALuint source;
+        if (_freeSources.empty())
+        {
+            alGenSources(1, &source);
+            check();
+            return source;
+        }
+
+        source = _freeSources.back();
+        _freeSources.pop_back();
+        return source;
+    }
+
+    void SoundSystemOAL::freeSource(ALuint s)
+    {
+        _freeSources.push_back(s);
+    }
+
 }

@@ -1,6 +1,7 @@
 #include "Sound_oal.h"
 #include "../OggStream.h"
 #include "../oal.h"
+#include "SoundSystem_oal.h"
 
 namespace oxygine
 {
@@ -104,5 +105,101 @@ namespace oxygine
             stream.init(&_fileBuffer.front(), (unsigned int)_fileBuffer.size());
         else
             stream.init(_fileName.c_str());
+    }
+
+    SoundSystemOAL* ss()
+    {
+        return (SoundSystemOAL*)SoundSystem::get();
+    }
+
+    SoundHandleOAL::SoundHandleOAL(): _alSource(0), _pos(0)
+    {
+    }
+
+    void SoundHandleOAL::_init()
+    {
+
+    }
+
+    void SoundHandleOAL::_play()
+    {
+        _alSource = ss()->getSource();
+
+        alSourcef(_alSource, AL_GAIN, _volume);
+        check();
+
+        alSourcef(_alSource, AL_PITCH, _pitch);
+
+        for (auto sound : _sounds)
+        {
+            ALuint buffer = ((SoundOAL*)sound)->getAlBuffer();
+
+            alSourceQueueBuffers(_alSource, 1, &buffer);
+            check();
+        }
+
+
+
+        //alSourceQueueBuffers(_alSource, 1, &buffer2);
+        check();
+
+
+        alSourcei(_alSource, AL_LOOPING, _looping ? AL_TRUE : AL_FALSE);
+        check();
+
+        alSourcei(_alSource, AL_BYTE_OFFSET, _pos);
+        check();
+
+        alSourcePlay(_alSource);
+    }
+
+    void SoundHandleOAL::_pause()
+    {
+        alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
+        check();
+
+        alSourceStop(_alSource);
+        check();
+
+        alSourcei(_alSource, AL_LOOPING, AL_FALSE);
+
+        ALuint v[2];
+        alSourceUnqueueBuffers(_alSource, 2, v);
+        check();
+
+        ss()->freeSource(_alSource);
+        _alSource = 0;
+        _state = paused;
+    }
+
+    void SoundHandleOAL::_update()
+    {
+        if (!_alSource)
+            return;
+
+        ALint state = 0;
+        alGetSourcei(_alSource, AL_SOURCE_STATE, &state);
+        check();
+
+        if (state == AL_STOPPED)
+        {
+            _state = stopped;
+            ss()->freeSource(_alSource);
+            _alSource = 0;
+        }
+    }
+
+    void SoundHandleOAL::_updateVolume()
+    {
+        if (!_alSource)
+            return;
+        alSourcef(_alSource, AL_GAIN, _volume);
+    }
+
+    void SoundHandleOAL::_updatePitch()
+    {
+        if (!_alSource)
+            return;
+        alSourcef(_alSource, AL_PITCH, _pitch);
     }
 }

@@ -43,7 +43,7 @@ namespace oxygine
 #ifdef CHANNEL_DEBUG
             log::messageln("AL error: %d\n", error);
 #endif
-            //OX_ASSERT(error == AL_NO_ERROR);
+            OX_ASSERT(error == AL_NO_ERROR);
             //throw std::string("OpenAL error was raised.");
         }
 #endif

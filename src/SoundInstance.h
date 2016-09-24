@@ -91,4 +91,13 @@ namespace oxygine
         };
         State _state;
     };
+
+
+    DECLARE_SMART(SoundInstance2, spSoundInstance2);
+
+    class SoundInstance2 : public Object
+    {
+    public:
+
+    };
 }

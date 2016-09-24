@@ -96,4 +96,11 @@ namespace oxygine
 
         bool _paused;
     };
+
+    class SoundPlayer2
+    {
+    public:
+
+    };
+
 }

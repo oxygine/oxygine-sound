@@ -6,6 +6,7 @@ namespace oxygine
 
     class Channel;
     class Sound;
+    class SoundHandle;
 
     class SoundSystem
     {
@@ -35,6 +36,7 @@ namespace oxygine
         virtual Sound* createSound(std::vector<unsigned char>& data, bool swap) = 0;
         virtual Sound* createSound(const char* file) = 0;
 
+        virtual SoundHandle* createHandle() = 0;
 
         virtual Channel*    getFreeChannel() = 0;
         virtual float       getVolume() const = 0;

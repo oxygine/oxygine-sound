@@ -6,7 +6,6 @@
 namespace oxygine
 {
 
-
     class SoundSystemOAL : public SoundSystem
     {
     public:
@@ -23,6 +22,8 @@ namespace oxygine
         SoundOAL* createSound(std::vector<unsigned char>& buffer, bool swap);
         SoundOAL* createSound(const char* path);
 
+        SoundHandleOAL* createHandle();
+
         bool        isAvailable() const {return _context != 0;}
         float       getVolume() const {return _volume;}
         int         getFreeChannelsNum();
@@ -32,6 +33,10 @@ namespace oxygine
         void setContext();
 
         void update();
+
+        ALuint getSource();
+        void   freeSource(ALuint);
+        std::vector<ALuint> _freeSources;
 
     private:
         //typedef std::vector<ChannelOAL> channels;

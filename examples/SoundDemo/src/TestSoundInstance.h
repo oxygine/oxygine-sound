@@ -4,6 +4,7 @@
 #include "SoundPlayer.h"
 #include "SoundInstance.h"
 #include "core/file.h"
+#include "Sound.h"
 
 #ifdef EMSCRIPTEN
 #include <emscripten.h>
@@ -17,24 +18,39 @@ public:
 
     spSprite orange;
     spSoundInstance snd;
+    SoundHandle* handle;
 
     TestSoundInstance()
     {
-        snd = splayer.play("track_44100_mono", PlayOptions().loop(false));
+        handle = SoundSystem::get()->createHandle();
+        handle->add(resources.getT<ResSound>("success_44100_mono")->getSound());
+        handle->add(resources.getT<ResSound>("win_round")->getSound());
 
-        addButton("fop", "fadeOut -> Pause");
-        addButton("for", "resume -> fadeIn");
+        handle->setLoop(true);
+        handle->play();
+
+        //snd = splayer.play("track_44100_mono", PlayOptions().loop(false));
+
+        addButton("pause", "pause");
+        addButton("resume", "resume");
+    }
+
+    void doUpdate(const UpdateState& us)
+    {
+        handle->update();
     }
 
     void clicked(string id)
     {
-        if (id == "fop")
+        if (id == "pause")
         {
-            snd->fadeOutPause(300);
+            handle->pause();
+            // snd->fadeOutPause(300);
         }
-        if (id == "for")
+        if (id == "resume")
         {
-            snd->fadeIn(300);
+            handle->play();
+            // snd->fadeIn(300);
         }
     }
 };
