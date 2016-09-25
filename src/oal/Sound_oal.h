@@ -49,6 +49,8 @@ namespace oxygine
     public:
         virtual bool play(SoundHandleOAL*) = 0;
         virtual void update(SoundHandleOAL*) = 0;
+		virtual void pause(SoundHandleOAL*) = 0;
+		virtual void resume(SoundHandleOAL*) = 0;
     };
 
     class StaticStreamOAL : public StreamOAL
@@ -59,6 +61,8 @@ namespace oxygine
 
         bool play(SoundHandleOAL* s);
         void update(SoundHandleOAL* s);
+		void pause(SoundHandleOAL*s);
+		void resume(SoundHandleOAL*s);
 
     protected:
         ALuint _buffer;
@@ -71,8 +75,12 @@ namespace oxygine
     {
     public:
         OggStreamOAL(SoundOAL*);
+
         bool play(SoundHandleOAL*) override;
         void update(SoundHandleOAL*) override;
+
+		void resume(SoundHandleOAL*) override;
+		void pause(SoundHandleOAL*) override;
 
     protected:
         void decode(SoundHandleOAL* s, ALuint* items, int num);
@@ -80,6 +88,7 @@ namespace oxygine
         SoundOAL* _snd;
         OggStream _stream;
         ALuint _buffers[STREAM_BUFFERS];
+		ALuint _pos;
     };
 
     class SoundHandleOAL : public SoundHandle

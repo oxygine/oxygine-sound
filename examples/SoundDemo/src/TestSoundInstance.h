@@ -23,7 +23,7 @@ public:
     TestSoundInstance()
     {
         handle = SoundSystem::get()->createHandle();
-        handle->add(resources.getT<ResSound>("track_44100_mono")->getSound());
+        handle->add(resources.getT<ResSound>("track_48000_stereo")->getSound());
         //handle->add(resources.getT<ResSound>("win_round")->getSound());
 
         handle->setLoop(true);

@@ -116,7 +116,7 @@ namespace oxygine
         return (SoundSystemOAL*)SoundSystem::get();
     }
 
-    SoundHandleOAL::SoundHandleOAL(): _alSource(0), _pos(0)
+    SoundHandleOAL::SoundHandleOAL(): _alSource(0), _pos(0), _stream(0)
     {
     }
 
@@ -127,7 +127,6 @@ namespace oxygine
 
     void SoundHandleOAL::_play()
     {
-        _stream = new OggStreamOAL((SoundOAL*) _sounds.front());
 
         _alSource = ss()->getSource();
 
@@ -137,7 +136,22 @@ namespace oxygine
         alSourcef(_alSource, AL_PITCH, _pitch);
         check();
 
-        _stream->play(this);
+
+		if (_stream)
+		{
+			_stream->resume(this);
+
+		}
+		else
+		{
+			SoundOAL *snd = (SoundOAL*)_sounds.front();
+			if (snd->getAlBuffer())
+				_stream = new StaticStreamOAL(snd->getAlBuffer());
+			else
+				_stream = new OggStreamOAL(snd);
+			_stream->play(this);
+		}
+		
 
 
         //alSourcei(_alSource, AL_LOOPING, _looping ? AL_TRUE : AL_FALSE);
@@ -152,17 +166,19 @@ namespace oxygine
 
     void SoundHandleOAL::_pause()
     {
-        alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
-        check();
+		alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
+		check();
 
-        alSourceStop(_alSource);
-        check();
+		alSourceStop(_alSource);
+		check();
+
+
+		_stream->pause(this);
+
 
         alSourcei(_alSource, AL_LOOPING, AL_FALSE);
 
-        ALuint v[2];
-        alSourceUnqueueBuffers(_alSource, 2, v);
-        check();
+
 
         ss()->freeSource(_alSource);
         _alSource = 0;
@@ -207,6 +223,7 @@ namespace oxygine
     bool StaticStreamOAL::play(SoundHandleOAL* s)
     {
         alSourceQueueBuffers(s->_alSource, 1, &_buffer);
+		check();
 
         return false;
     }
@@ -216,17 +233,30 @@ namespace oxygine
 
     }
 
-    extern void* getSoundStreamTempBuffer(int& size);
+	void StaticStreamOAL::pause(SoundHandleOAL*s)
+	{
+		ALuint b;
+		alSourceUnqueueBuffers(s->_alSource, 1, &b);
+		check();
+	}
+
+	void StaticStreamOAL::resume(SoundHandleOAL*s)
+	{
+		alSourceQueueBuffers(s->_alSource, 1, &_buffer);
+		check();
+	}
+
+	extern void* getSoundStreamTempBuffer(int& size);
 
     OggStreamOAL::OggStreamOAL(SoundOAL* snd): _snd(snd)
     {
         snd->initStream(_stream);
+
+		alGenBuffers(STREAM_BUFFERS, _buffers);
     }
 
     bool OggStreamOAL::play(SoundHandleOAL* s)
     {
-        alGenBuffers(STREAM_BUFFERS, _buffers);
-
         decode(s, _buffers, STREAM_BUFFERS);
 
         return false;
@@ -237,24 +267,43 @@ namespace oxygine
         ALint nump;
         alGetSourcei(s->_alSource, AL_BUFFERS_PROCESSED, &nump);
         ALuint buffers[STREAM_BUFFERS];
-        if (nump)
-            alSourceUnqueueBuffers(s->_alSource, nump, buffers);
+		if (nump)
+		{
+			alSourceUnqueueBuffers(s->_alSource, nump, buffers);
+			check();
+		}
+
         decode(s, buffers, nump);
     }
 
-    void OggStreamOAL::decode(SoundHandleOAL* s, ALuint* buffers, int num)
+	void OggStreamOAL::resume(SoundHandleOAL* s)
+	{
+		alSourceQueueBuffers(s->_alSource, STREAM_BUFFERS, _buffers);
+		check();
+	}
+
+	void OggStreamOAL::pause(SoundHandleOAL* s)
+	{
+		alSourceUnqueueBuffers(s->_alSource, STREAM_BUFFERS, _buffers);
+		check();
+	}
+
+	void OggStreamOAL::decode(SoundHandleOAL* s, ALuint* buffers, int num)
     {
         int size;
         void* data = getSoundStreamTempBuffer(size);
 
         for (int i = 0; i < num; ++i)
         {
+			log::messageln("decode %d", getTimeMS());
             ALuint buffer = buffers[i];
             size = _stream.decodeNextBlock(s->_looping, data, size);
             if (!size)
                 break;
             alBufferData(buffer, _snd->getFormat(), data, size, _stream.getRate());
+			check();
             alSourceQueueBuffers(s->_alSource, 1, &buffer);
+			check();
         }
     }
 
