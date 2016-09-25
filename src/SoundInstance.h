@@ -9,6 +9,8 @@ namespace oxygine
     class SoundPlayer;
     class Channel;
 
+	class SoundHandle;
+
     DECLARE_SMART(SoundInstance, spSoundInstance);
     class SoundInstance: public Object
     {
@@ -24,7 +26,7 @@ namespace oxygine
             SoundEvent(eventType tp, SoundInstance* ins): Event(tp), instance(ins) {}
             SoundInstance* instance;
         };
-        SoundInstance();
+        SoundInstance(SoundHandle *);
         ~SoundInstance();
 
         void resume();
@@ -69,6 +71,7 @@ namespace oxygine
         EventCallback _cbDone;
         EventCallback _cbAboutDone;
 
+		SoundHandle *_handle;
         Channel* _channel;
         sound_desc _desc;
 
@@ -90,14 +93,5 @@ namespace oxygine
             Paused,
         };
         State _state;
-    };
-
-
-    DECLARE_SMART(SoundInstance2, spSoundInstance2);
-
-    class SoundInstance2 : public Object
-    {
-    public:
-
     };
 }

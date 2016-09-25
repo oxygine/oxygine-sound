@@ -87,16 +87,19 @@ namespace oxygine
 
 
 
-    spSoundInstance SoundPlayer::prepareSound(Resource* ressound_, Channel* channel, const PlayOptions& opt)
-    {
+    spSoundInstance SoundPlayer::prepareSound(Resource* ressound_, SoundHandle* channel, const PlayOptions& opt)
+	{
         ResSound* ressound = safeCast<ResSound*>(ressound_);
         if (!ressound || !ressound->getSound())
             return 0;
 
         if (!channel)
             return 0;
+		channel->add(ressound->getSound());
 
-        spSoundInstance s = new SoundInstance;
+        spSoundInstance s = new SoundInstance(channel);
+
+		/*
         sound_desc desc;
 
         float volume = opt._volume;
@@ -139,19 +142,20 @@ namespace oxygine
             s->_state = SoundInstance::FadingIn;
             desc.volume = 0.0f;
         }
+		*/
 
         return s;
     }
 
     spSoundInstance SoundPlayer::play(Resource* res, const PlayOptions& opt)
     {
-        Channel* ch = SoundSystem::get()->getFreeChannel();
+		SoundHandle* ch = SoundSystem::get()->createHandle();
         spSoundInstance s = prepareSound(res, ch, opt);
         if (!s)
             return 0;
 
         _sounds.push_back(s);
-        ch->play(s->_desc);
+        //ch->play(s->_desc);
 
         return s;
     }
@@ -165,19 +169,23 @@ namespace oxygine
         if (!res)
             return 0;
 
-        Channel* ch = SoundSystem::get()->getFreeChannel();
+        //Channel* ch = SoundSystem::get()->getFreeChannel();
+		SoundHandle* ch = SoundSystem::get()->createHandle();
+		
         spSoundInstance s = prepareSound(res, ch, opt);
         if (!s)
             return 0;
 
         _sounds.push_back(s);
-        ch->play(s->_desc);
+        ch->play();
 
         return s;
     }
 
     spSoundInstance SoundPlayer::continuePlay(Resource* res, Channel* ch, const PlayOptions& opt)
     {
+		return 0;
+		/*
         spSoundInstance s = prepareSound(res, ch, opt);
         if (!s)
             return 0;
@@ -186,6 +194,7 @@ namespace oxygine
         ch->continuePlay(s->_desc);
 
         return s;
+		*/
     }
 
     void SoundPlayer::pause()
@@ -272,11 +281,13 @@ namespace oxygine
         {
             spSoundInstance s = _sounds[i];
             s->update();
-
+			++i;
+			/*
             if (s->getChannel())
                 ++i;
             else
                 _sounds.erase(_sounds.begin() + i);
+				*/
         }
 
         //log::messageln("sounds %d", _sounds.size());

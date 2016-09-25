@@ -5,7 +5,7 @@
 
 namespace oxygine
 {
-    SoundInstance::SoundInstance(): _player(0),
+    SoundInstance::SoundInstance(SoundHandle *h): _player(0), _handle(h),
         _channel(0),
         _startTime(0),
         _fadeInMS(0),
@@ -170,6 +170,8 @@ namespace oxygine
 
     void SoundInstance::update()
     {
+		_handle->update();
+
         //OX_ASSERT(_channel);
         if (!_channel)
             return;

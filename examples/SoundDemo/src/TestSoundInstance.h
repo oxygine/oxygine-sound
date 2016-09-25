@@ -26,7 +26,7 @@ public:
         handle->add(resources.getT<ResSound>("track_48000_stereo")->getSound());
         //handle->add(resources.getT<ResSound>("win_round")->getSound());
 
-        handle->setLoop(true);
+        //handle->setLoop(true);
         handle->play();
 
         //snd = splayer.play("track_44100_mono", PlayOptions().loop(false));

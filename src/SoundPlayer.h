@@ -39,6 +39,7 @@ namespace oxygine
 
 
     DECLARE_SMART(SoundInstance, spSoundInstance);
+	class SoundHandle;
 
 
     class SoundPlayer
@@ -78,7 +79,7 @@ namespace oxygine
     private:
         friend class SoundInstance;
         void removeSoundInstance(SoundInstance*);
-        spSoundInstance prepareSound(Resource* res, Channel* channel, const PlayOptions& opt);
+        spSoundInstance prepareSound(Resource* res, SoundHandle* channel, const PlayOptions& opt);
 
         static void _onSoundDone(void* This, Channel* channel, const sound_desc& desc);
 

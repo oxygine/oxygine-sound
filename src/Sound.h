@@ -1,5 +1,6 @@
 #pragma once
 #include "oxygine_include.h"
+#include "core/Object.h"
 #include <list>
 
 namespace oxygine
@@ -19,7 +20,9 @@ namespace oxygine
         ResSound* _parent;
     };
 
-    class SoundHandle
+	DECLARE_SMART(SoundHandle, spSoundHandle);
+
+    class SoundHandle: public Object
     {
     public:
         enum sound_state

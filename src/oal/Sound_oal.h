@@ -82,6 +82,7 @@ namespace oxygine
 		void resume(SoundHandleOAL*) override;
 		void pause(SoundHandleOAL*) override;
 
+		void asyncDecode(SoundHandleOAL* s);
     protected:
         void decode(SoundHandleOAL* s, ALuint* items, int num);
 
@@ -108,6 +109,8 @@ namespace oxygine
         void _update();
         void _updateVolume();
         void _updatePitch();
+
+		void _ended();
 
         ALuint _alSource;
         ALint _pos;
