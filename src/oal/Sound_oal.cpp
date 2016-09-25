@@ -266,14 +266,22 @@ namespace oxygine
     {
         ALint nump;
         alGetSourcei(s->_alSource, AL_BUFFERS_PROCESSED, &nump);
-        ALuint buffers[STREAM_BUFFERS];
+        
 		if (nump)
 		{
-			alSourceUnqueueBuffers(s->_alSource, nump, buffers);
-			check();
-		}
+			_messages.postCallback([=]() {
 
-        decode(s, buffers, nump);
+				ALint nump;
+				alGetSourcei(s->_alSource, AL_BUFFERS_PROCESSED, &nump);
+
+				ALuint buffers[STREAM_BUFFERS];
+
+				alSourceUnqueueBuffers(s->_alSource, nump, buffers);
+				check();
+				decode(s, buffers, nump);
+
+			});			
+		}
     }
 
 	void OggStreamOAL::resume(SoundHandleOAL* s)
