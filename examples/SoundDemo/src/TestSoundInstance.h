@@ -28,29 +28,48 @@ public:
 		addButton("set_streaming", "set streaming sound");
 		addButton("set_static", "set static sound");
 
-		//addButton("set_loop", "set looped");
+		addButton("loop=1", "loop = true");
+		addButton("loop=0", "loop = false");
 		//addButton("set_not_looped", )
 
 		addButton("play", "play");
 		addButton("pause", "pause");
 		addButton("resume", "resume");
+		addButton("stop", "stop");
 
 		addButton("fadeIn", "fade in");
 		addButton("fadeOut", "fade out");
     }
 
+	void soundEvent(Event*)
+	{
+		notify("done");
+	}
 
+	void set(spSoundInstance s)
+	{
+		if (snd)
+			snd->stop();
+		snd = s;
+		s->setDoneCallback(CLOSURE(this, &TestSoundInstance::soundEvent));
+	}
     void clicked(string id)
 	{
 		if (id == "set_streaming")
 		{
-			snd = splayer.play("track_44100_mono", PlayOptions().pause());
+			set(splayer.play("track_44100_mono", PlayOptions().pause()));
 		}
 
 		if (id == "set_static")
 		{
-			snd = splayer.play("win_round", PlayOptions().pause());
+			set(splayer.play("win_round", PlayOptions().pause()));
 		}
+
+		if (id == "loop=1")
+			snd->setLoop(true);
+
+		if (id == "loop=0")
+			snd->setLoop(false);
 
 		if (id == "play")
 		{
@@ -66,6 +85,12 @@ public:
 		{
 			snd->resume();
 		}
+
+		if (id == "stop")
+		{
+			snd->stop();
+		}
+
 
 		if (id == "fadeIn")
 		{

@@ -8,9 +8,7 @@ namespace oxygine
 	extern ThreadMessages _messages;
 
 
-	extern void* getSoundStreamTempBuffer(int& size);
-
-
+	void* getSoundStreamTempBuffer(int& size);
 
 	void threadDecode(const ThreadMessages::message &msg)
 	{

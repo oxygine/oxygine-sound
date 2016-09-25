@@ -55,6 +55,7 @@ namespace oxygine
         void    setVolume(float v);
         void    setCoord(const Vector2& pos, float z = 0);
         void    setPitch(float v);
+		void	setLoop(bool loop);
         void    seek(int tm);
 
         /**called when sound done*/
@@ -76,6 +77,8 @@ namespace oxygine
 		SoundHandle *_handle;
         Channel* _channel;
         sound_desc _desc;
+
+		bool _finished;
 
         float _volume;//primary volume
         unsigned int _startTime;

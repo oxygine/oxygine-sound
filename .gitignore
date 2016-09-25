@@ -49,3 +49,6 @@ examples/SoundDemo/proj.win32/Debug_vs*
 examples/SoundDemo/proj.win32/Release_v*
 examples/SoundDemo/proj.emscripten/data/
 proj.win32/Release_v*
+examples/SoundDemo/data/*.dll
+*.opendb
+examples/SoundDemo/proj.win32/SoundDemo.VC.db

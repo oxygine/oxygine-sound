@@ -63,6 +63,7 @@ namespace oxygine
         void _update();
         void _updateVolume();
         void _updatePitch();
+		void _updateLoop() override;
 
 		void _ended();
 
@@ -70,6 +71,7 @@ namespace oxygine
 		virtual void _xpause() {}
 		virtual void _xupdate() {}
 		virtual void _xresume() {}
+		virtual void _xupdateLoop() {}
 
         ALuint _alSource;
         ALint _pos;

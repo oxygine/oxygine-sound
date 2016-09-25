@@ -34,7 +34,7 @@ public:
         getStage()->addEventListener(Stage::ACTIVATE, CLOSURE(this, &TestActor::resume));
         getStage()->addEventListener(Stage::DEACTIVATE, CLOSURE(this, &TestActor::pause));
 
-        //clicked("test_si");
+        clicked("test_si");
     }
 
     void pause(Event*)

@@ -15,6 +15,7 @@ namespace oxygine
         _state(FadingIn),
         _volume(1.0f),
         _startFadeIn(0),
+		_finished(false),
         _startFadeOut(0)
     {
 
@@ -29,6 +30,10 @@ namespace oxygine
 
     void SoundInstance::finished()
     {
+		if (_finished)
+			return;
+		_finished = true;
+		
         _channel = 0;
 
         //callback would called on fadeout
@@ -187,7 +192,12 @@ namespace oxygine
             _channel->setPitch(_volume);
     }
 
-    void SoundInstance::seek(int tm)
+	void SoundInstance::setLoop(bool loop)
+	{
+		_handle->setLoop(loop);
+	}
+
+	void SoundInstance::seek(int tm)
     {
         if (_channel)
             _channel->seek(tm);
@@ -196,6 +206,18 @@ namespace oxygine
     void SoundInstance::update()
     {
 		_handle->update();
+		/*
+		switch (_handle->getState())
+		{
+			case Sou
+		default:
+			break;
+		}
+		*/
+		if (_handle->getState() == SoundHandle::ended)
+		{
+			finished();
+		}
 
         //OX_ASSERT(_channel);
         if (!_channel)

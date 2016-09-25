@@ -40,4 +40,9 @@ namespace oxygine
 		}
 	}
 
+	void StaticSoundHandleOAL::_xupdateLoop()
+	{
+		alSourcei(_alSource, AL_LOOPING, _looping ? 1 : 0);
+		check();
+	}
 }

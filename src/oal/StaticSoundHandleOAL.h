@@ -14,6 +14,8 @@ namespace oxygine
 		void _xresume() override;
 		void _xupdate() override;
 
+		void _xupdateLoop() override;
+
 		ALuint _buffer;
 	};
 

@@ -272,17 +272,12 @@ namespace oxygine
             d = 0;
         _time += d;
 
-        for (size_t i = 0; i < _sounds.size();)
+		size_t size = _sounds.size();
+        for (size_t i = 0; i < size;)
         {
             spSoundInstance s = _sounds[i];
             s->update();
 			++i;
-			/*
-            if (s->getChannel())
-                ++i;
-            else
-                _sounds.erase(_sounds.begin() + i);
-				*/
         }
 
         //log::messageln("sounds %d", _sounds.size());

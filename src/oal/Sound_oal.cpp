@@ -140,23 +140,7 @@ namespace oxygine
 
 
 		_xplay();
-		/*
-		if (_stream)
-		{
-			_stream->resume(this);
 
-		}
-		else
-		{
-			SoundOAL *snd = (SoundOAL*)_sounds.front();
-			if (snd->getAlBuffer())
-				_stream = new StaticStreamOAL(snd->getAlBuffer());
-			else
-				_stream = new OggStreamOAL(snd);
-			_stream->play(this);
-		}
-		*/
-		
 
 
         alSourcei(_alSource, AL_BYTE_OFFSET, _pos);
@@ -212,9 +196,16 @@ namespace oxygine
         alSourcef(_alSource, AL_PITCH, _pitch);
     }
 
+	void SoundHandleOAL::_updateLoop()
+	{
+		if (!_alSource)
+			return;
+		_xupdateLoop();
+	}
+
 	void SoundHandleOAL::_ended()
 	{
-		_state = stopped;
+		_state = ended;
 		ss()->freeSource(_alSource);
 		_alSource = 0;
 	}

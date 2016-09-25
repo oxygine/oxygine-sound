@@ -31,6 +31,7 @@ namespace oxygine
             playing,
             paused,
             stopped,
+			ended,
         };
         SoundHandle(): _volume(1.0f), _pitch(1.0f), _looping(false), _state(initial) {}
 
