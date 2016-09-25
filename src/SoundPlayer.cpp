@@ -149,12 +149,18 @@ namespace oxygine
 
     spSoundInstance SoundPlayer::play(Resource* res, const PlayOptions& opt)
     {
-        spSoundInstance s = prepareSound(res, opt);
-        if (!s)
-            return 0;
+		ResSound* ressound = safeCast<ResSound*>(res);
+		if (!ressound || !ressound->getSound())
+			return 0;
 
+
+		SoundHandle *handle = SoundHandleOAL::create(ressound->getSound());
+		spSoundInstance s = new SoundInstance(handle);
         _sounds.push_back(s);
-        //ch->play(s->_desc);
+
+		if (!opt._paused)
+			s->play();
+
 
         return s;
     }
@@ -168,16 +174,7 @@ namespace oxygine
         if (!res)
             return 0;
 
-
-        spSoundInstance s = prepareSound(res, opt);
-        if (!s)
-            return 0;
-
-        _sounds.push_back(s);
-		s->play();
-        //ch->play();
-
-        return s;
+		return play(res, opt);
     }
 
     spSoundInstance SoundPlayer::continuePlay(Resource* res, Channel* ch, const PlayOptions& opt)

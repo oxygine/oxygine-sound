@@ -6,7 +6,11 @@ namespace oxygine
 	class StreamingSoundHandleOAL : public SoundHandleOAL
 	{
 	public:
-		StreamingSoundHandleOAL(SoundStream*);
+		StreamingSoundHandleOAL();
+
+		void setStream(SoundStream *);
+
+		void asyncDecode();
 
 	protected:
 		void _xplay() override;
@@ -14,7 +18,25 @@ namespace oxygine
 		void _xresume() override;
 		void _xupdate() override;
 
+		void decode(ALuint* items, int num);
+
+	private:
 		SoundStream *_stream;
+		ALuint _format;
+		ALuint _rate;
+		ALuint _buffers[STREAM_BUFFERS];
+	};
+
+
+	class SoundOAL;
+	class StreamingOggSoundHandleOAL : public StreamingSoundHandleOAL
+	{
+	public:
+		StreamingOggSoundHandleOAL(SoundOAL *);
+
+	protected:
+		OggStream _stream;
+
 	};
 
 }

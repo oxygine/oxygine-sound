@@ -42,6 +42,8 @@ namespace oxygine
 
         void play() { _state = playing; _play(); }
         void pause() { _state = paused; _pause(); }
+		void resume() { _state = playing; _resume(); }
+		void stop() { _state = stopped; _stop(); }
 
         void update() { _update(); }
 
@@ -50,9 +52,12 @@ namespace oxygine
         virtual void _updatePitch() {}
         virtual void _updateLoop() {}
         virtual void _update() {}
+
         virtual void _init() {}
         virtual void _play() {}
         virtual void _pause() {}
+		virtual void _resume() {}
+		virtual void _stop() {}
 
         float _volume;
         float _pitch;

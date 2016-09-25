@@ -18,39 +18,64 @@ public:
 
     spSprite orange;
     spSoundInstance snd;
-    SoundHandle* handle;
 
     TestSoundInstance()
     {
-        handle = SoundSystem::get()->createHandle();
-        handle->add(resources.getT<ResSound>("track_48000_stereo")->getSound());
-        //handle->add(resources.getT<ResSound>("win_round")->getSound());
+		//snd = splayer.play("track_48000_stereo");
 
-        //handle->setLoop(true);
-        handle->play();
 
         //snd = splayer.play("track_44100_mono", PlayOptions().loop(false));
+		addButton("set_streaming", "set streaming sound");
+		addButton("set_static", "set static sound");
 
-        addButton("pause", "pause");
-        addButton("resume", "resume");
+		//addButton("set_loop", "set looped");
+		//addButton("set_not_looped", )
+
+		addButton("play", "play");
+		addButton("pause", "pause");
+		addButton("resume", "resume");
+
+		addButton("fadeIn", "fade in");
+		addButton("fadeOut", "fade out");
     }
 
-    void doUpdate(const UpdateState& us)
-    {
-        handle->update();
-    }
 
     void clicked(string id)
-    {
-        if (id == "pause")
-        {
-            handle->pause();
-            // snd->fadeOutPause(300);
-        }
-        if (id == "resume")
-        {
-            handle->play();
-            // snd->fadeIn(300);
-        }
+	{
+		if (id == "set_streaming")
+		{
+			snd = splayer.play("track_44100_mono", PlayOptions().pause());
+		}
+
+		if (id == "set_static")
+		{
+			snd = splayer.play("win_round", PlayOptions().pause());
+		}
+
+		if (id == "play")
+		{
+			snd->play();
+		}
+
+		if (id == "pause")
+		{
+			snd->pause();
+		}
+
+		if (id == "resume")
+		{
+			snd->resume();
+		}
+
+		if (id == "fadeIn")
+		{
+			snd->fadeIn(1000);
+		}
+
+		if (id == "fadeOut")
+		{
+			snd->fadeOut(1000);
+		}
+
     }
 };

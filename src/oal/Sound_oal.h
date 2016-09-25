@@ -42,55 +42,7 @@ namespace oxygine
         std::vector<unsigned char> _fileBuffer;
     };
 
-    class SoundHandleOAL;
 
-    class StreamOAL : public Object
-    {
-    public:
-        virtual bool play(SoundHandleOAL*) = 0;
-        virtual void update(SoundHandleOAL*) = 0;
-		virtual void pause(SoundHandleOAL*) = 0;
-		virtual void resume(SoundHandleOAL*) = 0;
-    };
-
-    class StaticStreamOAL : public StreamOAL
-    {
-    public:
-
-        StaticStreamOAL(ALuint buffer): _buffer(buffer) {}
-
-        bool play(SoundHandleOAL* s);
-        void update(SoundHandleOAL* s);
-		void pause(SoundHandleOAL*s);
-		void resume(SoundHandleOAL*s);
-
-    protected:
-        ALuint _buffer;
-    };
-
-
-
-
-    class OggStreamOAL: public StreamOAL
-    {
-    public:
-        OggStreamOAL(SoundOAL*);
-
-        bool play(SoundHandleOAL*) override;
-        void update(SoundHandleOAL*) override;
-
-		void resume(SoundHandleOAL*) override;
-		void pause(SoundHandleOAL*) override;
-
-		void asyncDecode(SoundHandleOAL* s);
-    protected:
-        void decode(SoundHandleOAL* s, ALuint* items, int num);
-
-        SoundOAL* _snd;
-        OggStream _stream;
-        ALuint _buffers[STREAM_BUFFERS];
-		ALuint _pos;
-    };
 
     class SoundHandleOAL : public SoundHandle
     {

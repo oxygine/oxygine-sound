@@ -30,6 +30,7 @@ namespace oxygine
         ~SoundInstance();
 
 		void play();
+		void pause();
         void resume();
         void stop();
 

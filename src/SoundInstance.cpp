@@ -5,6 +5,8 @@
 
 namespace oxygine
 {
+#define EXIT_IF_EMPTY() if (!_handle) return
+
     SoundInstance::SoundInstance(SoundHandle *h): _player(0), _handle(h),
         _channel(0),
         _startTime(0),
@@ -20,7 +22,9 @@ namespace oxygine
 
     SoundInstance::~SoundInstance()
     {
-
+		if (_handle)
+			delete _handle;
+		_handle = 0;
     }
 
     void SoundInstance::finished()
@@ -51,25 +55,41 @@ namespace oxygine
 
 	void SoundInstance::play()
 	{
+		EXIT_IF_EMPTY();
+
 		_handle->play();
 	}
 
-    void SoundInstance::resume()
+	void SoundInstance::pause()
+	{
+		EXIT_IF_EMPTY();
+
+		_handle->pause();
+	}
+
+	void SoundInstance::resume()
     {
+		EXIT_IF_EMPTY();
+
+		_handle->resume();
+		/*
+
         if (!_channel)
             return;
         if (_state != Paused)
             return;
         _state = Normal;
         _channel->resume();
+		*/
     }
 
     void SoundInstance::stop()
     {
-        if (!_channel)
-            return;
-        _channel->stop();
-        _channel = 0;
+		EXIT_IF_EMPTY();
+
+		_handle->stop();
+		delete _handle;
+		_handle = 0;
     }
 
     void SoundInstance::fadeOut(int fadeOutMS)
