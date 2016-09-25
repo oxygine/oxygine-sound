@@ -33,7 +33,6 @@ namespace oxygine
             stopped,
         };
         SoundHandle(): _volume(1.0f), _pitch(1.0f), _looping(false), _state(initial) {}
-        void add(Sound* snd) {_sounds.push_back(snd) ;  _init(); }
 
         void setVolume(float v) { _volume = v; _updateVolume(); }
         void setPitch(float pitch) { _pitch = pitch; _updatePitch(); }
@@ -59,7 +58,7 @@ namespace oxygine
         float _pitch;
         bool _looping;
 
-        std::list<Sound*> _sounds;
+
         sound_state _state;
     };
 }

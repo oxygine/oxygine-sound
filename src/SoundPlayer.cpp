@@ -9,6 +9,7 @@
 #include "SoundSystem.h"
 #include "Channel.h"
 #include "ResSound.h"
+#include "oal/StaticSoundHandleOAL.h"
 
 #include <algorithm>
 
@@ -87,15 +88,14 @@ namespace oxygine
 
 
 
-    spSoundInstance SoundPlayer::prepareSound(Resource* ressound_, SoundHandle* channel, const PlayOptions& opt)
+    spSoundInstance SoundPlayer::prepareSound(Resource* ressound_,  const PlayOptions& opt)
 	{
         ResSound* ressound = safeCast<ResSound*>(ressound_);
         if (!ressound || !ressound->getSound())
             return 0;
 
-        if (!channel)
-            return 0;
-		channel->add(ressound->getSound());
+
+		SoundHandle *channel = SoundHandleOAL::create(ressound->getSound());
 
         spSoundInstance s = new SoundInstance(channel);
 
@@ -149,8 +149,7 @@ namespace oxygine
 
     spSoundInstance SoundPlayer::play(Resource* res, const PlayOptions& opt)
     {
-		SoundHandle* ch = SoundSystem::get()->createHandle();
-        spSoundInstance s = prepareSound(res, ch, opt);
+        spSoundInstance s = prepareSound(res, opt);
         if (!s)
             return 0;
 
@@ -169,15 +168,14 @@ namespace oxygine
         if (!res)
             return 0;
 
-        //Channel* ch = SoundSystem::get()->getFreeChannel();
-		SoundHandle* ch = SoundSystem::get()->createHandle();
-		
-        spSoundInstance s = prepareSound(res, ch, opt);
+
+        spSoundInstance s = prepareSound(res, opt);
         if (!s)
             return 0;
 
         _sounds.push_back(s);
-        ch->play();
+		s->play();
+        //ch->play();
 
         return s;
     }

@@ -29,6 +29,7 @@ namespace oxygine
         SoundInstance(SoundHandle *);
         ~SoundInstance();
 
+		void play();
         void resume();
         void stop();
 

@@ -49,6 +49,11 @@ namespace oxygine
         }
     }
 
+	void SoundInstance::play()
+	{
+		_handle->play();
+	}
+
     void SoundInstance::resume()
     {
         if (!_channel)

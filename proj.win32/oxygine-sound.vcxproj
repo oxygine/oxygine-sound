@@ -96,9 +96,13 @@
     <ClInclude Include="..\src\null\SoundNull.h" />
     <ClInclude Include="..\src\null\SoundSystemNull.h" />
     <ClInclude Include="..\src\oal.h" />
+    <ClInclude Include="..\src\oal\Abc.h" />
     <ClInclude Include="..\src\oal\Channel_oal.h" />
     <ClInclude Include="..\src\oal\SoundSystem_oal.h" />
     <ClInclude Include="..\src\oal\Sound_oal.h" />
+    <ClInclude Include="..\src\oal\StaticSoundHandleOAL.h" />
+    <ClInclude Include="..\src\oal\StaticStreamOAL.h" />
+    <ClInclude Include="..\src\oal\StreamingSoundHandleOAL.h" />
     <ClInclude Include="..\src\OggStream.h" />
     <ClInclude Include="..\src\ResSound.h" />
     <ClInclude Include="..\src\Sound.h" />
@@ -114,6 +118,9 @@
     <ClCompile Include="..\src\oal\Channel_oal.cpp" />
     <ClCompile Include="..\src\oal\SoundSystem_oal.cpp" />
     <ClCompile Include="..\src\oal\Sound_oal.cpp" />
+    <ClCompile Include="..\src\oal\StaticSoundHandleOAL.cpp" />
+    <ClCompile Include="..\src\oal\StaticStreamOAL.cpp" />
+    <ClCompile Include="..\src\oal\StreamingSoundHandleOAL.cpp" />
     <ClCompile Include="..\src\OggStream.cpp" />
     <ClCompile Include="..\src\ResSound.cpp" />
     <ClCompile Include="..\src\SoundInstance.cpp" />

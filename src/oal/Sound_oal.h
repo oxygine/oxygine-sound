@@ -95,6 +95,8 @@ namespace oxygine
     class SoundHandleOAL : public SoundHandle
     {
     public:
+		static SoundHandleOAL* create(Sound*);
+
         SoundHandleOAL();
 
     protected:
@@ -112,10 +114,19 @@ namespace oxygine
 
 		void _ended();
 
+		virtual void _xplay() {}
+		virtual void _xpause() {}
+		virtual void _xupdate() {}
+		virtual void _xresume() {}
+
         ALuint _alSource;
         ALint _pos;
 
-        StreamOAL* _stream;
+        //StreamOAL* _stream;
     };
+
+
+	class SoundStream;
+
 
 }

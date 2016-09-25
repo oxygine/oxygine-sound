@@ -3,6 +3,8 @@
 #include "../oal.h"
 #include "SoundSystem_oal.h"
 #include "core/ThreadDispatcher.h"
+#include "StaticSoundHandleOAL.h"
+#include "StreamingSoundHandleOAL.h"
 
 namespace oxygine
 {
@@ -116,7 +118,7 @@ namespace oxygine
         return (SoundSystemOAL*)SoundSystem::get();
     }
 
-    SoundHandleOAL::SoundHandleOAL(): _alSource(0), _pos(0), _stream(0)
+    SoundHandleOAL::SoundHandleOAL(): _alSource(0), _pos(0)//, _stream(0)
     {
     }
 
@@ -137,6 +139,8 @@ namespace oxygine
         check();
 
 
+		_xplay();
+		/*
 		if (_stream)
 		{
 			_stream->resume(this);
@@ -151,11 +155,9 @@ namespace oxygine
 				_stream = new OggStreamOAL(snd);
 			_stream->play(this);
 		}
+		*/
 		
 
-
-        //alSourcei(_alSource, AL_LOOPING, _looping ? AL_TRUE : AL_FALSE);
-        check();
 
         alSourcei(_alSource, AL_BYTE_OFFSET, _pos);
         check();
@@ -172,8 +174,9 @@ namespace oxygine
 		alSourceStop(_alSource);
 		check();
 
+		_xpause();
 
-		_stream->pause(this);
+		//_stream->pause(this);
 
 
         alSourcei(_alSource, AL_LOOPING, AL_FALSE);
@@ -190,7 +193,9 @@ namespace oxygine
         if (!_alSource)
             return;
 
-        _stream->update(this);
+		_xupdate();
+
+        //_stream->update(this);
     }
 
     void SoundHandleOAL::_updateVolume()
@@ -367,4 +372,16 @@ namespace oxygine
         }
     }
 
+	SoundHandleOAL* SoundHandleOAL::create(Sound* snd_)
+	{
+		SoundOAL *snd = (SoundOAL *)snd_;
+
+		SoundHandleOAL *s;
+		if (snd->getAlBuffer())
+			s = new StaticSoundHandleOAL(snd->getAlBuffer());
+		else
+			s = new StreamingSoundHandleOAL(0);
+
+		return s;
+	}
 }
