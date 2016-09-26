@@ -48,13 +48,22 @@ namespace oxygine
 
     }
 
-    void SoundPlayer::removeSoundInstance(SoundInstance* soundInstance)
+    void SoundPlayer::removeSoundInstance(SoundInstance* s)
     {
-        playingSounds::iterator i = std::find(_sounds.begin(), _sounds.end(), soundInstance);
+        playingSounds::iterator i = std::find(_sounds.begin(), _sounds.end(), s);
         OX_ASSERT(i != _sounds.end());
 
         _sounds.erase(i);
     }
+
+    void SoundPlayer::addSoundInstance(SoundInstance* s)
+    {
+        playingSounds::iterator i = std::find(_sounds.begin(), _sounds.end(), s);
+        OX_ASSERT(i == _sounds.end());
+
+        _sounds.push_back(s);
+    }
+
 
     void SoundPlayer::_onSoundDone(void* sound_instance, Channel* channel, const sound_desc& desc)
     {
@@ -99,7 +108,6 @@ namespace oxygine
 
         SoundHandle* handle = SoundHandleOAL::create(ressound->getSound());
         spSoundInstance s = new SoundInstance(this, handle);
-        _sounds.push_back(s);
 
         if (!opt._paused)
             s->play();
@@ -137,32 +145,29 @@ namespace oxygine
 
     void SoundPlayer::pause()
     {
-        for (playingSounds::iterator i = _sounds.begin(); i != _sounds.end(); ++i)
+        _pausedSounds.insert(_pausedSounds.end(), _sounds.begin(), _sounds.end());
+        for (playingSounds::iterator i = _pausedSounds.begin(); i != _pausedSounds.end(); ++i)
         {
             SoundInstance* s = (*i).get();
-            if (s->_channel)
-            {
-                s->_channel->pause();
-            }
+            s->pause();
         }
         _paused = true;
     }
 
     void SoundPlayer::resume()
     {
-        for (playingSounds::iterator i = _sounds.begin(); i != _sounds.end(); ++i)
+        for (playingSounds::iterator i = _pausedSounds.begin(); i != _pausedSounds.end(); ++i)
         {
             SoundInstance* s = (*i).get();
-            if (s->_channel)
-            {
-                s->_channel->resume();
-            }
+            s->resume();
         }
+        _pausedSounds.clear();
         _paused = false;
     }
 
     void SoundPlayer::stopByID(const string& id)
     {
+        /*
         bool try_again = true;
         while (try_again)
         {
@@ -180,6 +185,7 @@ namespace oxygine
                 }
             }
         }
+        */
     }
 
     void SoundPlayer::stop()
@@ -218,16 +224,16 @@ namespace oxygine
 
         for (size_t i = 0; i < _sounds.size();)
         {
-            spSoundInstance s = _sounds[i];
-            s->update();
-            if (s->getState() == SoundInstance::Stopped)
+            bool end = false;
             {
+                spSoundInstance s = _sounds[i];
+                s->update();
+                end = s->getState() == SoundInstance::Ended;
+            }
+            if (end)
                 _sounds.erase(_sounds.begin() + i);
-            }
             else
-            {
                 ++i;
-            }
         }
 
         //log::messageln("sounds %d", _sounds.size());

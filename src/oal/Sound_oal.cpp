@@ -182,6 +182,7 @@ namespace oxygine
         ss()->freeSource(_alSource);
         _alSource = 0;
         _state = stopped;
+        _pos = 0;
     }
 
     void SoundHandleOAL::_update()

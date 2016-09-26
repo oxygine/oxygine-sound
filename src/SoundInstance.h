@@ -37,6 +37,7 @@ namespace oxygine
             Normal,
             Paused,
             Stopped,
+            Ended,
         };
 
         void play();
@@ -87,6 +88,7 @@ namespace oxygine
         EventCallback _cbDone;
         EventCallback _cbAboutDone;
 
+        Channel* _channel;
         SoundHandle* _handle;
 
         bool _finished;

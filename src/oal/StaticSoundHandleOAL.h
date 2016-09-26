@@ -13,6 +13,7 @@ namespace oxygine
         void _xpause() override;
         void _xresume() override;
         void _xupdate() override;
+        void _xstop() override;
 
         void _xupdateLoop() override;
 

@@ -12,7 +12,7 @@ namespace oxygine
 
     void threadDecode(const ThreadMessages::message& msg)
     {
-        StreamingSoundHandleOAL* s = (StreamingSoundHandleOAL*)msg.arg2;
+        StreamingSoundHandleOAL* s = (StreamingSoundHandleOAL*)msg.arg1;
         s->asyncDecode();
     }
 
@@ -23,7 +23,7 @@ namespace oxygine
         for (size_t i = 0; i < size; ++i)
         {
             ThreadDispatcher::message& msg2 = messages[i];
-            if (msg2.arg1 == msg.arg1 && msg2.arg2 == msg.arg2)
+            if (msg2.arg1 == msg.arg1)
             {
                 messages.erase(messages.begin() + i);
                 size--;
@@ -68,6 +68,7 @@ namespace oxygine
                 break;
             alBufferData(buffer, _format, data, size, _rate);
             check();
+
             alSourceQueueBuffers(_alSource, 1, &buffer);
             check();
         }
@@ -106,7 +107,7 @@ namespace oxygine
 
     void StreamingSoundHandleOAL::_xpause()
     {
-        _messages.sendCallback(this, this, threadStopProcessing, 0, true);
+        _messages.sendCallback(this, 0, threadStopProcessing, 0, true);
         alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, _buffers);
         check();
     }
@@ -126,7 +127,10 @@ namespace oxygine
             check();
 
             if (state == AL_STOPPED)
+            {
+                alSourcei(_alSource, AL_BUFFER, 0);
                 _ended();
+            }
 
             return;
         }
@@ -137,7 +141,7 @@ namespace oxygine
         if (nump)
         {
             //for (int i = 0; i < 1000; ++i)
-            _messages.postCallback(this, this, threadDecode, 0);
+            _messages.postCallback(this, 0, threadDecode, 0);
 
         }
     }
@@ -145,7 +149,10 @@ namespace oxygine
 
     void StreamingSoundHandleOAL::_xstop()
     {
-        _xpause();
+        _messages.sendCallback(this, 0, threadStopProcessing, 0, true);
+        _stream->reset();
+        alSourcei(_alSource, AL_BUFFER, 0);
+        check();
     }
 
     StreamingOggSoundHandleOAL::StreamingOggSoundHandleOAL(SoundOAL* snd) : StreamingSoundHandleOAL()

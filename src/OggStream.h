@@ -16,6 +16,7 @@ namespace oxygine
 
         virtual int getRate() const = 0;
         virtual int getNumChannels() const = 0;
+        virtual void reset() = 0;
 
         virtual ~SoundStream() {}
     };

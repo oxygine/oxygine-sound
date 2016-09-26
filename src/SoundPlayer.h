@@ -79,6 +79,7 @@ namespace oxygine
     private:
         friend class SoundInstance;
         void removeSoundInstance(SoundInstance*);
+        void addSoundInstance(SoundInstance*);
 
 
         static void _onSoundDone(void* This, Channel* channel, const sound_desc& desc);
@@ -91,6 +92,8 @@ namespace oxygine
 
         typedef std::vector<spSoundInstance> playingSounds;
         playingSounds _sounds;
+
+        playingSounds _pausedSounds;
 
         timeMS _time;
         timeMS _lastUpdateTime;

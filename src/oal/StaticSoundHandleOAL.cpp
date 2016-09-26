@@ -11,15 +11,14 @@ namespace oxygine
 
     void StaticSoundHandleOAL::_xplay()
     {
-        alSourceQueueBuffers(_alSource, 1, &_buffer);
+        alSourcei(_alSource, AL_BUFFER, _buffer);
         alSourcei(_alSource, AL_LOOPING, _looping ? AL_TRUE : AL_FALSE);
         check();
     }
 
     void StaticSoundHandleOAL::_xpause()
     {
-        ALuint b;
-        alSourceUnqueueBuffers(_alSource, 1, &b);
+        alSourcei(_alSource, AL_BUFFER, 0);
     }
 
 
@@ -36,8 +35,14 @@ namespace oxygine
 
         if (state == AL_STOPPED)
         {
+            alSourcei(_alSource, AL_BUFFER, 0);
             _ended();
         }
+    }
+
+    void StaticSoundHandleOAL::_xstop()
+    {
+        alSourcei(_alSource, AL_BUFFER, 0);
     }
 
     void StaticSoundHandleOAL::_xupdateLoop()

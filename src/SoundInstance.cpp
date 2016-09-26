@@ -31,11 +31,11 @@ namespace oxygine
 
     void SoundInstance::finished()
     {
-        if (_finished)
-            return;
+        OX_ASSERT(_finished == false);
         _finished = true;
+        //_player->removeSoundInstance(this);
 
-        _state = Stopped;
+        _state = Ended;
 
         //callback would called on fadeout
         if (_fadeOutMS)
@@ -52,8 +52,6 @@ namespace oxygine
     {
         if (_cbAboutDone)
         {
-            //Channel
-            //Event ev(Event::)
             SoundEvent ev(SoundEvent::EVENT_ABOUT_DONE, this);
             _cbAboutDone(&ev);
         }
@@ -63,7 +61,12 @@ namespace oxygine
     {
         EXIT_IF_EMPTY();
 
+        //if (!(_state == Paused || _state == Stopped))
+        //  return;
+
+
         _handle->play();
+        _player->addSoundInstance(this);
     }
 
     void SoundInstance::pause()
@@ -71,6 +74,7 @@ namespace oxygine
         EXIT_IF_EMPTY();
 
         _handle->pause();
+        _player->removeSoundInstance(this);
     }
 
     void SoundInstance::resume()
@@ -78,6 +82,7 @@ namespace oxygine
         EXIT_IF_EMPTY();
 
         _handle->resume();
+        _player->addSoundInstance(this);
         /*
 
         if (!_channel)
@@ -92,8 +97,11 @@ namespace oxygine
     void SoundInstance::stop()
     {
         EXIT_IF_EMPTY();
+        //if (_state == Stopped)
+        //  return;
 
         _handle->stop();
+        _player->removeSoundInstance(this);
         _state = Stopped;
         //delete _handle;
         //_handle = 0;
@@ -168,7 +176,7 @@ namespace oxygine
 
     float SoundInstance::getPitch() const
     {
-        return _desc.pitch;
+        return _handle->getPitch();
     }
 
     void SoundInstance::setVolume(float v)
@@ -188,7 +196,7 @@ namespace oxygine
 
     void SoundInstance::setPitch(float v)
     {
-        _desc.pitch = v;
+        _handle->setPitch(v);
 
         if (_channel)
             _channel->setPitch(_volume);
@@ -224,6 +232,8 @@ namespace oxygine
         //OX_ASSERT(_channel);
         if (!_channel)
             return;
+
+        /*
 
         int duration = _desc.sound->getDuration();
         unsigned int globalTime = _player->getTime();
@@ -296,6 +306,7 @@ namespace oxygine
             }
             break;
         }
+        */
     }
 
     Channel* SoundInstance::getChannel() const
@@ -305,16 +316,13 @@ namespace oxygine
 
     int SoundInstance::getDuration()const
     {
-        if (!_desc.sound)
-            return 0;
-
-        return _desc.sound->getDuration();
+        OX_ASSERT(0);
+        return 0;
     }
 
     int SoundInstance::getPosition() const
     {
-        if (_channel)
-            return 0;
-        return _channel->getPosition();
+        OX_ASSERT(0);
+        return 0;
     }
 }
