@@ -88,64 +88,7 @@ namespace oxygine
 
 
 
-    spSoundInstance SoundPlayer::prepareSound(Resource* ressound_,  const PlayOptions& opt)
-    {
-        ResSound* ressound = safeCast<ResSound*>(ressound_);
-        if (!ressound || !ressound->getSound())
-            return 0;
 
-
-        SoundHandle* channel = SoundHandleOAL::create(ressound->getSound());
-
-        spSoundInstance s = new SoundInstance(channel);
-
-        /*
-        sound_desc desc;
-
-        float volume = opt._volume;
-
-
-        if (volume < 0.f)
-            volume = _volume;
-
-        desc.sound = ressound->getSound();
-        desc.cbDone = _onSoundDone;
-        desc.cbAboutEnd = _onSoundAboutDone;
-        desc.cbUserData = s.get();
-        desc.looping = opt._looped;
-        desc.id = ressound->getName();
-        desc.volume = volume;
-        desc.paused = opt._paused;
-        desc.pitch = opt._pitch;
-        desc.seek = opt._seek;
-
-        s->_player = this;
-        s->_desc = desc;
-        s->_channel = channel;
-        s->_startTime = getTime();
-
-        s->_startFadeIn = 0;
-        s->_fadeInMS = opt._fadeIn;
-
-        if (opt._looped)
-            s->_startFadeOut = 0;
-        else
-            s->_startFadeOut = desc.sound->getDuration() - opt._fadeOut;
-
-        s->_fadeOutMS = opt._fadeOut;
-
-        s->_volume = volume;// *_volume;
-        s->_state = desc.paused ? SoundInstance::Paused : SoundInstance::Normal;
-
-        if (opt._fadeIn)
-        {
-            s->_state = SoundInstance::FadingIn;
-            desc.volume = 0.0f;
-        }
-        */
-
-        return s;
-    }
 
     spSoundInstance SoundPlayer::play(Resource* res, const PlayOptions& opt)
     {
@@ -155,7 +98,7 @@ namespace oxygine
 
 
         SoundHandle* handle = SoundHandleOAL::create(ressound->getSound());
-        spSoundInstance s = new SoundInstance(handle);
+        spSoundInstance s = new SoundInstance(this, handle);
         _sounds.push_back(s);
 
         if (!opt._paused)

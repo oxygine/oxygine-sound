@@ -39,6 +39,9 @@ namespace oxygine
         void setPitch(float pitch) { _pitch = pitch; _updatePitch(); }
         void setLoop(bool loop) { _looping = loop; _updateLoop(); }
 
+        float       getVolume() const { return _volume; }
+        float       getPitch() const { return _pitch; }
+        bool        getLoop() const { return _looping; }
         sound_state getState() const { return _state; }
 
         void play() { _state = playing; _play(); }

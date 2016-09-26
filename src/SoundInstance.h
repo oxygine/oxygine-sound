@@ -26,7 +26,7 @@ namespace oxygine
             SoundEvent(eventType tp, SoundInstance* ins): Event(tp), instance(ins) {}
             SoundInstance* instance;
         };
-        SoundInstance(SoundHandle*);
+        SoundInstance(SoundPlayer* player, SoundHandle*);
         ~SoundInstance();
 
         enum State
@@ -60,7 +60,7 @@ namespace oxygine
         float       getVolume() const;
         float       getPitch() const;
         State       getState() const { return _state; }
-        const sound_desc& getDesc() const {return _desc;}
+
         bool        isPlaying() const;
         bool        isPaused() const;
         bool        isFadingOut() const;
@@ -88,8 +88,6 @@ namespace oxygine
         EventCallback _cbAboutDone;
 
         SoundHandle* _handle;
-        Channel* _channel;
-        sound_desc _desc;
 
         bool _finished;
 

@@ -7,8 +7,9 @@ namespace oxygine
 {
 #define EXIT_IF_EMPTY() if (!_handle) return
 
-    SoundInstance::SoundInstance(SoundHandle* h): _player(0), _handle(h),
-        _channel(0),
+    SoundInstance::SoundInstance(SoundPlayer* player, SoundHandle* h):
+        _player(player),
+        _handle(h),
         _startTime(0),
         _fadeInMS(0),
         _fadeOutMS(0),
@@ -35,8 +36,6 @@ namespace oxygine
         _finished = true;
 
         _state = Stopped;
-
-        _channel = 0;
 
         //callback would called on fadeout
         if (_fadeOutMS)

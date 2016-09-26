@@ -79,7 +79,7 @@ namespace oxygine
     private:
         friend class SoundInstance;
         void removeSoundInstance(SoundInstance*);
-        spSoundInstance prepareSound(Resource* res, const PlayOptions& opt);
+
 
         static void _onSoundDone(void* This, Channel* channel, const sound_desc& desc);
 
