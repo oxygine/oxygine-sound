@@ -89,17 +89,17 @@ namespace oxygine
 
 
     spSoundInstance SoundPlayer::prepareSound(Resource* ressound_,  const PlayOptions& opt)
-	{
+    {
         ResSound* ressound = safeCast<ResSound*>(ressound_);
         if (!ressound || !ressound->getSound())
             return 0;
 
 
-		SoundHandle *channel = SoundHandleOAL::create(ressound->getSound());
+        SoundHandle* channel = SoundHandleOAL::create(ressound->getSound());
 
         spSoundInstance s = new SoundInstance(channel);
 
-		/*
+        /*
         sound_desc desc;
 
         float volume = opt._volume;
@@ -142,24 +142,24 @@ namespace oxygine
             s->_state = SoundInstance::FadingIn;
             desc.volume = 0.0f;
         }
-		*/
+        */
 
         return s;
     }
 
     spSoundInstance SoundPlayer::play(Resource* res, const PlayOptions& opt)
     {
-		ResSound* ressound = safeCast<ResSound*>(res);
-		if (!ressound || !ressound->getSound())
-			return 0;
+        ResSound* ressound = safeCast<ResSound*>(res);
+        if (!ressound || !ressound->getSound())
+            return 0;
 
 
-		SoundHandle *handle = SoundHandleOAL::create(ressound->getSound());
-		spSoundInstance s = new SoundInstance(handle);
+        SoundHandle* handle = SoundHandleOAL::create(ressound->getSound());
+        spSoundInstance s = new SoundInstance(handle);
         _sounds.push_back(s);
 
-		if (!opt._paused)
-			s->play();
+        if (!opt._paused)
+            s->play();
 
 
         return s;
@@ -174,13 +174,13 @@ namespace oxygine
         if (!res)
             return 0;
 
-		return play(res, opt);
+        return play(res, opt);
     }
 
     spSoundInstance SoundPlayer::continuePlay(Resource* res, Channel* ch, const PlayOptions& opt)
     {
-		return 0;
-		/*
+        return 0;
+        /*
         spSoundInstance s = prepareSound(res, ch, opt);
         if (!s)
             return 0;
@@ -189,7 +189,7 @@ namespace oxygine
         ch->continuePlay(s->_desc);
 
         return s;
-		*/
+        */
     }
 
     void SoundPlayer::pause()
@@ -272,12 +272,19 @@ namespace oxygine
             d = 0;
         _time += d;
 
-		size_t size = _sounds.size();
-        for (size_t i = 0; i < size;)
+
+        for (size_t i = 0; i < _sounds.size();)
         {
             spSoundInstance s = _sounds[i];
             s->update();
-			++i;
+            if (s->getState() == SoundInstance::Stopped)
+            {
+                _sounds.erase(_sounds.begin() + i);
+            }
+            else
+            {
+                ++i;
+            }
         }
 
         //log::messageln("sounds %d", _sounds.size());

@@ -7,7 +7,7 @@ namespace oxygine
 {
 #define EXIT_IF_EMPTY() if (!_handle) return
 
-    SoundInstance::SoundInstance(SoundHandle *h): _player(0), _handle(h),
+    SoundInstance::SoundInstance(SoundHandle* h): _player(0), _handle(h),
         _channel(0),
         _startTime(0),
         _fadeInMS(0),
@@ -15,7 +15,7 @@ namespace oxygine
         _state(FadingIn),
         _volume(1.0f),
         _startFadeIn(0),
-		_finished(false),
+        _finished(false),
         _startFadeOut(0)
     {
 
@@ -23,17 +23,19 @@ namespace oxygine
 
     SoundInstance::~SoundInstance()
     {
-		if (_handle)
-			delete _handle;
-		_handle = 0;
+        if (_handle)
+            delete _handle;
+        _handle = 0;
     }
 
     void SoundInstance::finished()
     {
-		if (_finished)
-			return;
-		_finished = true;
-		
+        if (_finished)
+            return;
+        _finished = true;
+
+        _state = Stopped;
+
         _channel = 0;
 
         //callback would called on fadeout
@@ -58,26 +60,26 @@ namespace oxygine
         }
     }
 
-	void SoundInstance::play()
-	{
-		EXIT_IF_EMPTY();
-
-		_handle->play();
-	}
-
-	void SoundInstance::pause()
-	{
-		EXIT_IF_EMPTY();
-
-		_handle->pause();
-	}
-
-	void SoundInstance::resume()
+    void SoundInstance::play()
     {
-		EXIT_IF_EMPTY();
+        EXIT_IF_EMPTY();
 
-		_handle->resume();
-		/*
+        _handle->play();
+    }
+
+    void SoundInstance::pause()
+    {
+        EXIT_IF_EMPTY();
+
+        _handle->pause();
+    }
+
+    void SoundInstance::resume()
+    {
+        EXIT_IF_EMPTY();
+
+        _handle->resume();
+        /*
 
         if (!_channel)
             return;
@@ -85,16 +87,17 @@ namespace oxygine
             return;
         _state = Normal;
         _channel->resume();
-		*/
+        */
     }
 
     void SoundInstance::stop()
     {
-		EXIT_IF_EMPTY();
+        EXIT_IF_EMPTY();
 
-		_handle->stop();
-		delete _handle;
-		_handle = 0;
+        _handle->stop();
+        _state = Stopped;
+        //delete _handle;
+        //_handle = 0;
     }
 
     void SoundInstance::fadeOut(int fadeOutMS)
@@ -192,12 +195,12 @@ namespace oxygine
             _channel->setPitch(_volume);
     }
 
-	void SoundInstance::setLoop(bool loop)
-	{
-		_handle->setLoop(loop);
-	}
+    void SoundInstance::setLoop(bool loop)
+    {
+        _handle->setLoop(loop);
+    }
 
-	void SoundInstance::seek(int tm)
+    void SoundInstance::seek(int tm)
     {
         if (_channel)
             _channel->seek(tm);
@@ -205,19 +208,19 @@ namespace oxygine
 
     void SoundInstance::update()
     {
-		_handle->update();
-		/*
-		switch (_handle->getState())
-		{
-			case Sou
-		default:
-			break;
-		}
-		*/
-		if (_handle->getState() == SoundHandle::ended)
-		{
-			finished();
-		}
+        _handle->update();
+        /*
+        switch (_handle->getState())
+        {
+            case Sou
+        default:
+            break;
+        }
+        */
+        if (_handle->getState() == SoundHandle::ended)
+        {
+            finished();
+        }
 
         //OX_ASSERT(_channel);
         if (!_channel)

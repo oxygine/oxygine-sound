@@ -20,7 +20,7 @@ namespace oxygine
         ResSound* _parent;
     };
 
-	DECLARE_SMART(SoundHandle, spSoundHandle);
+    DECLARE_SMART(SoundHandle, spSoundHandle);
 
     class SoundHandle: public Object
     {
@@ -31,7 +31,7 @@ namespace oxygine
             playing,
             paused,
             stopped,
-			ended,
+            ended,
         };
         SoundHandle(): _volume(1.0f), _pitch(1.0f), _looping(false), _state(initial) {}
 
@@ -43,8 +43,8 @@ namespace oxygine
 
         void play() { _state = playing; _play(); }
         void pause() { _state = paused; _pause(); }
-		void resume() { _state = playing; _resume(); }
-		void stop() { _state = stopped; _stop(); }
+        void resume() { _state = playing; _resume(); }
+        void stop() { _state = stopped; _stop(); }
 
         void update() { _update(); }
 
@@ -57,8 +57,8 @@ namespace oxygine
         virtual void _init() {}
         virtual void _play() {}
         virtual void _pause() {}
-		virtual void _resume() {}
-		virtual void _stop() {}
+        virtual void _resume() {}
+        virtual void _stop() {}
 
         float _volume;
         float _pitch;

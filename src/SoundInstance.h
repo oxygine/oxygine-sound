@@ -9,7 +9,7 @@ namespace oxygine
     class SoundPlayer;
     class Channel;
 
-	class SoundHandle;
+    class SoundHandle;
 
     DECLARE_SMART(SoundInstance, spSoundInstance);
     class SoundInstance: public Object
@@ -26,12 +26,24 @@ namespace oxygine
             SoundEvent(eventType tp, SoundInstance* ins): Event(tp), instance(ins) {}
             SoundInstance* instance;
         };
-        SoundInstance(SoundHandle *);
+        SoundInstance(SoundHandle*);
         ~SoundInstance();
 
-		void play();
-		void pause();
+        enum State
+        {
+            FadingIn,
+            FadingOutStop,
+            FadingOutPause,
+            Normal,
+            Paused,
+            Stopped,
+        };
+
+        void play();
+        void pause();
         void resume();
+
+        /**SoundInstance shouldn't be used after "stop"*/
         void stop();
 
 
@@ -47,6 +59,7 @@ namespace oxygine
         int         getPosition() const;
         float       getVolume() const;
         float       getPitch() const;
+        State       getState() const { return _state; }
         const sound_desc& getDesc() const {return _desc;}
         bool        isPlaying() const;
         bool        isPaused() const;
@@ -55,7 +68,7 @@ namespace oxygine
         void    setVolume(float v);
         void    setCoord(const Vector2& pos, float z = 0);
         void    setPitch(float v);
-		void	setLoop(bool loop);
+        void    setLoop(bool loop);
         void    seek(int tm);
 
         /**called when sound done*/
@@ -74,11 +87,11 @@ namespace oxygine
         EventCallback _cbDone;
         EventCallback _cbAboutDone;
 
-		SoundHandle *_handle;
+        SoundHandle* _handle;
         Channel* _channel;
         sound_desc _desc;
 
-		bool _finished;
+        bool _finished;
 
         float _volume;//primary volume
         unsigned int _startTime;
@@ -89,14 +102,7 @@ namespace oxygine
         int _fadeInMS;
         int _fadeOutMS;
 
-        enum State
-        {
-            FadingIn,
-            FadingOutStop,
-            FadingOutPause,
-            Normal,
-            Paused,
-        };
+
         State _state;
     };
 }

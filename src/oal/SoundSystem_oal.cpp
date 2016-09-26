@@ -22,7 +22,7 @@ namespace oxygine
         return SoundSystem::instance;
     }
 
-    SoundSystemOAL::SoundSystemOAL(): _device(0), _context(0), _volume(1.0)
+    SoundSystemOAL::SoundSystemOAL(): _device(0), _context(0), _volume(1.0), _totalSources(0)
     {
 #ifdef __S3E__
 //      alcInit();
@@ -207,7 +207,7 @@ namespace oxygine
         if (DebugActor::instance)
         {
             char str[255];
-            safe_sprintf(str, "channels: %d", _channels._channels.size() - getFreeChannelsNum());
+            safe_sprintf(str, "channels: %d/%d", _totalSources - (int)_freeSources.size(), _totalSources);
             DebugActor::instance->addDebugString(str);
         }
     }
@@ -230,6 +230,7 @@ namespace oxygine
         ALuint source;
         if (_freeSources.empty())
         {
+            _totalSources++;
             alGenSources(1, &source);
             check();
             return source;

@@ -47,7 +47,7 @@ namespace oxygine
     class SoundHandleOAL : public SoundHandle
     {
     public:
-		static SoundHandleOAL* create(Sound*);
+        static SoundHandleOAL* create(Sound*);
 
         SoundHandleOAL();
 
@@ -59,19 +59,22 @@ namespace oxygine
         void _init();
         void _play();
         void _pause();
+        void _resume();
+        void _stop();
 
         void _update();
         void _updateVolume();
         void _updatePitch();
-		void _updateLoop() override;
+        void _updateLoop() override;
 
-		void _ended();
+        void _ended();
 
-		virtual void _xplay() {}
-		virtual void _xpause() {}
-		virtual void _xupdate() {}
-		virtual void _xresume() {}
-		virtual void _xupdateLoop() {}
+        virtual void _xplay() {}
+        virtual void _xpause() {}
+        virtual void _xupdate() {}
+        virtual void _xresume() {}
+        virtual void _xstop() {}
+        virtual void _xupdateLoop() {}
 
         ALuint _alSource;
         ALint _pos;
@@ -80,7 +83,7 @@ namespace oxygine
     };
 
 
-	class SoundStream;
+    class SoundStream;
 
 
 }

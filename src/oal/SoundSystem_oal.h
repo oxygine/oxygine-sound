@@ -36,9 +36,13 @@ namespace oxygine
 
         ALuint getSource();
         void   freeSource(ALuint);
-        std::vector<ALuint> _freeSources;
 
     private:
+
+
+        std::vector<ALuint> _freeSources;
+        int _totalSources;
+
         //typedef std::vector<ChannelOAL> channels;
         //channels _channels;
 

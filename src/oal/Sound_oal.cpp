@@ -129,7 +129,6 @@ namespace oxygine
 
     void SoundHandleOAL::_play()
     {
-
         _alSource = ss()->getSource();
 
         alSourcef(_alSource, AL_GAIN, _volume);
@@ -139,9 +138,7 @@ namespace oxygine
         check();
 
 
-		_xplay();
-
-
+        _xplay();
 
         alSourcei(_alSource, AL_BYTE_OFFSET, _pos);
         check();
@@ -152,24 +149,39 @@ namespace oxygine
 
     void SoundHandleOAL::_pause()
     {
-		alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
-		check();
+        alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
+        check();
 
-		alSourceStop(_alSource);
-		check();
+        alSourceStop(_alSource);
+        check();
 
-		_xpause();
+        _xpause();
 
-		//_stream->pause(this);
+        //_stream->pause(this);
 
 
         alSourcei(_alSource, AL_LOOPING, AL_FALSE);
 
-
-
         ss()->freeSource(_alSource);
         _alSource = 0;
         _state = paused;
+    }
+
+    void SoundHandleOAL::_resume()
+    {
+        _play();
+    }
+
+    void SoundHandleOAL::_stop()
+    {
+        alSourceStop(_alSource);
+        check();
+
+        _xstop();
+
+        ss()->freeSource(_alSource);
+        _alSource = 0;
+        _state = stopped;
     }
 
     void SoundHandleOAL::_update()
@@ -177,7 +189,7 @@ namespace oxygine
         if (!_alSource)
             return;
 
-		_xupdate();
+        _xupdate();
 
         //_stream->update(this);
     }
@@ -196,33 +208,33 @@ namespace oxygine
         alSourcef(_alSource, AL_PITCH, _pitch);
     }
 
-	void SoundHandleOAL::_updateLoop()
-	{
-		if (!_alSource)
-			return;
-		_xupdateLoop();
-	}
+    void SoundHandleOAL::_updateLoop()
+    {
+        if (!_alSource)
+            return;
+        _xupdateLoop();
+    }
 
-	void SoundHandleOAL::_ended()
-	{
-		_state = ended;
-		ss()->freeSource(_alSource);
-		_alSource = 0;
-	}
+    void SoundHandleOAL::_ended()
+    {
+        _state = ended;
+        ss()->freeSource(_alSource);
+        _alSource = 0;
+    }
 
 
-	SoundHandleOAL* SoundHandleOAL::create(Sound* snd_)
-	{
-		SoundOAL *snd = (SoundOAL *)snd_;
+    SoundHandleOAL* SoundHandleOAL::create(Sound* snd_)
+    {
+        SoundOAL* snd = (SoundOAL*)snd_;
 
-		SoundHandleOAL *s;
-		if (snd->getAlBuffer())
-			s = new StaticSoundHandleOAL(snd->getAlBuffer());
-		else
-		{
-			s = new StreamingOggSoundHandleOAL(snd);
-		}
+        SoundHandleOAL* s;
+        if (snd->getAlBuffer())
+            s = new StaticSoundHandleOAL(snd->getAlBuffer());
+        else
+        {
+            s = new StreamingOggSoundHandleOAL(snd);
+        }
 
-		return s;
-	}
+        return s;
+    }
 }

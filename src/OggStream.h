@@ -8,17 +8,17 @@
 
 namespace oxygine
 {
-	class SoundStream
-	{
-	public:
-		virtual bool isStreamEnded() const = 0;
-		virtual int decodeNextBlock(bool looped, void* data, int bufferSize) = 0;
+    class SoundStream
+    {
+    public:
+        virtual bool isStreamEnded() const = 0;
+        virtual int decodeNextBlock(bool looped, void* data, int bufferSize) = 0;
 
-		virtual int getRate() const = 0;
-		virtual int getNumChannels() const = 0;
+        virtual int getRate() const = 0;
+        virtual int getNumChannels() const = 0;
 
-		virtual ~SoundStream() {}
-	};
+        virtual ~SoundStream() {}
+    };
 
     DECLARE_SMART(OggStream, spOggStream);
     class OggStream: public SoundStream

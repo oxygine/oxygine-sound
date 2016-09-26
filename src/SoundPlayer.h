@@ -39,7 +39,7 @@ namespace oxygine
 
 
     DECLARE_SMART(SoundInstance, spSoundInstance);
-	class SoundHandle;
+    class SoundHandle;
 
 
     class SoundPlayer
