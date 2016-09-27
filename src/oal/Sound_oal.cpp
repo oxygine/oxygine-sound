@@ -174,12 +174,15 @@ namespace oxygine
 
     void SoundHandleOAL::_stop()
     {
-        alSourceStop(_alSource);
-        check();
+        if (_alSource)
+        {
+            alSourceStop(_alSource);
+            check();
+            ss()->freeSource(_alSource);
+        }
 
         _xstop();
 
-        ss()->freeSource(_alSource);
         _alSource = 0;
         _state = stopped;
         _pos = 0;

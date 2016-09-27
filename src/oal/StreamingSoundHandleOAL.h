@@ -21,6 +21,7 @@ namespace oxygine
         void _xstop() override;
 
         void decode(ALuint* items, int num);
+        void stopAsyncDecode();
 
     private:
         SoundStream* _stream;

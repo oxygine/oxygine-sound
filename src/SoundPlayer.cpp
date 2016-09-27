@@ -51,17 +51,17 @@ namespace oxygine
     void SoundPlayer::removeSoundInstance(SoundInstance* s)
     {
         playingSounds::iterator i = std::find(_sounds.begin(), _sounds.end(), s);
-        OX_ASSERT(i != _sounds.end());
-
-        _sounds.erase(i);
+        //OX_ASSERT(i != _sounds.end());
+        if (i != _sounds.end())
+            _sounds.erase(i);
     }
 
     void SoundPlayer::addSoundInstance(SoundInstance* s)
     {
         playingSounds::iterator i = std::find(_sounds.begin(), _sounds.end(), s);
-        OX_ASSERT(i == _sounds.end());
-
-        _sounds.push_back(s);
+        //OX_ASSERT(i == _sounds.end());
+        if (i == _sounds.end())
+            _sounds.push_back(s);
     }
 
 

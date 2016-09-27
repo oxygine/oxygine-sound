@@ -100,6 +100,11 @@ namespace oxygine
         _rate = s->getRate();
     }
 
+    void StreamingSoundHandleOAL::stopAsyncDecode()
+    {
+        _messages.sendCallback(this, 0, threadStopProcessing, 0, true);
+    }
+
     void StreamingSoundHandleOAL::_xplay()
     {
         decode(_buffers, STREAM_BUFFERS);
@@ -107,7 +112,7 @@ namespace oxygine
 
     void StreamingSoundHandleOAL::_xpause()
     {
-        _messages.sendCallback(this, 0, threadStopProcessing, 0, true);
+        stopAsyncDecode();
         alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, _buffers);
         check();
     }
@@ -149,9 +154,10 @@ namespace oxygine
 
     void StreamingSoundHandleOAL::_xstop()
     {
-        _messages.sendCallback(this, 0, threadStopProcessing, 0, true);
+        stopAsyncDecode();
         _stream->reset();
-        alSourcei(_alSource, AL_BUFFER, 0);
+        if (_alSource)
+            alSourcei(_alSource, AL_BUFFER, 0);
         check();
     }
 
