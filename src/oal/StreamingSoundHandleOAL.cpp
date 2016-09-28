@@ -151,6 +151,12 @@ namespace oxygine
         }
     }
 
+    timeMS StreamingSoundHandleOAL::_getPosition() const
+    {
+        return _stream->getPosition();
+
+    }
+
 
     void StreamingSoundHandleOAL::_xstop()
     {

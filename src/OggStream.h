@@ -16,6 +16,7 @@ namespace oxygine
 
         virtual int getRate() const = 0;
         virtual int getNumChannels() const = 0;
+        virtual int getPosition() const = 0;
         virtual void reset() = 0;
 
         virtual ~SoundStream() {}
@@ -37,6 +38,7 @@ namespace oxygine
         bool                isEmpty() const {return _empty;}
         int                 getCurrentPCM() const;
         int                 getCurrentMS() const;
+        int                 getPosition() const { return getCurrentMS(); }
         int                 getTotalPCM() const;
         int                 getTotalMS() const;
         int                 getRate() const;

@@ -64,7 +64,7 @@ namespace oxygine
         //if (!(_state == Paused || _state == Stopped))
         //  return;
 
-		_state = Normal;
+        _state = Normal;
         _handle->play();
         _player->addSoundInstance(this);
     }
@@ -107,67 +107,108 @@ namespace oxygine
         //_handle = 0;
     }
 
-    void SoundInstance::fadeOut(int fadeOutMS)
+    void SoundInstance::fadeOut(int ms)
     {
-        if (_state == Paused)
-        {
-            //we don't need sound, emulate fade out for silent sound
-			_handle->setVolume(0);
-        }
+        _fadeOut(ms, true);
+    }
 
-        if (_state == Normal || _state == FadingIn || _state == FadingOutStop || _state == Paused)
+    void SoundInstance::fadeOutPause(int ms)
+    {
+        _fadeOut(ms, false);
+    }
+
+    void SoundInstance::_fadeOut(int ms, bool stop)
+    {
+        State nxt = stop ? FadingOutStop : FadingOutPause;
+
+        timeMS ct = _player->getTime();
+        float p;
+        switch (_state)
         {
-            _startFadeOut = _player->getTime();
-            _state = FadingOutStop;
-            _fadeOutMS = fadeOutMS;
+            case oxygine::SoundInstance::FadingIn:
+                _state = stop ? FadingOutStop : FadingOutPause;
+                _fadeOutMS = ms;
+                p = (ct - _startFadeIn) / (float)_fadeInMS;
+                _startFadeOut = ct - (1.0f - p) * (float)_fadeOutMS;
+                break;
+
+            case oxygine::SoundInstance::Paused:
+            case oxygine::SoundInstance::Stopped:
+                _handle->setVolume(0);
+                break;
+
+            case oxygine::SoundInstance::Normal:
+                _startFadeOut = ct;
+                _state = nxt;
+                _fadeOutMS = ms;
+                break;
+
+            case oxygine::SoundInstance::FadingOutStop:
+            case oxygine::SoundInstance::FadingOutPause:
+                _state = nxt;
+                p = (ct - _startFadeOut) / (float)_fadeOutMS;
+                _fadeOutMS = ms;
+                _startFadeOut = ct - p * (float)_fadeOutMS;
+                break;
+
+            case oxygine::SoundInstance::Ended:
+                break;
+
+            default:
+                break;
         }
     }
 
-    void SoundInstance::fadeOutPause(int fadeOutMS)
+    void SoundInstance::fadeIn(int ms)
     {
-        if (_state == Normal || _state == FadingIn || _state == FadingOutStop)
+        timeMS ct = _player->getTime();
+        float p;
+
+        switch (_state)
         {
-            _startFadeOut = _player->getTime();
-            _state = FadingOutPause;
-            _fadeOutMS = fadeOutMS;
+            case oxygine::SoundInstance::FadingIn:
+                p = (ct - _startFadeIn) / (float)_fadeInMS;
+                _fadeInMS = ms;
+                _startFadeIn = ct - p * (float)_fadeInMS;
+                break;
+
+            case oxygine::SoundInstance::Paused:
+            case oxygine::SoundInstance::Stopped:
+                _handle->setVolume(0);
+                _fadeIn(ms);
+                _startFadeIn = _player->getTime();
+                break;
+
+            case oxygine::SoundInstance::FadingOutStop:
+            case oxygine::SoundInstance::FadingOutPause:
+                _fadeIn(ms);
+                ct = _player->getTime();
+                p = (ct - _startFadeOut) / (float)_fadeOutMS;
+                _startFadeIn = ct - (1.0f - p) * (float)_fadeInMS;
+                break;
+
+            case oxygine::SoundInstance::Normal:
+                break;
+
+            case oxygine::SoundInstance::Ended:
+                break;
+
+            default:
+                break;
         }
     }
 
-    void SoundInstance::fadeIn(int fadeInMS)
+    void SoundInstance::_fadeIn(int dur)
     {
-		switch (_state)
-		{
-		case oxygine::SoundInstance::FadingIn:
-			break;
-		case oxygine::SoundInstance::FadingOutStop:
-		case oxygine::SoundInstance::FadingOutPause:
-		case oxygine::SoundInstance::Paused:
-		case oxygine::SoundInstance::Stopped:
-			_fadeIn(fadeInMS);
-			break;
-		case oxygine::SoundInstance::Normal:
-			break;
-		case oxygine::SoundInstance::Ended:
-			break;
-		default:
-			break;
-		}
+        _fadeInMS = dur;
+        _state = FadingIn;
+        _handle->play();
+        _player->addSoundInstance(this);
     }
-
-	void SoundInstance::_fadeIn(int dur)
-	{
-		_startFadeIn = _player->getTime();
-		_fadeInMS = dur;
-		_state = FadingIn;
-		_handle->setVolume(0);
-
-		_handle->play();
-		_player->addSoundInstance(this);
-	}
 
     bool SoundInstance::isPlaying() const
     {
-		return _handle->getState() == SoundHandle::playing;
+        return _handle->getState() == SoundHandle::playing;
     }
 
     bool SoundInstance::isPaused() const
@@ -185,6 +226,11 @@ namespace oxygine
         return _volume;
     }
 
+    float SoundInstance::getCurrentVolume() const
+    {
+        return _handle->getVolume();
+    }
+
     float SoundInstance::getPitch() const
     {
         return _handle->getPitch();
@@ -194,7 +240,7 @@ namespace oxygine
     {
         OX_ASSERT(v >= 0 && v <= 1.0f);
         _volume = v;
-		_handle->setVolume(v);
+        _handle->setVolume(v);
     }
 
     void SoundInstance::setCoord(const Vector2& pos, float z)
@@ -206,9 +252,6 @@ namespace oxygine
     void SoundInstance::setPitch(float v)
     {
         _handle->setPitch(v);
-
-        if (_channel)
-            _channel->setPitch(_volume);
     }
 
     void SoundInstance::setLoop(bool loop)
@@ -236,16 +279,16 @@ namespace oxygine
         if (_handle->getState() == SoundHandle::ended)
         {
             finished();
-			return;
+            return;
         }
 
-		timeMS dur = _handle->getDuration();
+        timeMS dur = _handle->getDuration();
 
         //OX_ASSERT(_channel);
         if (!_channel)
             return;
 
-		int duration = _handle->getDuration();
+        int duration = _handle->getDuration();
         int globalTime = _player->getTime();
 
         //int soundTime = globalTime - _startTime;
@@ -276,7 +319,7 @@ namespace oxygine
 
             case Normal:
             {
-				/*
+                /*
                 if (!_desc.looping && soundTime >= _startFadeOut && duration != _startFadeOut)
                 {
                     _state = FadingOutStop;
@@ -286,7 +329,7 @@ namespace oxygine
                         _cbDone(&ev);
                     }
                 }
-				*/
+                */
             }
             break;
 
@@ -299,36 +342,35 @@ namespace oxygine
                 {
                     if (_state == FadingOutPause)
                     {
-						_handle->setVolume(0);
-						_handle->pause();
+                        _handle->setVolume(0);
+                        _handle->pause();
                         _state = Paused;
                         _startFadeOut = duration;
                     }
                     else
                     {
-						_handle->stop();
+                        _handle->stop();
                         finished();
                     }
                 }
                 else
                 {
                     float volume = (1.0f - p) * _volume;
-					_handle->setVolume(volume);
+                    _handle->setVolume(volume);
                 }
             }
             break;
         }
-        
+
     }
-	
+
     int SoundInstance::getDuration()const
     {
-		return _handle->getDuration();
+        return _handle->getDuration();
     }
 
     int SoundInstance::getPosition() const
     {
-        OX_ASSERT(0);
-        return 0;
+        return _handle->getPosition();
     }
 }

@@ -190,12 +190,6 @@ namespace oxygine
         return sound;
     }
 
-    oxygine::SoundHandleOAL* SoundSystemOAL::createHandle()
-    {
-        SoundHandleOAL* h = new SoundHandleOAL;
-        return h;
-    }
-
     void SoundSystemOAL::update()
     {
         if (!_device)

@@ -16,6 +16,7 @@ namespace oxygine
         void _xstop() override;
 
         void _xupdateLoop() override;
+        timeMS _getPosition() const override;
 
         ALuint _buffer;
     };

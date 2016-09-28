@@ -6,6 +6,8 @@
 #include "core/file.h"
 #include "Sound.h"
 
+#include "core/ImageDataOperations.h"
+
 #ifdef EMSCRIPTEN
 #include <emscripten.h>
 #endif
@@ -16,8 +18,18 @@ class TestSoundInstance : public Test
 {
 public:
 
-    spSprite orange;
+    spSprite volumeSprite;
+    spNativeTexture volumeTexture;
+    Image volumeImage;
+
+    spSprite posSprite;
+    spNativeTexture posTexture;
+    Image posImage;
+
     spSoundInstance snd;
+
+
+
 
     TestSoundInstance()
     {
@@ -29,7 +41,9 @@ public:
         addButton("set_static", "set static sound");
 
         addButton("loop=1", "loop = true");
-        addButton("loop=0", "loop = false");
+        //addButton("loop=0", "loop = false");
+        addButton("pitch=2", "pitch = 2");
+        //addButton("pitch=1", "pitch = 1");
         //addButton("set_not_looped", )
 
         addButton("play", "play");
@@ -37,9 +51,37 @@ public:
         addButton("resume", "resume");
         addButton("stop", "stop");
 
-        addButton("fadeIn", "fade in");
+        addButton("fadeIn500", "fade in 500");
+        addButton("fadeIn1000", "fade in 1000");
+        addButton("fadeOutPause500", "fade out pause 500");
+        addButton("fadeOutPause1000", "fade out pause 1000");
         addButton("fadeOut", "fade out");
-		addButton("fadeOutPause", "fade out pause");
+
+
+
+        volumeImage.init(getStage()->getWidth(), 50, TF_R8G8B8A8);
+        volumeImage.fill(Color(Color::Gray).rgba());
+
+        volumeTexture = IVideoDriver::instance->createTexture();
+        volumeTexture->init(volumeImage.lock());
+
+        volumeSprite = new Sprite;
+        volumeSprite->setAnimFrame(AnimationFrame(volumeTexture));
+        volumeSprite->attachTo(content);
+        volumeSprite->setY(content->getHeight() / 2 - volumeSprite->getHeight() / 2);
+
+
+
+        posImage.init(getStage()->getWidth(), 100, TF_R8G8B8A8);
+        posImage.fill(Color(Color::Gray).rgba());
+
+        posTexture = IVideoDriver::instance->createTexture();
+        posTexture->init(posImage.lock());
+
+        posSprite = new Sprite;
+        posSprite->setAnimFrame(AnimationFrame(posTexture));
+        posSprite->attachTo(content);
+        posSprite->setY(volumeSprite->getY() + volumeSprite->getHeight() + 10);
     }
 
     void soundEvent(Event*)
@@ -58,10 +100,10 @@ public:
 
     void clicked(string id)
     {
-        if (id == "set_streaming")        
+        if (id == "set_streaming")
             set(splayer.play("track_44100_mono", PlayOptions().pause()));
 
-        if (id == "set_static")        
+        if (id == "set_static")
             set(splayer.play("win_round", PlayOptions().pause()));
 
         if (!snd)
@@ -73,34 +115,79 @@ public:
         if (id == "loop=0")
             snd->setLoop(false);
 
-        if (id == "play")        
+        if (id == "pitch=2")
+            snd->setPitch(2);
+
+        if (id == "pitch=1")
+            snd->setPitch(1);
+
+        if (id == "play")
             snd->play();
 
-        if (id == "pause")        
+        if (id == "pause")
             snd->pause();
 
-        if (id == "resume")        
+        if (id == "resume")
             snd->resume();
 
-        if (id == "stop")        
+        if (id == "stop")
             snd->stop();
 
-        if (id == "fadeIn")        
+        if (id == "fadeIn500")
             snd->fadeIn(500);
 
-		if (id == "fadeOut")
-			snd->fadeOut(500);
+        if (id == "fadeIn1000")
+            snd->fadeIn(1000);
 
-		if (id == "fadeOutPause")
-			snd->fadeOutPause(500);
+        if (id == "fadeOut")
+            snd->fadeOut(500);
+
+        if (id == "fadeOutPause500")
+            snd->fadeOutPause(500);
+        if (id == "fadeOutPause1000")
+            snd->fadeOutPause(1000);
     }
 
 
+    void updateTexture(Image& image, spNativeTexture t)
+    {
+        ImageData im = image.lock();
 
-	void doUpdate(const UpdateState& us)
-	{
-		if (!snd)
-			return;
-		float vol = snd->getVolume();
-	}
+        ImageData src = im.getRect(Rect(1, 0, im.w - 1, im.h));
+        ImageData dest = im.getRect(Rect(0, 0, im.w - 1, im.h));
+
+        operations::move(src, dest);
+
+        t->updateRegion(0, 0, im);
+    }
+
+    void doUpdate(const UpdateState& us)
+    {
+        if (snd)
+        {
+            ImageData im;
+            int y;
+
+            unsigned char* ptr;
+            PixelR8G8B8A8 p;
+
+
+            im = volumeImage.lock();
+            float vol = snd->getCurrentVolume();
+            y = im.h - vol * (im.h - 5) - 2;
+            ptr = im.getPixelPtr(im.w / 2, y);
+            p.setPixel(ptr, initPixel(Color(Color::Green).rgba()));
+
+
+
+            im = posImage.lock();
+            float progress = snd->getPosition() / (float)snd->getDuration();
+            y = im.h - progress * (im.h - 5) - 2;
+            ptr = im.getPixelPtr(im.w / 2, y);
+            p.setPixel(ptr, initPixel(Color(Color::Yellow).rgba()));
+
+            updateTexture(volumeImage, volumeTexture);
+            updateTexture(posImage, posTexture);
+        }
+    }
 };

@@ -26,11 +26,25 @@ namespace oxygine
         _xplay();
     }
 
+    timeMS StaticSoundHandleOAL::_getPosition() const
+    {
+        if (_alSource)
+        {
+            float tm;
+            alGetSourcef(_alSource, AL_SEC_OFFSET, &tm);
+            return tm * 1000;
+        }
+
+        return 0;
+        return _pos;
+    }
+
     void StaticSoundHandleOAL::_xupdate()
     {
         ALint state = 0;
         alGetSourcei(_alSource, AL_SOURCE_STATE, &state);
         check();
+
 
         if (state == AL_STOPPED)
         {

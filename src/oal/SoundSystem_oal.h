@@ -22,7 +22,6 @@ namespace oxygine
         SoundOAL* createSound(std::vector<unsigned char>& buffer, bool swap);
         SoundOAL* createSound(const char* path);
 
-        SoundHandleOAL* createHandle();
 
         bool        isAvailable() const {return _context != 0;}
         float       getVolume() const {return _volume;}
