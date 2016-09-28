@@ -43,6 +43,7 @@ namespace oxygine
         float       getPitch() const { return _pitch; }
         bool        getLoop() const { return _looping; }
         sound_state getState() const { return _state; }
+		timeMS		getDuration() const { return _duration; }
 
         void play() { _state = playing; _play(); }
         void pause() { _state = paused; _pause(); }
@@ -66,6 +67,7 @@ namespace oxygine
         float _volume;
         float _pitch;
         bool _looping;
+		timeMS _duration;
 
 
         sound_state _state;

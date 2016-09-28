@@ -129,6 +129,9 @@ namespace oxygine
 
     void SoundHandleOAL::_play()
     {
+		if (_alSource)
+			return;
+
         _alSource = ss()->getSource();
 
         alSourcef(_alSource, AL_GAIN, _volume);
@@ -149,6 +152,9 @@ namespace oxygine
 
     void SoundHandleOAL::_pause()
     {
+		if (!_alSource)
+			return;
+
         alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
         check();
 
@@ -234,10 +240,10 @@ namespace oxygine
         SoundHandleOAL* s;
         if (snd->getAlBuffer())
             s = new StaticSoundHandleOAL(snd->getAlBuffer());
-        else
-        {
+        else        
             s = new StreamingOggSoundHandleOAL(snd);
-        }
+
+		s->_duration = snd->getDuration();
 
         return s;
     }

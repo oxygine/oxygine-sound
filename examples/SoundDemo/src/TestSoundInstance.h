@@ -39,6 +39,7 @@ public:
 
         addButton("fadeIn", "fade in");
         addButton("fadeOut", "fade out");
+		addButton("fadeOutPause", "fade out pause");
     }
 
     void soundEvent(Event*)
@@ -57,15 +58,11 @@ public:
 
     void clicked(string id)
     {
-        if (id == "set_streaming")
-        {
+        if (id == "set_streaming")        
             set(splayer.play("track_44100_mono", PlayOptions().pause()));
-        }
 
-        if (id == "set_static")
-        {
+        if (id == "set_static")        
             set(splayer.play("win_round", PlayOptions().pause()));
-        }
 
         if (!snd)
             return;
@@ -76,36 +73,34 @@ public:
         if (id == "loop=0")
             snd->setLoop(false);
 
-        if (id == "play")
-        {
+        if (id == "play")        
             snd->play();
-        }
 
-        if (id == "pause")
-        {
+        if (id == "pause")        
             snd->pause();
-        }
 
-        if (id == "resume")
-        {
+        if (id == "resume")        
             snd->resume();
-        }
 
-        if (id == "stop")
-        {
+        if (id == "stop")        
             snd->stop();
-        }
 
+        if (id == "fadeIn")        
+            snd->fadeIn(500);
 
-        if (id == "fadeIn")
-        {
-            snd->fadeIn(1000);
-        }
+		if (id == "fadeOut")
+			snd->fadeOut(500);
 
-        if (id == "fadeOut")
-        {
-            snd->fadeOut(1000);
-        }
-
+		if (id == "fadeOutPause")
+			snd->fadeOutPause(500);
     }
+
+
+
+	void doUpdate(const UpdateState& us)
+	{
+		if (!snd)
+			return;
+		float vol = snd->getVolume();
+	}
 };

@@ -50,6 +50,7 @@ namespace oxygine
         static SoundHandleOAL* create(Sound*);
 
         SoundHandleOAL();
+		bool isPlaying() const { return _alSource !=0; }
 
     protected:
         friend class StaticStreamOAL;

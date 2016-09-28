@@ -47,15 +47,15 @@ namespace oxygine
         /**SoundInstance shouldn't be used after "stop"*/
         void stop();
 
+		/**could be used after fadeOut with stop=false*/
+		void fadeIn(int fadeInMS);
 
         void fadeOut(int fadeOutMS);
         /**Event::COMPLETE won't be dispatched*/
         void fadeOutPause(int fadeOutMS);
 
-        /**could be used after fadeOut with stop=false*/
-        void fadeIn(int fadeInMS);
+        
 
-        Channel*    getChannel() const;
         int         getDuration() const;
         int         getPosition() const;
         float       getVolume() const;
@@ -82,6 +82,8 @@ namespace oxygine
         void finished();
         void update();
         void aboutDone();
+
+		void _fadeIn(int dur);
 
     private:
         SoundPlayer* _player;

@@ -6,7 +6,6 @@ namespace oxygine
 
     StaticSoundHandleOAL::StaticSoundHandleOAL(ALuint buffer): _buffer(buffer)
     {
-
     }
 
     void StaticSoundHandleOAL::_xplay()
