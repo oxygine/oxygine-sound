@@ -46,6 +46,7 @@ namespace oxygine
         timeMS      getDuration() const { return _duration; }
         timeMS      getPosition() const { return _getPosition(); }
 
+        /**play from begin*/
         void play() { _state = playing; _play(); }
         void pause() { _state = paused; _pause(); }
         void resume() { _state = playing; _resume(); }

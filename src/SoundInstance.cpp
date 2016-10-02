@@ -31,8 +31,8 @@ namespace oxygine
 
     void SoundInstance::finished()
     {
-        OX_ASSERT(_finished == false);
-        _finished = true;
+        //OX_ASSERT(_finished == false);
+        //_finished = true;
         //_player->removeSoundInstance(this);
 
         _state = Ended;
@@ -63,7 +63,7 @@ namespace oxygine
 
         //if (!(_state == Paused || _state == Stopped))
         //  return;
-
+        _handle->setVolume(_volume);
         _state = Normal;
         _handle->play();
         _player->addSoundInstance(this);
@@ -73,6 +73,7 @@ namespace oxygine
     {
         EXIT_IF_EMPTY();
 
+        _state = Paused;
         _handle->pause();
         _player->removeSoundInstance(this);
     }
@@ -81,17 +82,9 @@ namespace oxygine
     {
         EXIT_IF_EMPTY();
 
+        _state = Normal;
         _handle->resume();
         _player->addSoundInstance(this);
-        /*
-
-        if (!_channel)
-            return;
-        if (_state != Paused)
-            return;
-        _state = Normal;
-        _channel->resume();
-        */
     }
 
     void SoundInstance::stop()

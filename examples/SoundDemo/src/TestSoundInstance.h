@@ -27,6 +27,7 @@ public:
     Image posImage;
 
     spSoundInstance snd;
+    spTextField txtState;
 
 
 
@@ -65,10 +66,18 @@ public:
         volumeTexture = IVideoDriver::instance->createTexture();
         volumeTexture->init(volumeImage.lock());
 
+
+        spTextField label;
+        label = new TextField;
+        label->setText("Volume:");
+        label->setFont(Test::resourcesUI.getResFont("main"));
+        label->setX(10);
+        label->setY(content->getHeight() / 2 - 80);
+        label->attachTo(content);
         volumeSprite = new Sprite;
         volumeSprite->setAnimFrame(AnimationFrame(volumeTexture));
         volumeSprite->attachTo(content);
-        volumeSprite->setY(content->getHeight() / 2 - volumeSprite->getHeight() / 2);
+        volumeSprite->setY(label->getY() + 10);
 
 
 
@@ -78,16 +87,31 @@ public:
         posTexture = IVideoDriver::instance->createTexture();
         posTexture->init(posImage.lock());
 
+        label = new TextField;
+        label->setText("Position:");
+        label->setFont(Test::resourcesUI.getResFont("main"));
+        label->setX(10);
+        label->setY(content->getHeight() / 2);
+        label->attachTo(content);
         posSprite = new Sprite;
         posSprite->setAnimFrame(AnimationFrame(posTexture));
         posSprite->attachTo(content);
-        posSprite->setY(volumeSprite->getY() + volumeSprite->getHeight() + 10);
+        posSprite->setY(label->getY() + 10);
+
+
+        label = new TextField;
+        label->setFont(Test::resourcesUI.getResFont("main"));
+        label->setX(10);
+        label->setY(content->getHeight() / 2 + 110);
+        label->attachTo(content);
+        txtState = label;
+
     }
 
     void soundEvent(Event*)
     {
         notify("done");
-        snd = 0;
+        // snd = 0;
     }
 
     void set(spSoundInstance s)
@@ -188,6 +212,39 @@ public:
 
             updateTexture(volumeImage, volumeTexture);
             updateTexture(posImage, posTexture);
+
+            SoundInstance::State s = snd->getState();
+            string st;
+            switch (s)
+            {
+                case SoundInstance::FadingIn:
+                    st = "FadingIn";
+                    break;
+                case SoundInstance::FadingOutStop:
+                    st = "FadingOutStop";
+                    break;
+                case SoundInstance::FadingOutPause:
+                    st = "FadingOutPause";
+                    break;
+                case SoundInstance::Normal:
+                    st = "Normal";
+                    break;
+                case SoundInstance::Paused:
+                    st = "Paused";
+                    break;
+                case SoundInstance::Stopped:
+                    st = "Stopped";
+                    break;
+                case SoundInstance::Ended:
+                    st = "Ended";
+                    break;
+                default:
+                    break;
+            }
+
+            txtState->setText(st);
         }
+        else
+            txtState->setText("");
     }
 };

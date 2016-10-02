@@ -69,6 +69,7 @@ namespace oxygine
         void _updateLoop() override;
 
         void _ended();
+        void _restore();
 
         virtual void _xplay() {}
         virtual void _xpause() {}

@@ -127,21 +127,43 @@ namespace oxygine
 
     }
 
+    void SoundHandleOAL::_restore()
+    {
+        alSourcef(_alSource, AL_GAIN, _volume);
+        check();
+
+        alSourcef(_alSource, AL_PITCH, _pitch);
+        check();
+    }
+
     void SoundHandleOAL::_play()
+    {
+        if (_alSource)
+            _stop();
+
+        _alSource = ss()->getSource();
+        _restore();
+
+
+        _xplay();
+
+        //alSourcei(_alSource, AL_BYTE_OFFSET, 0);
+        check();
+
+        alSourcePlay(_alSource);
+        check();
+    }
+
+    void SoundHandleOAL::_resume()
     {
         if (_alSource)
             return;
 
         _alSource = ss()->getSource();
 
-        alSourcef(_alSource, AL_GAIN, _volume);
-        check();
+        _restore();
 
-        alSourcef(_alSource, AL_PITCH, _pitch);
-        check();
-
-
-        _xplay();
+        _xresume();
 
         alSourcei(_alSource, AL_BYTE_OFFSET, _pos);
         check();
@@ -171,11 +193,6 @@ namespace oxygine
         ss()->freeSource(_alSource);
         _alSource = 0;
         _state = paused;
-    }
-
-    void SoundHandleOAL::_resume()
-    {
-        _play();
     }
 
     void SoundHandleOAL::_stop()
