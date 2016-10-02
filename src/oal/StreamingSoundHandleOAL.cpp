@@ -1,5 +1,6 @@
 #include "StreamingSoundHandleOAL.h"
 #include "core/ThreadDispatcher.h"
+#include "SoundSystem_oal.h"
 
 namespace oxygine
 {
@@ -75,15 +76,20 @@ namespace oxygine
     }
 
 
+
     StreamingSoundHandleOAL::StreamingSoundHandleOAL(): _stream(0)
     {
-        alGenBuffers(STREAM_BUFFERS, _buffers);
+		for (int i = 0; i < STREAM_BUFFERS; ++i)
+			_buffers[i] = ss()->getBuffer();
+
         check();
     }
 
     StreamingSoundHandleOAL::~StreamingSoundHandleOAL()
     {
-        alDeleteBuffers(STREAM_BUFFERS, _buffers);
+		for (int i = 0; i < STREAM_BUFFERS; ++i)
+			ss()->freeBuffer(_buffers[i]);
+
         check();
     }
 

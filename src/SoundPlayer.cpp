@@ -190,13 +190,16 @@ namespace oxygine
 
     void SoundPlayer::stop()
     {
+		while (!_sounds.empty())
+			_sounds.back()->stop();
+		/*
         for (playingSounds::iterator i = _sounds.begin(); i != _sounds.end(); ++i)
         {
             spSoundInstance sound = *i;
             sound->stop();
         }
+		*/
 
-        _sounds.resize(0);
     }
 
     void SoundPlayer::fadeOut(int ms)

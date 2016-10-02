@@ -113,7 +113,7 @@ namespace oxygine
 
 
 
-    SoundSystemOAL* ss()
+    SoundSystemOAL* SoundHandleOAL::ss()
     {
         return (SoundSystemOAL*)SoundSystem::get();
     }
