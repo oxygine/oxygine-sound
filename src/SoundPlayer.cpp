@@ -190,15 +190,15 @@ namespace oxygine
 
     void SoundPlayer::stop()
     {
-		while (!_sounds.empty())
-			_sounds.back()->stop();
-		/*
+        while (!_sounds.empty())
+            _sounds.back()->stop();
+        /*
         for (playingSounds::iterator i = _sounds.begin(); i != _sounds.end(); ++i)
         {
             spSoundInstance sound = *i;
             sound->stop();
         }
-		*/
+        */
 
     }
 
@@ -219,10 +219,8 @@ namespace oxygine
     void SoundPlayer::update()
     {
         timeMS t = getTimeMS();
-        timeMS d = t - _lastUpdateTime;
-        if (_paused)
-            d = 0;
-        _time += d;
+        if (!_paused)
+            _time += t - _lastUpdateTime;
 
 
         for (size_t i = 0; i < _sounds.size();)

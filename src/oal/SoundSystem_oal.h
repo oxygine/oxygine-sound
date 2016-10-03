@@ -33,20 +33,20 @@ namespace oxygine
 
         void update();
 
-		ALuint getSource();
-		void   freeSource(ALuint);
+        ALuint getSource();
+        void   freeSource(ALuint);
 
-		ALuint getBuffer();
-		void   freeBuffer(ALuint);
+        ALuint getBuffer();
+        void   freeBuffer(ALuint);
 
     private:
 
 
-		std::vector<ALuint> _freeSources;
-		int _totalSources;
+        std::vector<ALuint> _freeSources;
+        int _totalSources;
 
-		std::vector<ALuint> _freeBuffers;
-		//int _totalSources;
+        std::vector<ALuint> _freeBuffers;
+        //int _totalSources;
 
         //typedef std::vector<ChannelOAL> channels;
         //channels _channels;

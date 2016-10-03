@@ -56,7 +56,7 @@ namespace oxygine
         friend class StaticStreamOAL;
         friend class OggStreamOAL;
 
-		class SoundSystemOAL *ss();
+        class SoundSystemOAL* ss();
 
         void _init();
         void _play();

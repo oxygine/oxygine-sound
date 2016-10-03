@@ -122,7 +122,7 @@ namespace oxygine
                 _state = stop ? FadingOutStop : FadingOutPause;
                 _fadeOutMS = ms;
                 p = (ct - _startFadeIn) / (float)_fadeInMS;
-                _startFadeOut = ct - (1.0f - p) * (float)_fadeOutMS;
+                _startFadeOut = (int)(ct - (1.0f - p) * (float)_fadeOutMS);
                 break;
 
             case oxygine::SoundInstance::Paused:
@@ -141,7 +141,7 @@ namespace oxygine
                 _state = nxt;
                 p = (ct - _startFadeOut) / (float)_fadeOutMS;
                 _fadeOutMS = ms;
-                _startFadeOut = ct - p * (float)_fadeOutMS;
+                _startFadeOut = int(ct - p * (float)_fadeOutMS);
                 break;
 
             case oxygine::SoundInstance::Ended:
@@ -162,7 +162,7 @@ namespace oxygine
             case oxygine::SoundInstance::FadingIn:
                 p = (ct - _startFadeIn) / (float)_fadeInMS;
                 _fadeInMS = ms;
-                _startFadeIn = ct - p * (float)_fadeInMS;
+                _startFadeIn = int(ct - p * (float)_fadeInMS);
                 break;
 
             case oxygine::SoundInstance::Paused:
@@ -177,7 +177,7 @@ namespace oxygine
                 _fadeIn(ms);
                 ct = _player->getTime();
                 p = (ct - _startFadeOut) / (float)_fadeOutMS;
-                _startFadeIn = ct - (1.0f - p) * (float)_fadeInMS;
+                _startFadeIn = int(ct - (1.0f - p) * (float)_fadeInMS);
                 break;
 
             case oxygine::SoundInstance::Normal:

@@ -60,7 +60,7 @@ public:
 
 
 
-        volumeImage.init(getStage()->getWidth(), 50, TF_R8G8B8A8);
+        volumeImage.init((int)getStage()->getWidth(), 50, TF_R8G8B8A8);
         volumeImage.fill(Color(Color::Gray).rgba());
 
         volumeTexture = IVideoDriver::instance->createTexture();
@@ -81,7 +81,7 @@ public:
 
 
 
-        posImage.init(getStage()->getWidth(), 100, TF_R8G8B8A8);
+        posImage.init((int)getStage()->getWidth(), 100, TF_R8G8B8A8);
         posImage.fill(Color(Color::Gray).rgba());
 
         posTexture = IVideoDriver::instance->createTexture();
@@ -198,7 +198,7 @@ public:
 
             im = volumeImage.lock();
             float vol = snd->getCurrentVolume();
-            y = im.h - vol * (im.h - 5) - 2;
+            y = int(im.h - vol * (im.h - 5) - 2);
             ptr = im.getPixelPtr(im.w / 2, y);
             p.setPixel(ptr, initPixel(Color(Color::Green).rgba()));
 
@@ -206,7 +206,7 @@ public:
 
             im = posImage.lock();
             float progress = snd->getPosition() / (float)snd->getDuration();
-            y = im.h - progress * (im.h - 5) - 2;
+            y = int(im.h - progress * (im.h - 5) - 2);
             ptr = im.getPixelPtr(im.w / 2, y);
             p.setPixel(ptr, initPixel(Color(Color::Yellow).rgba()));
 

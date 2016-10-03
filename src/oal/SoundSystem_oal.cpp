@@ -241,24 +241,24 @@ namespace oxygine
     }
 
 
-	ALuint SoundSystemOAL::getBuffer()
-	{
-		ALuint buffer;
-		if (_freeBuffers.empty())
-		{
-			//_totalSources++;
-			alGenBuffers(1, &buffer);
-			check();
-			return buffer;
-		}
+    ALuint SoundSystemOAL::getBuffer()
+    {
+        ALuint buffer;
+        if (_freeBuffers.empty())
+        {
+            //_totalSources++;
+            alGenBuffers(1, &buffer);
+            check();
+            return buffer;
+        }
 
-		buffer = _freeBuffers.back();
-		_freeBuffers.pop_back();
-		return buffer;
-	}
+        buffer = _freeBuffers.back();
+        _freeBuffers.pop_back();
+        return buffer;
+    }
 
-	void   SoundSystemOAL::freeBuffer(ALuint buffer)
-	{
-		_freeBuffers.push_back(buffer);
-	}
+    void   SoundSystemOAL::freeBuffer(ALuint buffer)
+    {
+        _freeBuffers.push_back(buffer);
+    }
 }
