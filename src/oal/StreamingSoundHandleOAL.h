@@ -20,6 +20,7 @@ namespace oxygine
         void _xupdate() override;
         void _xstop() override;
         timeMS _getPosition() const override;
+		void _xsetPosition(int tm) override;
 
         void decode(ALuint* items, int num);
         void stopAsyncDecode();

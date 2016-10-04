@@ -147,7 +147,7 @@ namespace oxygine
 
         _xplay();
 
-        //alSourcei(_alSource, AL_BYTE_OFFSET, 0);
+        alSourcei(_alSource, AL_BYTE_OFFSET, _pos);
         check();
 
         alSourcePlay(_alSource);
@@ -242,7 +242,12 @@ namespace oxygine
         _xupdateLoop();
     }
 
-    void SoundHandleOAL::_ended()
+	void SoundHandleOAL::_setPosition(int tm)
+	{
+		_xsetPosition(tm);
+	}
+
+	void SoundHandleOAL::_ended()
     {
         _state = ended;
         ss()->freeSource(_alSource);

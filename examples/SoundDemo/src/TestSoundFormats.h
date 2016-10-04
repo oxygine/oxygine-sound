@@ -44,9 +44,6 @@ public:
         addButton("pause", "pause");
         addButton("resume", "resume");
         addButton("fadeOut", "fadeOut");
-
-        addButton("fadeOutPause", "fadeOutPause");
-        addButton("fadeInResume", "fadeInResume");
     }
 
     void clicked(string id)

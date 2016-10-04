@@ -109,8 +109,16 @@ namespace oxygine
         SoundHandle* handle = SoundHandleOAL::create(ressound->getSound());
         spSoundInstance s = new SoundInstance(this, handle);
 
-        if (!opt._paused)
-            s->play();
+		s->setPitch(opt._pitch);
+		s->setVolume(_volume);
+		s->setLoop(opt._looped);
+		s->seek(opt._seek);
+
+		if (opt._fadeIn)
+			s->fadeIn(opt._fadeIn);
+		else
+			if (!opt._paused)
+				s->play();
 
 
         return s;

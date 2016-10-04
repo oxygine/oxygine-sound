@@ -14,6 +14,7 @@ namespace oxygine
 
     using namespace std;
 
+
     class PlayOptions
     {
     public:

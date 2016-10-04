@@ -113,7 +113,7 @@ namespace oxygine
 
     void StreamingSoundHandleOAL::_xplay()
     {
-        _stream->reset();
+        //_stream->reset();
         decode(_buffers, STREAM_BUFFERS);
     }
 
@@ -165,7 +165,17 @@ namespace oxygine
     }
 
 
-    void StreamingSoundHandleOAL::_xstop()
+	void StreamingSoundHandleOAL::_xsetPosition(int tm)
+	{
+		if (_alSource)
+		{
+
+		}
+		else
+			_stream->setPosition(tm);
+	}
+
+	void StreamingSoundHandleOAL::_xstop()
     {
         stopAsyncDecode();
         //_stream->reset();
