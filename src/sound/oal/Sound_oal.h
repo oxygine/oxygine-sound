@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "OggStream.h"
+#include "../OggStream.h"
 #include "../Sound.h"
 #include "../oal.h"
 

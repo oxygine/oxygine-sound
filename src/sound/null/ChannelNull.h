@@ -1,5 +1,5 @@
 #pragma once
-#include "Channel.h"
+#include "../Channel.h"
 namespace oxygine
 {
     class ChannelNull : public Channel

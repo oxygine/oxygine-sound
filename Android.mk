@@ -13,17 +13,19 @@ LOCAL_MODULE    := oxygine-sound_static
 LOCAL_MODULE_FILENAME := liboxygine-sound
 
 LOCAL_SRC_FILES := \
-		src/MemoryStream.cpp \
-		src/OggStream.cpp \
-		src/ResSound.cpp \
-		src/SoundInstance.cpp \
-		src/SoundPlayer.cpp \
-		src/oal/Channel_oal.cpp \
-		src/oal/SoundSystem_oal.cpp \
-		src/oal/Sound_oal.cpp \
-		src/null/SoundSystemNull.cpp \
-		src/null/SoundNull.cpp \
-		src/null/ChannelNull.cpp
+		src/sound/MemoryStream.cpp \
+		src/sound/OggStream.cpp \
+		src/sound/ResSound.cpp \
+		src/sound/SoundInstance.cpp \
+		src/sound/SoundPlayer.cpp \
+		src/sound/oal/Channel_oal.cpp \
+		src/sound/oal/SoundSystem_oal.cpp \
+		src/sound/oal/Sound_oal.cpp \
+		src/sound/oal/StreamingSoundHandleOAL.cpp \
+		src/sound/oal/StaticSoundHandleOAL.cpp \
+		src/sound/null/SoundSystemNull.cpp \
+		src/sound/null/SoundNull.cpp \
+		src/sound/null/ChannelNull.cpp
 
 
 LOCAL_CFLAGS := -DOXYGINE_SOUND=1

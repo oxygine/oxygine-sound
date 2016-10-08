@@ -16,35 +16,35 @@ set(OXYGINESOUND_DEFINITIONS
 	-DOXYGINE_SOUND=1)
 
 set(SRC
-	src/Channel.h
-	src/MemoryStream.cpp
-	src/MemoryStream.h	
-	src/ResSound.cpp
-	src/ResSound.h
-	src/Sound.h
-	src/SoundInstance.cpp
-	src/SoundInstance.h
-	src/SoundPlayer.cpp
-	src/SoundPlayer.h
-	src/SoundSystem.h
+	src/sound/sound/Channel.h
+	src/sound/sound/MemoryStream.cpp
+	src/sound/sound/MemoryStream.h	
+	src/sound/ResSound.cpp
+	src/sound/ResSound.h
+	src/sound/Sound.h
+	src/sound/SoundInstance.cpp
+	src/sound/SoundInstance.h
+	src/sound/SoundPlayer.cpp
+	src/sound/SoundPlayer.h
+	src/sound/SoundSystem.h
 
-	src/null/SoundSystemNull.cpp
-	src/null/SoundSystemNull.h
-	src/null/ChannelNull.cpp
-	src/null/ChannelNull.h
-	src/null/SoundNull.cpp
-	src/null/SoundNull.h
+	src/sound/null/SoundSystemNull.cpp
+	src/sound/null/SoundSystemNull.h
+	src/sound/null/ChannelNull.cpp
+	src/sound/null/ChannelNull.h
+	src/sound/null/SoundNull.cpp
+	src/sound/null/SoundNull.h
 	)
 
 if(EMSCRIPTEN)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 	set(SRC ${SRC}
-		src/emscripten/SoundSystemEmscripten.cpp
-		src/emscripten/SoundSystemEmscripten.h
-		src/emscripten/ChannelEmscripten.cpp
-		src/emscripten/ChannelEmscripten.h
-		src/emscripten/SoundEmscripten.cpp
-		src/emscripten/SoundEmscripten.h
+		src/sound/emscripten/SoundSystemEmscripten.cpp
+		src/sound/emscripten/SoundSystemEmscripten.h
+		src/sound/emscripten/ChannelEmscripten.cpp
+		src/sound/emscripten/ChannelEmscripten.h
+		src/sound/emscripten/SoundEmscripten.cpp
+		src/sound/emscripten/SoundEmscripten.h
 	)
 
 else(EMSCRIPTEN)
@@ -52,15 +52,18 @@ else(EMSCRIPTEN)
 	add_subdirectory(dependencies/tremor tremor)
 	
 	set (SRC ${SRC}
-		src/OggStream.cpp
-		src/OggStream.h
+		src/sound/OggStream.cpp
+		src/sound/OggStream.h
 
-		src/oal/Channel_oal.cpp
-		src/oal/Channel_oal.h
-		src/oal/SoundSystem_oal.cpp
-		src/oal/SoundSystem_oal.h
-		src/oal/Sound_oal.cpp
-		src/oal/Sound_oal.h
+		src/sound/oal/Channel_oal.cpp
+		src/sound/oal/Channel_oal.h
+		src/sound/oal/SoundSystem_oal.cpp
+		src/sound/oal/SoundSystem_oal.h
+		src/sound/oal/Sound_oal.cpp
+		src/sound/oal/Sound_oal.h
+		src/sound/oal/StreamingSoundHandleOAL.cpp
+		src/sound/oal/StaticSoundHandleOAL.cpp
+		src/sound/oal/Sound_oal.h
 		)
 
 endif(EMSCRIPTEN)

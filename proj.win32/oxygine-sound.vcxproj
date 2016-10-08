@@ -10,6 +10,46 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\sound\Channel.h" />
+    <ClInclude Include="..\src\sound\Channels.h" />
+    <ClInclude Include="..\src\sound\MemoryStream.h" />
+    <ClInclude Include="..\src\sound\null\ChannelNull.h" />
+    <ClInclude Include="..\src\sound\null\SoundNull.h" />
+    <ClInclude Include="..\src\sound\null\SoundSystemNull.h" />
+    <ClInclude Include="..\src\sound\oal.h" />
+    <ClInclude Include="..\src\sound\oal\Channel_oal.h" />
+    <ClInclude Include="..\src\sound\oal\SoundSystem_oal.h" />
+    <ClInclude Include="..\src\sound\oal\Sound_oal.h" />
+    <ClInclude Include="..\src\sound\oal\StaticSoundHandleOAL.h" />
+    <ClInclude Include="..\src\sound\oal\StaticStreamOAL.h" />
+    <ClInclude Include="..\src\sound\oal\StreamingSoundHandleOAL.h" />
+    <ClInclude Include="..\src\sound\OggStream.h" />
+    <ClInclude Include="..\src\sound\ResSound.h" />
+    <ClInclude Include="..\src\sound\Sound.h" />
+    <ClInclude Include="..\src\sound\SoundInstance.h" />
+    <ClInclude Include="..\src\sound\SoundPlayer.h" />
+    <ClInclude Include="..\src\sound\SoundStream.h" />
+    <ClInclude Include="..\src\sound\SoundSystem.h" />
+    <ClInclude Include="..\src\sound\WavStream.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\sound\MemoryStream.cpp" />
+    <ClCompile Include="..\src\sound\null\ChannelNull.cpp" />
+    <ClCompile Include="..\src\sound\null\SoundNull.cpp" />
+    <ClCompile Include="..\src\sound\null\SoundSystemNull.cpp" />
+    <ClCompile Include="..\src\sound\oal\Channel_oal.cpp" />
+    <ClCompile Include="..\src\sound\oal\SoundSystem_oal.cpp" />
+    <ClCompile Include="..\src\sound\oal\Sound_oal.cpp" />
+    <ClCompile Include="..\src\sound\oal\StaticSoundHandleOAL.cpp" />
+    <ClCompile Include="..\src\sound\oal\StaticStreamOAL.cpp" />
+    <ClCompile Include="..\src\sound\oal\StreamingSoundHandleOAL.cpp" />
+    <ClCompile Include="..\src\sound\OggStream.cpp" />
+    <ClCompile Include="..\src\sound\ResSound.cpp" />
+    <ClCompile Include="..\src\sound\SoundInstance.cpp" />
+    <ClCompile Include="..\src\sound\SoundPlayer.cpp" />
+    <ClCompile Include="..\src\sound\WavStream.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7FD3EB10-BD3E-459A-82D2-7DE937E4F3F8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -86,49 +126,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <None Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\src\Channel.h" />
-    <ClInclude Include="..\src\MemoryStream.h" />
-    <ClInclude Include="..\src\null\ChannelNull.h" />
-    <ClInclude Include="..\src\null\SoundNull.h" />
-    <ClInclude Include="..\src\null\SoundSystemNull.h" />
-    <ClInclude Include="..\src\oal.h" />
-    <ClInclude Include="..\src\oal\Abc.h" />
-    <ClInclude Include="..\src\oal\Channel_oal.h" />
-    <ClInclude Include="..\src\oal\SoundSystem_oal.h" />
-    <ClInclude Include="..\src\oal\Sound_oal.h" />
-    <ClInclude Include="..\src\oal\StaticSoundHandleOAL.h" />
-    <ClInclude Include="..\src\oal\StaticStreamOAL.h" />
-    <ClInclude Include="..\src\oal\StreamingSoundHandleOAL.h" />
-    <ClInclude Include="..\src\OggStream.h" />
-    <ClInclude Include="..\src\ResSound.h" />
-    <ClInclude Include="..\src\Sound.h" />
-    <ClInclude Include="..\src\SoundInstance.h" />
-    <ClInclude Include="..\src\SoundPlayer.h" />
-    <ClInclude Include="..\src\SoundSystem.h" />
-    <ClInclude Include="..\src\SoundStream.h" />
-    <ClInclude Include="..\src\WavStream.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\src\MemoryStream.cpp" />
-    <ClCompile Include="..\src\null\ChannelNull.cpp" />
-    <ClCompile Include="..\src\null\SoundNull.cpp" />
-    <ClCompile Include="..\src\null\SoundSystemNull.cpp" />
-    <ClCompile Include="..\src\oal\Channel_oal.cpp" />
-    <ClCompile Include="..\src\oal\SoundSystem_oal.cpp" />
-    <ClCompile Include="..\src\oal\Sound_oal.cpp" />
-    <ClCompile Include="..\src\oal\StaticSoundHandleOAL.cpp" />
-    <ClCompile Include="..\src\oal\StaticStreamOAL.cpp" />
-    <ClCompile Include="..\src\oal\StreamingSoundHandleOAL.cpp" />
-    <ClCompile Include="..\src\OggStream.cpp" />
-    <ClCompile Include="..\src\ResSound.cpp" />
-    <ClCompile Include="..\src\SoundInstance.cpp" />
-    <ClCompile Include="..\src\SoundPlayer.cpp" />
-    <ClCompile Include="..\src\WavStream.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

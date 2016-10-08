@@ -1,7 +1,7 @@
 #pragma once
 #include "../SoundSystem.h"
 #include "Channel_oal.h"
-#include "Channels.h"
+#include "../Channels.h"
 
 namespace oxygine
 {

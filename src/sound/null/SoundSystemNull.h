@@ -1,5 +1,5 @@
 #pragma once
-#include "SoundSystem.h"
+#include "../SoundSystem.h"
 
 namespace oxygine
 {

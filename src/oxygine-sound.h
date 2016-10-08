@@ -1,5 +1,5 @@
 #pragma once
-#include "SoundInstance.h"
-#include "SoundPlayer.h"
-#include "SoundSystem.h"
-#include "ResSound.h"
+#include "sound/SoundInstance.h"
+#include "sound/SoundPlayer.h"
+#include "sound/SoundSystem.h"
+#include "sound/ResSound.h"

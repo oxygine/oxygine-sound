@@ -1,13 +1,6 @@
 #pragma once
 #include "test.h"
-#include "ResSound.h"
-#include "SoundPlayer.h"
-#include "SoundInstance.h"
-#include "core/file.h"
-
-#ifdef EMSCRIPTEN
-#include <emscripten.h>
-#endif
+#include "oxygine-sound.h"
 
 extern SoundPlayer splayer;
 
