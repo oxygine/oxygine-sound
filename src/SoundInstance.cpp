@@ -254,7 +254,7 @@ namespace oxygine
 
     void SoundInstance::seek(int tm)
     {
-		_handle->setPosition(tm);
+        _handle->setPosition(tm);
     }
 
     void SoundInstance::update()

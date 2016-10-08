@@ -120,7 +120,7 @@ public:
             snd->stop();
         snd = s;
         s->setDoneCallback(CLOSURE(this, &TestSoundInstance::soundEvent));
-		s->seek(10000);
+        s->seek(10000);
     }
 
     void clicked(string id)

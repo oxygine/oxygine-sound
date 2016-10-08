@@ -21,6 +21,7 @@ namespace oxygine
     {
         std::vector<ThreadDispatcher::message>& messages = _messages.lockMessages();
         size_t size = messages.size();
+        size_t num = 0;
         for (size_t i = 0; i < size; ++i)
         {
             ThreadDispatcher::message& msg2 = messages[i];
@@ -29,9 +30,11 @@ namespace oxygine
                 messages.erase(messages.begin() + i);
                 size--;
                 i--;
+                num++;
             }
         }
         _messages.unlockMessages();
+        _messages.reply((void*)num);
     }
 
     void StreamingSoundHandleOAL::asyncDecode()
@@ -70,7 +73,9 @@ namespace oxygine
             alBufferData(buffer, _format, data, size, _rate);
             check();
 
-            alSourceQueueBuffers(_alSource, 1, &buffer);
+            if (_alSource)
+                alSourceQueueBuffers(_alSource, 1, &buffer);
+
             check();
         }
     }
@@ -106,14 +111,24 @@ namespace oxygine
         _rate = s->getRate();
     }
 
-    void StreamingSoundHandleOAL::stopAsyncDecode()
+    void StreamingSoundHandleOAL::checkNoAsync()
     {
-        _messages.sendCallback(this, 0, threadStopProcessing, 0, true);
+#ifdef OX_DEBUG
+        size_t tasks = stopAsyncDecode();
+        OX_ASSERT(tasks == 0);
+#endif
+    }
+
+    size_t StreamingSoundHandleOAL::stopAsyncDecode()
+    {
+        return (size_t)_messages.sendCallback(this, 0, threadStopProcessing, 0, true);
     }
 
     void StreamingSoundHandleOAL::_xplay()
     {
-        //_stream->reset();
+        checkNoAsync();
+
+        _stream->reset();
         decode(_buffers, STREAM_BUFFERS);
     }
 
@@ -126,6 +141,8 @@ namespace oxygine
 
     void StreamingSoundHandleOAL::_xresume()
     {
+        checkNoAsync();
+
         alSourceQueueBuffers(_alSource, STREAM_BUFFERS, _buffers);
         check();
     }
@@ -165,20 +182,35 @@ namespace oxygine
     }
 
 
-	void StreamingSoundHandleOAL::_xsetPosition(int tm)
-	{
-		if (_alSource)
-		{
+    void StreamingSoundHandleOAL::_xsetPosition(int tm)
+    {
+        if (_alSource)
+        {
+            stopAsyncDecode();
 
-		}
-		else
-			_stream->setPosition(tm);
-	}
+            _stream->setPosition(tm);
 
-	void StreamingSoundHandleOAL::_xstop()
+            alSourceStop(_alSource);
+
+            ALuint buffers[STREAM_BUFFERS];
+            alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, buffers);
+            check();
+
+            decode(_buffers, STREAM_BUFFERS);
+            alSourcePlay(_alSource);
+
+        }
+        else
+        {
+            checkNoAsync();
+            _stream->setPosition(tm);
+            decode(_buffers, STREAM_BUFFERS);
+        }
+    }
+
+    void StreamingSoundHandleOAL::_xstop()
     {
         stopAsyncDecode();
-        //_stream->reset();
         if (_alSource)
             alSourcei(_alSource, AL_BUFFER, 0);
         check();

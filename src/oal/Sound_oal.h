@@ -68,7 +68,7 @@ namespace oxygine
         void _updateVolume();
         void _updatePitch();
         void _updateLoop() override;
-		void _setPosition(int tm) override;
+        void _setPosition(int tm) override;
 
         void _ended();
         void _restore();
@@ -79,7 +79,7 @@ namespace oxygine
         virtual void _xresume() {}
         virtual void _xstop() {}
         virtual void _xupdateLoop() {}
-		virtual void _xsetPosition(int tm) {}
+        virtual void _xsetPosition(int tm) {}
 
         ALuint _alSource;
         ALint _pos;

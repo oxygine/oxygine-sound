@@ -242,12 +242,12 @@ namespace oxygine
         _xupdateLoop();
     }
 
-	void SoundHandleOAL::_setPosition(int tm)
-	{
-		_xsetPosition(tm);
-	}
+    void SoundHandleOAL::_setPosition(int tm)
+    {
+        _xsetPosition(tm);
+    }
 
-	void SoundHandleOAL::_ended()
+    void SoundHandleOAL::_ended()
     {
         _state = ended;
         ss()->freeSource(_alSource);

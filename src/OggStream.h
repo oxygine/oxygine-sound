@@ -18,7 +18,7 @@ namespace oxygine
         virtual int getNumChannels() const = 0;
         virtual int getPosition() const = 0;
         virtual void reset() = 0;
-		virtual void setPosition(int tm) = 0;
+        virtual void setPosition(int tm) = 0;
 
         virtual ~SoundStream() {}
     };
@@ -48,7 +48,7 @@ namespace oxygine
 
         int                 seekPCM(int pcm);
         int                 seekMS(int ms);
-		void				setPosition(int ms) { seekMS(ms); }
+        void                setPosition(int ms) { seekMS(ms); }
         int                 decodeNextBlock(bool looped, void* data, int bufferSize);
         void                decodeAll(void* data, int bufferSize);
 

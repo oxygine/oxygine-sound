@@ -60,30 +60,30 @@ namespace oxygine
             alSourcei(_alSource, AL_BUFFER, 0);
     }
 
-	void StaticSoundHandleOAL::_xsetPosition(int tm)
-	{
-		if (_alSource)
-		{
-			alSourcef(_alSource, AL_SEC_OFFSET, tm / 1000.0f);
-			check();
-		}
-		else
-		{
-			ALint fr;
-			alGetBufferi(_buffer, AL_FREQUENCY, &fr);
+    void StaticSoundHandleOAL::_xsetPosition(int tm)
+    {
+        if (_alSource)
+        {
+            alSourcef(_alSource, AL_SEC_OFFSET, tm / 1000.0f);
+            check();
+        }
+        else
+        {
+            ALint fr;
+            alGetBufferi(_buffer, AL_FREQUENCY, &fr);
 
-			ALint ch;
-			alGetBufferi(_buffer, AL_CHANNELS, &ch);
+            ALint ch;
+            alGetBufferi(_buffer, AL_CHANNELS, &ch);
 
-			//tm = bytes / Channels / fr;
-			//bytes = 
-			_pos = (tm * ch * fr) / 1000;
-			int q = 0;
+            //tm = bytes / Channels / fr;
+            //bytes =
+            _pos = (tm * ch * fr) / 1000;
+            int q = 0;
 
-		}
-	}
+        }
+    }
 
-	void StaticSoundHandleOAL::_xupdateLoop()
+    void StaticSoundHandleOAL::_xupdateLoop()
     {
         alSourcei(_alSource, AL_LOOPING, _looping ? 1 : 0);
         check();
