@@ -42,12 +42,6 @@
     <ClInclude Include="..\src\sound\WavStream.h">
       <Filter>sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\sound\oal\Sound_oal.h">
-      <Filter>sound\oal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\sound\oal\SoundSystem_oal.h">
-      <Filter>sound\oal</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\sound\oal\StaticSoundHandleOAL.h">
       <Filter>sound\oal</Filter>
     </ClInclude>
@@ -62,6 +56,18 @@
     </ClInclude>
     <ClInclude Include="..\src\sound\null\SoundSystemNull.h">
       <Filter>sound\null</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sound\SoundHandle.h">
+      <Filter>sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sound\oal\SoundHandleOAL.h">
+      <Filter>sound\oal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sound\oal\SoundOAL.h">
+      <Filter>sound\oal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\sound\oal\SoundSystemOAL.h">
+      <Filter>sound\oal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -83,12 +89,6 @@
     <ClCompile Include="..\src\sound\WavStream.cpp">
       <Filter>sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\sound\oal\Sound_oal.cpp">
-      <Filter>sound\oal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\sound\oal\SoundSystem_oal.cpp">
-      <Filter>sound\oal</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\sound\oal\StaticSoundHandleOAL.cpp">
       <Filter>sound\oal</Filter>
     </ClCompile>
@@ -103,6 +103,18 @@
     </ClCompile>
     <ClCompile Include="..\src\sound\null\SoundSystemNull.cpp">
       <Filter>sound\null</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sound\SoundHandle.cpp">
+      <Filter>sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sound\oal\SoundHandleOAL.cpp">
+      <Filter>sound\oal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sound\oal\SoundOAL.cpp">
+      <Filter>sound\oal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sound\oal\SoundSystemOAL.cpp">
+      <Filter>sound\oal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

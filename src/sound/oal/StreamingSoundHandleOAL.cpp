@@ -1,6 +1,6 @@
 #include "StreamingSoundHandleOAL.h"
 #include "core/ThreadDispatcher.h"
-#include "SoundSystem_oal.h"
+#include "SoundSystemOAL.h"
 #include "pthread.h"
 #include "core/ThreadDispatcher.h"
 

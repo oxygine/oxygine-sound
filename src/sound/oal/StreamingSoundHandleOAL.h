@@ -1,8 +1,15 @@
 #pragma once
-#include "Sound_oal.h"
+#include "SoundHandleOAL.h"
+#include "../OggStream.h"
 
 namespace oxygine
 {
+
+	const int STREAM_BUFFERS = 3;
+
+
+	class SoundStream;
+
     class StreamingSoundHandleOAL : public SoundHandleOAL
     {
     public:

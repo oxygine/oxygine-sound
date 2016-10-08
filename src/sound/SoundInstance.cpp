@@ -1,7 +1,7 @@
 #include "SoundInstance.h"
 #include "SoundPlayer.h"
 #include "Sound.h"
-
+#include "SoundHandle.h"
 namespace oxygine
 {
 #define EXIT_IF_EMPTY() if (!_handle) return

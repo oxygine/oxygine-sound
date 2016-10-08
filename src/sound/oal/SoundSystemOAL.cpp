@@ -1,4 +1,4 @@
-#include "SoundSystem_oal.h"
+#include "SoundSystemOAL.h"
 #include "DebugActor.h"
 #include "utils/stringUtils.h"
 #include "pthread.h"

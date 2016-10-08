@@ -1,5 +1,6 @@
 #pragma once
-#include "Sound_oal.h"
+#include "SoundHandleOAL.h"
+#include "../oal.h"
 
 namespace oxygine
 {
