@@ -11,14 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\sound\Channel.h" />
-    <ClInclude Include="..\src\sound\Channels.h" />
     <ClInclude Include="..\src\sound\MemoryStream.h" />
-    <ClInclude Include="..\src\sound\null\ChannelNull.h" />
     <ClInclude Include="..\src\sound\null\SoundNull.h" />
     <ClInclude Include="..\src\sound\null\SoundSystemNull.h" />
     <ClInclude Include="..\src\sound\oal.h" />
-    <ClInclude Include="..\src\sound\oal\Channel_oal.h" />
     <ClInclude Include="..\src\sound\oal\SoundSystem_oal.h" />
     <ClInclude Include="..\src\sound\oal\Sound_oal.h" />
     <ClInclude Include="..\src\sound\oal\StaticSoundHandleOAL.h" />
@@ -35,10 +31,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\sound\MemoryStream.cpp" />
-    <ClCompile Include="..\src\sound\null\ChannelNull.cpp" />
     <ClCompile Include="..\src\sound\null\SoundNull.cpp" />
     <ClCompile Include="..\src\sound\null\SoundSystemNull.cpp" />
-    <ClCompile Include="..\src\sound\oal\Channel_oal.cpp" />
     <ClCompile Include="..\src\sound\oal\SoundSystem_oal.cpp" />
     <ClCompile Include="..\src\sound\oal\Sound_oal.cpp" />
     <ClCompile Include="..\src\sound\oal\StaticSoundHandleOAL.cpp" />

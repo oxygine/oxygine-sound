@@ -12,12 +12,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\sound\Channel.h">
-      <Filter>sound</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\sound\Channels.h">
-      <Filter>sound</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\sound\MemoryStream.h">
       <Filter>sound</Filter>
     </ClInclude>
@@ -48,9 +42,6 @@
     <ClInclude Include="..\src\sound\WavStream.h">
       <Filter>sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\sound\oal\Channel_oal.h">
-      <Filter>sound\oal</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\sound\oal\Sound_oal.h">
       <Filter>sound\oal</Filter>
     </ClInclude>
@@ -65,9 +56,6 @@
     </ClInclude>
     <ClInclude Include="..\src\sound\oal\StreamingSoundHandleOAL.h">
       <Filter>sound\oal</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\sound\null\ChannelNull.h">
-      <Filter>sound\null</Filter>
     </ClInclude>
     <ClInclude Include="..\src\sound\null\SoundNull.h">
       <Filter>sound\null</Filter>
@@ -95,9 +83,6 @@
     <ClCompile Include="..\src\sound\WavStream.cpp">
       <Filter>sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\sound\oal\Channel_oal.cpp">
-      <Filter>sound\oal</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\sound\oal\Sound_oal.cpp">
       <Filter>sound\oal</Filter>
     </ClCompile>
@@ -112,9 +97,6 @@
     </ClCompile>
     <ClCompile Include="..\src\sound\oal\StreamingSoundHandleOAL.cpp">
       <Filter>sound\oal</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\sound\null\ChannelNull.cpp">
-      <Filter>sound\null</Filter>
     </ClCompile>
     <ClCompile Include="..\src\sound\null\SoundNull.cpp">
       <Filter>sound\null</Filter>

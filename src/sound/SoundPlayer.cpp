@@ -7,7 +7,7 @@
 #include "Sound.h"
 #include "SoundInstance.h"
 #include "SoundSystem.h"
-#include "Channel.h"
+
 #include "ResSound.h"
 #include "oal/StaticSoundHandleOAL.h"
 

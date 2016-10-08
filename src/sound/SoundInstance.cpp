@@ -1,7 +1,6 @@
 #include "SoundInstance.h"
 #include "SoundPlayer.h"
 #include "Sound.h"
-#include "Channel.h"
 
 namespace oxygine
 {
@@ -238,8 +237,7 @@ namespace oxygine
 
     void SoundInstance::setCoord(const Vector2& pos, float z)
     {
-        if (_channel)
-            _channel->setCoord(pos.x, pos.y, z);
+		OX_ASSERT(0);
     }
 
     void SoundInstance::setPitch(float v)

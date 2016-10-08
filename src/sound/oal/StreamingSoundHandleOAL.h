@@ -6,6 +6,12 @@ namespace oxygine
     class StreamingSoundHandleOAL : public SoundHandleOAL
     {
     public:
+		static void runThread();
+		static void stopThread();
+		//control size of buffer for streaming sound
+		static void setBufferSize(int);
+
+
         StreamingSoundHandleOAL();
         ~StreamingSoundHandleOAL();
 

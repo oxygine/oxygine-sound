@@ -1,18 +1,30 @@
 #include "SoundSystem_oal.h"
-#include "Channel_oal.h"
 #include "DebugActor.h"
 #include "utils/stringUtils.h"
 #include "pthread.h"
 #include "../oal.h"
 #include "../null/SoundSystemNull.h"
+#include "StreamingSoundHandleOAL.h"
 
-//#ifdef EMSCRIPTEN
-//#include "../emscripten/SoundSystemEmscripten.h
-//#endif
 
 namespace oxygine
 {
-    void check();
+	void oalCheck()
+	{
+#ifdef CHANNEL_DEBUG
+		int error = alGetError();
+
+		if (error != AL_NO_ERROR)
+		{
+#ifdef CHANNEL_DEBUG
+			log::messageln("AL error: %d\n", error);
+#endif
+			OX_ASSERT(error == AL_NO_ERROR);
+			//throw std::string("OpenAL error was raised.");
+		}
+#endif
+	}
+
 
     SoundSystem* SoundSystem::create()
     {
@@ -37,7 +49,7 @@ namespace oxygine
     void SoundSystemOAL::setContext()
     {
         alcMakeContextCurrent(_context);
-        check();
+        oalCheck();
     }
 
     void SoundSystemOAL::pause()
@@ -88,14 +100,14 @@ namespace oxygine
 
     void SoundSystemOAL::stop()
     {
-        _channels.stop();
+		StreamingSoundHandleOAL::stopThread();
     }
 
     void SoundSystemOAL::setVolume(float v)
     {
         _volume = v;
-        _channels.setVolume(v);
-        check();
+
+        oalCheck();
     }
 
     void SoundSystemOAL::init(int channels_num)
@@ -129,34 +141,34 @@ namespace oxygine
         alcGetIntegerv(_device, ALC_STEREO_SOURCES, 1, &numstereo);
         */
 
-        _channels._channels.resize(channels_num);
-
-        for (int i = 0; i < channels_num; ++i)
-        {
-            ALuint source = 0;
-            alGenSources(1, &source);
-            check();
-
-            _channels._channels[i].init(this, i, source);
-        }
-
-
-        ChannelOAL::runThread();
-        check();
+		StreamingSoundHandleOAL::runThread();
+        oalCheck();
     }
 
     void SoundSystemOAL::release()
     {
         stop();
 
-        ChannelOAL::stopThread();
-        _channels._channels.clear();
+		if (!_freeSources.empty())
+			alDeleteSources(_freeSources.size(), &_freeSources[0]);
+		_freeSources.clear();
+		oalCheck();
+
+		if (!_freeBuffers.empty())
+			alDeleteBuffers(_freeBuffers.size(), &_freeBuffers[0]);
+		_freeBuffers.clear();
+		oalCheck();
+		
+
+
         alcMakeContextCurrent(0);
         alcDestroyContext(_context);
+		oalCheck();
         _context = 0;
 
         alcCloseDevice(_device);
         _device = 0;
+		oalCheck();
     }
 
     SoundOAL* SoundSystemOAL::createSound(std::vector<unsigned char>& buffer, bool swap)
@@ -167,7 +179,7 @@ namespace oxygine
         SoundOAL* sound = 0;
         sound = new SoundOAL();
         sound->init(buffer, swap);
-        check();
+        oalCheck();
 
         return sound;
     }
@@ -185,7 +197,7 @@ namespace oxygine
             delete sound;
             return 0;
         }
-        check();
+        oalCheck();
 
         return sound;
     }
@@ -195,8 +207,8 @@ namespace oxygine
         if (!_device)
             return;
 
-        _channels.update();
-        check();
+
+        oalCheck();
 
         if (DebugActor::instance)
         {
@@ -206,19 +218,6 @@ namespace oxygine
         }
     }
 
-    int SoundSystemOAL::getFreeChannelsNum()
-    {
-        return _channels.getFreeNum();
-    }
-
-    ChannelOAL* SoundSystemOAL::getFreeChannel()
-    {
-        ChannelOAL* channel = _channels.getFree();
-        check();
-        return channel;
-    }
-
-
     ALuint SoundSystemOAL::getSource()
     {
         ALuint source;
@@ -226,7 +225,7 @@ namespace oxygine
         {
             _totalSources++;
             alGenSources(1, &source);
-            check();
+            oalCheck();
             return source;
         }
 
@@ -248,7 +247,7 @@ namespace oxygine
         {
             //_totalSources++;
             alGenBuffers(1, &buffer);
-            check();
+            oalCheck();
             return buffer;
         }
 

@@ -1,11 +1,11 @@
 #pragma once
 #include "../SoundSystem.h"
-#include "Channel_oal.h"
-#include "../Channels.h"
+#include "../oal.h"
+#include "Sound_oal.h"
 
 namespace oxygine
 {
-
+	class SoundOAL;
     class SoundSystemOAL : public SoundSystem
     {
     public:
@@ -25,8 +25,7 @@ namespace oxygine
 
         bool        isAvailable() const {return _context != 0;}
         float       getVolume() const {return _volume;}
-        int         getFreeChannelsNum();
-        ChannelOAL* getFreeChannel();
+
 
         void setVolume(float v);
         void setContext();
@@ -46,14 +45,6 @@ namespace oxygine
         int _totalSources;
 
         std::vector<ALuint> _freeBuffers;
-        //int _totalSources;
-
-        //typedef std::vector<ChannelOAL> channels;
-        //channels _channels;
-
-        Channels<ChannelOAL> _channels;
-
-        //channels _pausedChannels;
 
         float _volume;
 

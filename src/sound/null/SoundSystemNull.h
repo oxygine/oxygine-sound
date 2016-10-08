@@ -1,6 +1,5 @@
 #pragma once
 #include "../SoundSystem.h"
-
 namespace oxygine
 {
     class Sound;

@@ -36,7 +36,6 @@ namespace oxygine
         virtual Sound* createSound(std::vector<unsigned char>& data, bool swap) = 0;
         virtual Sound* createSound(const char* file) = 0;
 
-        virtual Channel*    getFreeChannel() = 0;
         virtual float       getVolume() const = 0;
 
         virtual void setVolume(float) = 0;

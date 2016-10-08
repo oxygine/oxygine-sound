@@ -1,6 +1,5 @@
 #pragma once
 #include "core/Object.h"
-#include "Channel.h"
 #include "EventDispatcher.h"
 #include "Event.h"
 
