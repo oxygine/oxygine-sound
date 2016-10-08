@@ -109,6 +109,8 @@
     <ClInclude Include="..\src\SoundInstance.h" />
     <ClInclude Include="..\src\SoundPlayer.h" />
     <ClInclude Include="..\src\SoundSystem.h" />
+    <ClInclude Include="..\src\SoundStream.h" />
+    <ClInclude Include="..\src\WavStream.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\MemoryStream.cpp" />
@@ -125,6 +127,7 @@
     <ClCompile Include="..\src\ResSound.cpp" />
     <ClCompile Include="..\src\SoundInstance.cpp" />
     <ClCompile Include="..\src\SoundPlayer.cpp" />
+    <ClCompile Include="..\src\WavStream.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
