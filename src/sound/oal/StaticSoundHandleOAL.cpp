@@ -2,7 +2,7 @@
 
 namespace oxygine
 {
-    void oalCheck();
+    void OAL_CHECK();
 
     StaticSoundHandleOAL::StaticSoundHandleOAL(ALuint buffer): _buffer(buffer)
     {
@@ -12,7 +12,7 @@ namespace oxygine
     {
         alSourcei(_alSource, AL_BUFFER, _buffer);
         alSourcei(_alSource, AL_LOOPING, _looping ? AL_TRUE : AL_FALSE);
-        oalCheck();
+        OAL_CHECK();
     }
 
     void StaticSoundHandleOAL::_xpause()
@@ -44,7 +44,7 @@ namespace oxygine
     {
         ALint state = 0;
         alGetSourcei(_alSource, AL_SOURCE_STATE, &state);
-        oalCheck();
+        OAL_CHECK();
 
 
         if (state == AL_STOPPED)
@@ -65,7 +65,7 @@ namespace oxygine
         if (_alSource)
         {
             alSourcef(_alSource, AL_SEC_OFFSET, tm / 1000.0f);
-            oalCheck();
+            OAL_CHECK();
         }
         else
         {
@@ -86,6 +86,6 @@ namespace oxygine
     void StaticSoundHandleOAL::_xupdateLoop()
     {
         alSourcei(_alSource, AL_LOOPING, _looping ? 1 : 0);
-        oalCheck();
+        OAL_CHECK();
     }
 }

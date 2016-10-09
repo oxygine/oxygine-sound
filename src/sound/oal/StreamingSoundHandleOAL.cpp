@@ -7,9 +7,7 @@
 namespace oxygine
 {
 
-#define CHANNEL_DEBUG 0
-
-#if CHANNEL_DEBUG
+#ifdef CHANNEL_DEBUG
 #define  LOG2DN(...)  log::messageln(__VA_ARGS__)
 #define  LOG2D(...)  log::message(__VA_ARGS__)
 
@@ -18,7 +16,7 @@ namespace oxygine
 #define  LOG2D(...)  ((void)0)
 #endif
 
-#if CHANNEL_DEBUG
+#ifdef CHANNEL_DEBUG
 #define  LOGDN(...)  log::messageln(__VA_ARGS__)
 #define  LOGD(...)  log::message(__VA_ARGS__)
 
@@ -29,7 +27,7 @@ namespace oxygine
 
 
 
-    void oalCheck();
+    void OAL_CHECK();
 
 	pthread_t _thread = pthread_self();
 	ThreadDispatcher _messages;
@@ -136,7 +134,7 @@ namespace oxygine
         ALuint buffers[STREAM_BUFFERS];
 
         alSourceUnqueueBuffers(_alSource, nump, buffers);
-        oalCheck();
+        OAL_CHECK();
         decode(buffers, nump);
 
 
@@ -144,7 +142,7 @@ namespace oxygine
         alGetSourcei(_alSource, AL_SOURCE_STATE, &state);
         if (state == AL_STOPPED)
             alSourcePlay(_alSource);
-        oalCheck();
+        OAL_CHECK();
     }
 
     void StreamingSoundHandleOAL::decode(ALuint* buffers, int num)
@@ -160,12 +158,12 @@ namespace oxygine
             if (!size)
                 break;
             alBufferData(buffer, _format, data, size, _rate);
-            oalCheck();
+            OAL_CHECK();
 
             if (_alSource)
                 alSourceQueueBuffers(_alSource, 1, &buffer);
 
-            oalCheck();
+            OAL_CHECK();
         }
     }
 
@@ -176,7 +174,7 @@ namespace oxygine
         for (int i = 0; i < STREAM_BUFFERS; ++i)
             _buffers[i] = ss()->getBuffer();
 
-        oalCheck();
+        OAL_CHECK();
     }
 
     StreamingSoundHandleOAL::~StreamingSoundHandleOAL()
@@ -226,7 +224,7 @@ namespace oxygine
     {
         stopAsyncDecode();
         alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, _buffers);
-        oalCheck();
+        OAL_CHECK();
     }
 
     void StreamingSoundHandleOAL::_xresume()
@@ -234,7 +232,7 @@ namespace oxygine
         checkNoAsync();
 
         alSourceQueueBuffers(_alSource, STREAM_BUFFERS, _buffers);
-        oalCheck();
+        OAL_CHECK();
     }
 
     void StreamingSoundHandleOAL::_xupdate()
@@ -243,7 +241,7 @@ namespace oxygine
         {
             ALint state = 0;
             alGetSourcei(_alSource, AL_SOURCE_STATE, &state);
-            oalCheck();
+            OAL_CHECK();
 
             if (state == AL_STOPPED)
             {
@@ -284,7 +282,7 @@ namespace oxygine
 
             ALuint buffers[STREAM_BUFFERS];
             alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, buffers);
-            oalCheck();
+            OAL_CHECK();
 
             decode(_buffers, STREAM_BUFFERS);
             alSourcePlay(_alSource);
@@ -303,7 +301,7 @@ namespace oxygine
         stopAsyncDecode();
         if (_alSource)
             alSourcei(_alSource, AL_BUFFER, 0);
-        oalCheck();
+        OAL_CHECK();
     }
 
     StreamingOggSoundHandleOAL::StreamingOggSoundHandleOAL(SoundOAL* snd) : StreamingSoundHandleOAL()

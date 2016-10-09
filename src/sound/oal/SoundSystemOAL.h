@@ -42,9 +42,10 @@ namespace oxygine
 
 
         std::vector<ALuint> _freeSources;
-        int _totalSources;
+		std::vector<ALuint> _sources;
 
-        std::vector<ALuint> _freeBuffers;
+		std::vector<ALuint> _freeBuffers;
+		std::vector<ALuint> _buffers;
 
         float _volume;
 

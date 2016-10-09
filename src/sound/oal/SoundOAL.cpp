@@ -11,7 +11,7 @@ namespace oxygine
 
     using namespace std;
 
-    void oalCheck();
+    void OAL_CHECK();
 
     SoundOAL::SoundOAL(): _alBuffer(0), _format(AL_FORMAT_MONO16), _timeMS(0)
     {
@@ -20,13 +20,13 @@ namespace oxygine
 
     SoundOAL::~SoundOAL()
     {
-        oalCheck();
+        OAL_CHECK();
         if (_alBuffer)
         {
             alDeleteBuffers(1, &_alBuffer);
             _alBuffer = 0;
         }
-        oalCheck();
+        OAL_CHECK();
     }
 
     bool SoundOAL::_init(OggStream& stream)
@@ -42,7 +42,7 @@ namespace oxygine
         if (channels == 2)
             _format = AL_FORMAT_STEREO16;
 
-        oalCheck();
+        OAL_CHECK();
 
         int len = pcm / rate;//len in seconds
         //todo, fix, use only pcm?
@@ -64,10 +64,10 @@ namespace oxygine
         //const std::vector<char> &decoded = stream.getDecodedBuffer();
 
         alGenBuffers(1, &_alBuffer);
-        oalCheck();
+        OAL_CHECK();
 
         alBufferData(_alBuffer, _format, data, (ALsizei)size, rate);
-        oalCheck();
+        OAL_CHECK();
 
         return false;
     }
@@ -131,10 +131,10 @@ namespace oxygine
     void SoundHandleOAL::_restore()
     {
         alSourcef(_alSource, AL_GAIN, _volume);
-        oalCheck();
+        OAL_CHECK();
 
         alSourcef(_alSource, AL_PITCH, _pitch);
-        oalCheck();
+        OAL_CHECK();
     }
 
     void SoundHandleOAL::_play()
@@ -149,10 +149,10 @@ namespace oxygine
         _xplay();
 
         alSourcei(_alSource, AL_BYTE_OFFSET, _pos);
-        oalCheck();
+        OAL_CHECK();
 
         alSourcePlay(_alSource);
-        oalCheck();
+        OAL_CHECK();
     }
 
     void SoundHandleOAL::_resume()
@@ -167,10 +167,10 @@ namespace oxygine
         _xresume();
 
         alSourcei(_alSource, AL_BYTE_OFFSET, _pos);
-        oalCheck();
+        OAL_CHECK();
 
         alSourcePlay(_alSource);
-        oalCheck();
+        OAL_CHECK();
     }
 
     void SoundHandleOAL::_pause()
@@ -179,10 +179,10 @@ namespace oxygine
             return;
 
         alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
-        oalCheck();
+        OAL_CHECK();
 
         alSourceStop(_alSource);
-        oalCheck();
+        OAL_CHECK();
 
         _xpause();
 
@@ -201,7 +201,7 @@ namespace oxygine
         if (_alSource)
         {
             alSourceStop(_alSource);
-            oalCheck();
+            OAL_CHECK();
             ss()->freeSource(_alSource);
         }
 
