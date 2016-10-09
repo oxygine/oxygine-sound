@@ -122,7 +122,8 @@ namespace oxygine
 #endif
         if (!_device)
         {
-            log::messageln("can't create alc device");
+            OX_ASSERT(0);
+            log::error("can't create alc device");
             return;
         }
 
@@ -130,7 +131,8 @@ namespace oxygine
 
         if (!_context)
         {
-            log::messageln("can't create alc context");
+            OX_ASSERT(0);
+            log::error("can't create alc context");
             return;
         }
 
