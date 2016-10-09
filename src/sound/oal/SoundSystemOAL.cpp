@@ -166,17 +166,12 @@ namespace oxygine
 		OAL_CHECK();
 		
 
-
-        //alcMakeContextCurrent(0);
-		OAL_CHECK();
-
+        alcMakeContextCurrent(0);
         alcDestroyContext(_context);
-		OAL_CHECK();
         _context = 0;
 
         alcCloseDevice(_device);
         _device = 0;
-		OAL_CHECK();
     }
 
     SoundOAL* SoundSystemOAL::createSound(std::vector<unsigned char>& buffer, bool swap)

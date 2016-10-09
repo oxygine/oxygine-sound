@@ -179,7 +179,14 @@ namespace oxygine
 #endif
     }
 
-    bool OggStream::_init(const ov_callbacks& cb, void* userData)
+	bool OggStream::init(file::handle h)
+	{
+		release();
+		_oxfile = h;
+		return _init(cb_oxfile, _oxfile);
+	}
+
+	bool OggStream::_init(const ov_callbacks& cb, void* userData)
     {
         _empty = false;
         _section = 0;
@@ -266,12 +273,7 @@ namespace oxygine
         if (_vorbisFile.datasource)
             ov_clear(&_vorbisFile);
 
-        //if (_file)
-        //  fclose(_file);
         _file = 0;
-        //if (_oxfile)
-        //  file::close(_oxfile);
-
         _empty = true;
         _streamEnded = false;
     }
@@ -300,7 +302,6 @@ namespace oxygine
                 if (looped)
                 {
                     ov_pcm_seek(&_vorbisFile, 0);
-
                 }
                 else
                 {
