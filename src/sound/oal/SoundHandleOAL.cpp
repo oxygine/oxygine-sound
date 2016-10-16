@@ -119,7 +119,7 @@ namespace oxygine
     {
         if (!_alSource)
             return;
-        alSourcef(_alSource, AL_GAIN, _volume * _masterVolume);
+        alSourcef(_alSource, AL_GAIN, _volume);
     }
 
     void SoundHandleOAL::_updatePitch()

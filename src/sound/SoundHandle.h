@@ -17,13 +17,12 @@ namespace oxygine
             stopped,
             ended,
         };
-        SoundHandle() : _volume(1.0f), _pitch(1.0f), _looping(false), _state(initial), _masterVolume(1.0f) {}
+        SoundHandle() : _volume(1.0f), _pitch(1.0f), _looping(false), _state(initial) {}
 
         void setVolume(float v) { _volume = v; _updateVolume(); }
         void setPitch(float pitch) { _pitch = pitch; _updatePitch(); }
         void setLoop(bool loop) { _looping = loop; _updateLoop(); }
         void setPosition(timeMS pos) { _setPosition(pos); }
-        void setMasterVolume(float v) { _masterVolume = v; _updateVolume(); }
 
         float       getVolume() const { return _volume; }
         float       getPitch() const { return _pitch; }
@@ -57,7 +56,6 @@ namespace oxygine
         virtual timeMS _getPosition() const = 0;
 
         float _volume;
-        float _masterVolume;
         float _pitch;
         bool _looping;
         timeMS _duration;
