@@ -60,6 +60,7 @@ namespace oxygine
         spSoundInstance getSoundByIndex(int index);
         int             getSoundsNum()const {return (int)_sounds.size();}
         unsigned int    getTime() const;
+        float           getVolume() const { return _volume; }
 
         void pause();
         void resume();

@@ -92,6 +92,7 @@ void example_init()
     //initialize SoundPlayer
     SoundPlayer::initialize();
     splayer.setResources(&resources);
+    splayer.setVolume(0.5f);
 
     //load xml file with resources definition
     resources.loadXML("xmls/res.xml");

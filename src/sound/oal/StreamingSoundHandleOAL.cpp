@@ -29,76 +29,76 @@ namespace oxygine
 
     void OAL_CHECK();
 
-	pthread_t _thread = pthread_self();
-	ThreadDispatcher _messages;
-	pthread_key_t _tls;
+    pthread_t _thread = pthread_self();
+    ThreadDispatcher _messages;
+    pthread_key_t _tls;
 
-	bool _synchronized = true;
-	//const int BUFF_SIZE = 64000;
-	int BUFF_SIZE = 12000;
-	void* localMem = 0;
+    bool _synchronized = true;
+    //const int BUFF_SIZE = 64000;
+    int BUFF_SIZE = 12000;
+    void* localMem = 0;
 
 
 
-	const int evnt_exit = 123;
+    const int evnt_exit = 123;
 
-	void StreamingSoundHandleOAL::setBufferSize(int v)
-	{
-		BUFF_SIZE = v;
-	}
+    void StreamingSoundHandleOAL::setBufferSize(int v)
+    {
+        BUFF_SIZE = v;
+    }
 
-	void* _staticThreadFunc(void* t)
-	{
-		void* mem = malloc(BUFF_SIZE);
-		pthread_setspecific(_tls, mem);
+    void* _staticThreadFunc(void* t)
+    {
+        void* mem = malloc(BUFF_SIZE);
+        pthread_setspecific(_tls, mem);
 
-		while (true)
-		{
-			ThreadMessages::message msg;
-			_messages.get(msg);
-			if (msg.msgid == evnt_exit)
-			{
-				LOGDN("evnt_exit");
-				break;
-			}
+        while (true)
+        {
+            ThreadMessages::message msg;
+            _messages.get(msg);
+            if (msg.msgid == evnt_exit)
+            {
+                LOGDN("evnt_exit");
+                break;
+            }
 
-		}
-		free(mem);
-		return 0;
-	}
+        }
+        free(mem);
+        return 0;
+    }
 
-	void* getSoundStreamTempBuffer(int& size)
-	{
-		void* data = pthread_getspecific(_tls);
+    void* getSoundStreamTempBuffer(int& size)
+    {
+        void* data = pthread_getspecific(_tls);
 
-		size = BUFF_SIZE;
-		return data;
-	}
+        size = BUFF_SIZE;
+        return data;
+    }
 
-	void StreamingSoundHandleOAL::runThread()
-	{
-		pthread_key_create(&_tls, 0);
-		localMem = malloc(BUFF_SIZE);
-		pthread_setspecific(_tls, localMem);
+    void StreamingSoundHandleOAL::runThread()
+    {
+        pthread_key_create(&_tls, 0);
+        localMem = malloc(BUFF_SIZE);
+        pthread_setspecific(_tls, localMem);
 
-		pthread_attr_t attr;
-		pthread_attr_init(&attr);
-		pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-		pthread_create(&_thread, &attr, _staticThreadFunc, 0);
+        pthread_attr_t attr;
+        pthread_attr_init(&attr);
+        pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+        pthread_create(&_thread, &attr, _staticThreadFunc, 0);
 
-		//stopThread();
-	}
+        //stopThread();
+    }
 
-	void StreamingSoundHandleOAL::stopThread()
-	{
-		_messages.post(evnt_exit, 0, 0);
-		if (pthread_equal(_thread, pthread_self()))
-			return;
-		void* ptr = 0;
-		pthread_join(_thread, &ptr);
-		free(localMem);
-		localMem = 0;
-	}
+    void StreamingSoundHandleOAL::stopThread()
+    {
+        _messages.post(evnt_exit, 0, 0);
+        if (pthread_equal(_thread, pthread_self()))
+            return;
+        void* ptr = 0;
+        pthread_join(_thread, &ptr);
+        free(localMem);
+        localMem = 0;
+    }
 
     void threadDecode(const ThreadMessages::message& msg)
     {
@@ -179,11 +179,11 @@ namespace oxygine
 
     StreamingSoundHandleOAL::~StreamingSoundHandleOAL()
     {
-		if (ss())
-		{
-			for (int i = 0; i < STREAM_BUFFERS; ++i)
-				ss()->freeBuffer(_buffers[i]);
-		}
+        if (ss())
+        {
+            for (int i = 0; i < STREAM_BUFFERS; ++i)
+                ss()->freeBuffer(_buffers[i]);
+        }
     }
 
     void StreamingSoundHandleOAL::setStream(SoundStream* s)

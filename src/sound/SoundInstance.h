@@ -85,6 +85,8 @@ namespace oxygine
 
         void _fadeIn(int dur);
         void _fadeOut(int dur, bool stop);
+        void _updateVolume();
+        void _setHanleVolume(float v);
 
     private:
         SoundPlayer* _player;

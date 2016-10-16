@@ -46,6 +46,7 @@
     <ClCompile Include="..\src\sound\SoundHandle.cpp" />
     <ClCompile Include="..\src\sound\SoundInstance.cpp" />
     <ClCompile Include="..\src\sound\SoundPlayer.cpp" />
+    <ClCompile Include="..\src\sound\SoundSystem.cpp" />
     <ClCompile Include="..\src\sound\WavStream.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

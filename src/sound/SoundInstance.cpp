@@ -62,7 +62,7 @@ namespace oxygine
 
         //if (!(_state == Paused || _state == Stopped))
         //  return;
-        _handle->setVolume(_volume);
+        _updateVolume();
         _state = Normal;
         _handle->play();
         _player->addSoundInstance(this);
@@ -126,7 +126,7 @@ namespace oxygine
 
             case oxygine::SoundInstance::Paused:
             case oxygine::SoundInstance::Stopped:
-                _handle->setVolume(0);
+                _setHanleVolume(0);
                 break;
 
             case oxygine::SoundInstance::Normal:
@@ -151,6 +151,16 @@ namespace oxygine
         }
     }
 
+    void SoundInstance::_updateVolume()
+    {
+        _setHanleVolume(_volume);
+    }
+
+    void SoundInstance::_setHanleVolume(float v)
+    {
+        _handle->setVolume(v * _player->getVolume());
+    }
+
     void SoundInstance::fadeIn(int ms)
     {
         timeMS ct = _player->getTime();
@@ -166,7 +176,7 @@ namespace oxygine
 
             case oxygine::SoundInstance::Paused:
             case oxygine::SoundInstance::Stopped:
-                _handle->setVolume(0);
+                _setHanleVolume(0);
                 _fadeIn(ms);
                 _startFadeIn = _player->getTime();
                 break;
@@ -232,12 +242,12 @@ namespace oxygine
     {
         OX_ASSERT(v >= 0 && v <= 1.0f);
         _volume = v;
-        _handle->setVolume(v);
+        _updateVolume();
     }
 
     void SoundInstance::setCoord(const Vector2& pos, float z)
     {
-		OX_ASSERT(0);
+        OX_ASSERT(0);
     }
 
     void SoundInstance::setPitch(float v)
@@ -289,7 +299,7 @@ namespace oxygine
                 }
 
                 float volume = p * _volume;
-                _handle->setVolume(volume);
+                _setHanleVolume(volume);
             }
             break;
 
@@ -316,7 +326,7 @@ namespace oxygine
 
                 if (p > 1.0)
                 {
-                    _handle->setVolume(0);
+                    _setHanleVolume(0);
 
                     if (_state == FadingOutPause)
                     {
@@ -332,7 +342,7 @@ namespace oxygine
                 else
                 {
                     float volume = (1.0f - p) * _volume;
-                    _handle->setVolume(volume);
+                    _setHanleVolume(volume);
                 }
             }
             break;

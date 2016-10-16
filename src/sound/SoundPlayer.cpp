@@ -43,7 +43,13 @@ namespace oxygine
         for (playingSounds::iterator i = _sounds.begin(); i != _sounds.end(); ++i)
         {
             SoundInstance* s = (*i).get();
-            s->setVolume(v);
+            s->_updateVolume();
+        }
+
+        for (playingSounds::iterator i = _pausedSounds.begin(); i != _pausedSounds.end(); ++i)
+        {
+            SoundInstance* s = (*i).get();
+            s->_updateVolume();
         }
 
     }
@@ -110,9 +116,9 @@ namespace oxygine
         spSoundInstance s = new SoundInstance(this, handle);
 
         s->setPitch(opt._pitch);
-        s->setVolume(_volume);
         s->setLoop(opt._looped);
         s->seek(opt._seek);
+        s->_updateVolume();
 
         if (opt._fadeIn)
             s->fadeIn(opt._fadeIn);

@@ -23,7 +23,7 @@ namespace oxygine
         if (_alBuffer)
         {
             alDeleteBuffers(1, &_alBuffer);
-			OAL_CHECK();
+            OAL_CHECK();
             _alBuffer = 0;
         }
     }

@@ -5,18 +5,18 @@
 namespace oxygine
 {
 
-	const int STREAM_BUFFERS = 3;
+    const int STREAM_BUFFERS = 3;
 
 
-	class SoundStream;
+    class SoundStream;
 
     class StreamingSoundHandleOAL : public SoundHandleOAL
     {
     public:
-		static void runThread();
-		static void stopThread();
-		//control size of buffer for streaming sound
-		static void setBufferSize(int);
+        static void runThread();
+        static void stopThread();
+        //control size of buffer for streaming sound
+        static void setBufferSize(int);
 
 
         StreamingSoundHandleOAL();

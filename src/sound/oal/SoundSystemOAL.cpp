@@ -9,19 +9,19 @@
 
 namespace oxygine
 {
-	void OAL_CHECK()
-	{
+    void OAL_CHECK()
+    {
 #ifdef OX_DEBUG
-		int error = alGetError();
+        int error = alGetError();
 
-		if (error != AL_NO_ERROR)
-		{
-			OX_ASSERT(!"open al error");
+        if (error != AL_NO_ERROR)
+        {
+            OX_ASSERT(!"open al error");
 
-			log::messageln("AL error: %d\n", error);
-		}
+            log::messageln("AL error: %d\n", error);
+        }
 #endif
-	}
+    }
 
 
     SoundSystem* SoundSystem::create()
@@ -107,18 +107,11 @@ namespace oxygine
 
     void SoundSystemOAL::stop()
     {
-		StreamingSoundHandleOAL::stopThread();
-		for (size_t i = 0; i < _sources.size(); ++i)
-		{
-			alSourceStop(_sources[i]);
-		}
-    }
-
-    void SoundSystemOAL::setVolume(float v)
-    {
-        _volume = v;
-
-        OAL_CHECK();
+        StreamingSoundHandleOAL::stopThread();
+        for (size_t i = 0; i < _sources.size(); ++i)
+        {
+            alSourceStop(_sources[i]);
+        }
     }
 
     void SoundSystemOAL::init(int channels_num)
@@ -146,7 +139,7 @@ namespace oxygine
         }
 
         alcMakeContextCurrent(_context);
-		OAL_CHECK();
+        OAL_CHECK();
 
         /*
         ALCint nummono, numstereo;
@@ -154,7 +147,7 @@ namespace oxygine
         alcGetIntegerv(_device, ALC_STEREO_SOURCES, 1, &numstereo);
         */
 
-		StreamingSoundHandleOAL::runThread();
+        StreamingSoundHandleOAL::runThread();
         OAL_CHECK();
     }
 
@@ -162,18 +155,18 @@ namespace oxygine
     {
         stop();
 
-		if (!_sources.empty())
-			alDeleteSources(_sources.size(), &_sources[0]);
-		_sources.clear();
-		_freeSources.clear();
-		OAL_CHECK();
+        if (!_sources.empty())
+            alDeleteSources(_sources.size(), &_sources[0]);
+        _sources.clear();
+        _freeSources.clear();
+        OAL_CHECK();
 
-		if (!_buffers.empty())
-			alDeleteBuffers(_buffers.size(), &_buffers[0]);
-		_freeBuffers.clear();
-		_buffers.clear();
-		OAL_CHECK();
-		
+        if (!_buffers.empty())
+            alDeleteBuffers(_buffers.size(), &_buffers[0]);
+        _freeBuffers.clear();
+        _buffers.clear();
+        OAL_CHECK();
+
 
         alcMakeContextCurrent(0);
         alcDestroyContext(_context);
@@ -236,7 +229,7 @@ namespace oxygine
         if (_freeSources.empty())
         {
             alGenSources(1, &source);
-			_sources.push_back(source);
+            _sources.push_back(source);
             OAL_CHECK();
             return source;
         }
@@ -258,7 +251,7 @@ namespace oxygine
         if (_freeBuffers.empty())
         {
             alGenBuffers(1, &buffer);
-			_buffers.push_back(buffer);
+            _buffers.push_back(buffer);
             OAL_CHECK();
             return buffer;
         }

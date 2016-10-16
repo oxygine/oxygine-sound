@@ -116,5 +116,8 @@
     <ClCompile Include="..\src\sound\oal\SoundSystemOAL.cpp">
       <Filter>sound\oal</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\sound\SoundSystem.cpp">
+      <Filter>sound</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

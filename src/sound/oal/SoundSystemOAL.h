@@ -5,7 +5,7 @@
 
 namespace oxygine
 {
-	class SoundOAL;
+    class SoundOAL;
     class SoundSystemOAL : public SoundSystem
     {
     public:
@@ -26,8 +26,6 @@ namespace oxygine
         bool        isAvailable() const {return _context != 0;}
         float       getVolume() const {return _volume;}
 
-
-        void setVolume(float v);
         void setContext();
 
         void update();
@@ -39,13 +37,11 @@ namespace oxygine
         void   freeBuffer(ALuint);
 
     private:
-
-
         std::vector<ALuint> _freeSources;
-		std::vector<ALuint> _sources;
+        std::vector<ALuint> _sources;
 
-		std::vector<ALuint> _freeBuffers;
-		std::vector<ALuint> _buffers;
+        std::vector<ALuint> _freeBuffers;
+        std::vector<ALuint> _buffers;
 
         float _volume;
 

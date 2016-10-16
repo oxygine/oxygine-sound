@@ -14,16 +14,12 @@ namespace oxygine
         static SoundSystem* instance;
 
     public:
+        SoundSystem();
         virtual ~SoundSystem() {}
 
         static SoundSystem* create();
-        static SoundSystem* get() {return instance;}
-        static void free()
-        {
-            instance->release();
-            delete instance;
-            instance = 0;
-        }
+        static SoundSystem* get();
+        static void free();
 
 
         virtual void init(int channels) = 0;
@@ -35,12 +31,6 @@ namespace oxygine
 
         virtual Sound* createSound(std::vector<unsigned char>& data, bool swap) = 0;
         virtual Sound* createSound(const char* file) = 0;
-
-        virtual float       getVolume() const = 0;
-
-        virtual void setVolume(float) = 0;
         virtual void update() = 0;
-
-    private:
     };
 }

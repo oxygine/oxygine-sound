@@ -179,14 +179,14 @@ namespace oxygine
 #endif
     }
 
-	bool OggStream::init(file::handle h)
-	{
-		release();
-		_oxfile = h;
-		return _init(cb_oxfile, _oxfile);
-	}
+    bool OggStream::init(file::handle h)
+    {
+        release();
+        _oxfile = h;
+        return _init(cb_oxfile, _oxfile);
+    }
 
-	bool OggStream::_init(const ov_callbacks& cb, void* userData)
+    bool OggStream::_init(const ov_callbacks& cb, void* userData)
     {
         _empty = false;
         _section = 0;
