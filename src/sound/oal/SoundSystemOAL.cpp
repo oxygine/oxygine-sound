@@ -70,6 +70,11 @@ namespace oxygine
         alcSuspendContext(_context);
         alcMakeContextCurrent(0);
 #endif
+
+#if TARGET_OS_IPHONE
+        alcSuspendContext(_context);
+        alcMakeContextCurrent(0);
+#endif
     }
 
     void SoundSystemOAL::resume()
@@ -85,6 +90,10 @@ namespace oxygine
         alcProcessContext(_context);
 #endif
 
+#if TARGET_OS_IPHONE
+        alcMakeContextCurrent(_context);
+        alcProcessContext(_context);
+#endif
 
 
         /*
