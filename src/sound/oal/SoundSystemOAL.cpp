@@ -147,6 +147,12 @@ namespace oxygine
         alcGetIntegerv(_device, ALC_STEREO_SOURCES, 1, &numstereo);
         */
 
+        ALuint sources[6];
+        alGenSources(6, sources);
+
+        _freeSources.assign(sources, sources + 6);
+        _sources = _freeSources;
+
         StreamingSoundHandleOAL::runThread();
         OAL_CHECK();
     }
@@ -175,7 +181,7 @@ namespace oxygine
         alcCloseDevice(_device);
         _device = 0;
     }
-
+    /*
     SoundOAL* SoundSystemOAL::createSound(std::vector<unsigned char>& buffer, bool swap)
     {
         if (!_context)
@@ -187,22 +193,19 @@ namespace oxygine
         OAL_CHECK();
 
         return sound;
-    }
+    }*/
 
-    SoundOAL* SoundSystemOAL::createSound(const char* path)
+    SoundOAL* SoundSystemOAL::createSound(const char* path, bool streaming)
     {
         if (!_context)
             return 0;
 
-        SoundOAL* sound = 0;
-        sound = new SoundOAL();
-        bool res = sound->init(path);
-        if (!res)
-        {
-            delete sound;
+        file::handle fh = file::open(path, "srb", ep_show_warning);
+        if (!fh)
             return 0;
-        }
-        OAL_CHECK();
+
+        SoundOAL* sound = 0;
+        sound = new SoundOAL(streaming ? path : "", fh);
 
         return sound;
     }

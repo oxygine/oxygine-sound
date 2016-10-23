@@ -28,9 +28,7 @@ namespace oxygine
         virtual void resume() = 0;
         virtual void stop() = 0;
 
-
-        virtual Sound* createSound(std::vector<unsigned char>& data, bool swap) = 0;
-        virtual Sound* createSound(const char* file) = 0;
+        virtual Sound* createSound(const char* file, bool streaming) = 0;
         virtual void update() = 0;
     };
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "SoundHandleOAL.h"
 #include "../OggStream.h"
+#include "../WavStream.h"
 
 namespace oxygine
 {
@@ -55,7 +56,15 @@ namespace oxygine
 
     protected:
         OggStream _stream;
+    };
 
+    class StreamingWavSoundHandleOAL : public StreamingSoundHandleOAL
+    {
+    public:
+        StreamingWavSoundHandleOAL(SoundOAL*);
+
+    protected:
+        WavStream _stream;
     };
 
 }

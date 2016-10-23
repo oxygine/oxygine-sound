@@ -79,20 +79,8 @@ namespace oxygine
     {
         if (!_sound)
         {
-            //printf("loading sound: %S\n", _file.c_str());
+            _sound = SoundSystem::get()->createSound(_file.c_str(), _streaming);
 
-            if (_streaming)
-            {
-                _sound = SoundSystem::get()->createSound(_file.c_str());
-            }
-            else
-            {
-                file::buffer fb;
-                file::read(_file, fb);
-
-                if (fb.getSize())
-                    _sound = SoundSystem::get()->createSound(fb.data, true);
-            }
             if (_sound)
                 _sound->setRes(this);
         }

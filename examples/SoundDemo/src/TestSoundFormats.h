@@ -31,6 +31,7 @@ public:
             addButton(rs->getName(), s);
         }
 
+        addButton("wave", "wave");
         addButton("looped", "looped");
 
         addButton("stop", "stop");

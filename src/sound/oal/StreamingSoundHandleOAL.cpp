@@ -304,7 +304,13 @@ namespace oxygine
         OAL_CHECK();
     }
 
-    StreamingOggSoundHandleOAL::StreamingOggSoundHandleOAL(SoundOAL* snd) : StreamingSoundHandleOAL()
+    StreamingOggSoundHandleOAL::StreamingOggSoundHandleOAL(SoundOAL* snd)
+    {
+        snd->initStream(_stream);
+        setStream(&_stream);
+    }
+
+    StreamingWavSoundHandleOAL::StreamingWavSoundHandleOAL(SoundOAL* snd)
     {
         snd->initStream(_stream);
         setStream(&_stream);

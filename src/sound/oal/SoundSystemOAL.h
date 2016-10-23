@@ -19,8 +19,7 @@ namespace oxygine
         void resume();
         void stop();
 
-        SoundOAL* createSound(std::vector<unsigned char>& buffer, bool swap);
-        SoundOAL* createSound(const char* path);
+        SoundOAL* createSound(const char* path, bool streaming);
 
 
         bool        isAvailable() const {return _context != 0;}

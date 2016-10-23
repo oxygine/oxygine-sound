@@ -17,5 +17,6 @@
 	<sound file="lose_round.ogg"  streaming="true"/>
 	<sound file="win_round.ogg"  streaming="true"/>
 	<sound file="collect_rare.ogg"  streaming="true"/>
+	<sound file="wave.wav"  streaming="true"/>
 	<sound file="amb_bird_2.ogg"/>
 </resources>

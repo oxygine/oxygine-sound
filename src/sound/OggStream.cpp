@@ -68,6 +68,11 @@ namespace oxygine
         return 0;
     }
 
+    int oxfile_ov_noclose_func(void* datasource)
+    {
+        return 0;
+    }
+
     long int oxfile_ov_tell_func(void* datasource)
     {
         file::handle h = (file::handle)datasource;
@@ -79,6 +84,14 @@ namespace oxygine
         oxfile_ov_read_func,
         oxfile_ov_seek_func,
         oxfile_ov_close_func,
+        oxfile_ov_tell_func
+    };
+
+    ov_callbacks cb_oxfileNotClose =
+    {
+        oxfile_ov_read_func,
+        oxfile_ov_seek_func,
+        oxfile_ov_noclose_func,
         oxfile_ov_tell_func
     };
 
@@ -120,8 +133,7 @@ namespace oxygine
 
 
     OggStream::OggStream():
-        _memStream(0, 0), _section(0), _streamEnded(false),
-        _file(0), _empty(true), _info(0)
+        _memStream(0, 0), _section(0),  _info(0)
     {
         memset(&_vorbisFile, 0, sizeof(_vorbisFile));
     }
@@ -129,31 +141,6 @@ namespace oxygine
     OggStream::~OggStream()
     {
         release();
-    }
-
-    void OggStream::getDetails(unsigned int* pcm, int* channels, int* rate, int* timeMS)
-    {
-        vorbis_info* vi = ov_info(&_vorbisFile, -1);
-
-        if (pcm)
-        {
-            *pcm = (unsigned int)ov_pcm_total(&_vorbisFile, -1);
-        }
-
-        if (channels)
-        {
-            *channels = vi->channels;
-        }
-
-        if (rate)
-        {
-            *rate = (int)vi->rate;
-        }
-
-        if (timeMS)
-        {
-            *timeMS = (int)(ov_time_total(&_vorbisFile, -1));
-        }
     }
 
     bool OggStream::init(const void* data, unsigned int len)
@@ -172,28 +159,31 @@ namespace oxygine
         _file = fopen(name, "rb");
         return _init(cb_fileStream, _file);
 #else
-        _oxfile = file::open(name, "srb");
+        file::handle _oxfile = file::open(name, "srb");
         if (_oxfile)
             return _init(cb_oxfile, _oxfile);
         return false;
 #endif
     }
 
-    bool OggStream::init(file::handle h)
+    bool OggStream::init(file::handle h, bool close)
     {
         release();
-        _oxfile = h;
-        return _init(cb_oxfile, _oxfile);
+        file::handle _oxfile = h;
+        if (close)
+            return _init(cb_oxfile, _oxfile);
+        return _init(cb_oxfileNotClose, _oxfile);
     }
 
     bool OggStream::_init(const ov_callbacks& cb, void* userData)
     {
-        _empty = false;
         _section = 0;
-        _streamEnded = false;
+        _ended = true;
 
         if (ov_open_callbacks(userData, &_vorbisFile, 0, 0, cb) < 0)
             return false;
+
+        _ended = false;
 
         char** ptr = ov_comment(&_vorbisFile, -1)->user_comments;
         if (ptr)
@@ -201,18 +191,12 @@ namespace oxygine
         }
         _info = ov_info(&_vorbisFile, -1);
 
+        _rate = _info->rate;
+        _channels = _info->channels;
+        _pcm = (unsigned int)ov_pcm_total(&_vorbisFile, -1);
+        _duration = (int)(ov_time_total(&_vorbisFile, -1));
 
         return true;
-    }
-
-    int OggStream::getRate() const
-    {
-        return (int)_info->rate;
-    }
-
-    int OggStream::getNumChannels() const
-    {
-        return _info->channels;
     }
 
     int OggStream::getCurrentPCM() const
@@ -227,26 +211,10 @@ namespace oxygine
         return r;
     }
 
-    int OggStream::getTotalPCM() const
-    {
-        return (int)ov_pcm_total(const_cast<OggVorbis_File*>(&_vorbisFile), -1);
-    }
-
-    int OggStream::getTotalMS() const
-    {
-        return (int)ov_time_total(const_cast<OggVorbis_File*>(&_vorbisFile), -1);
-    }
-
     void OggStream::decodeAll(void* data, int bufferSize)
     {
         while (1)
         {
-            /*
-            int r = (int)ov_read(&_vorbisFile,
-                (char*)data, bufferSize,
-                0, 2, 1, &_section);
-                */
-
             int r = (int)ov_read(&_vorbisFile,
                                  (char*)data, bufferSize,
                                  &_section);
@@ -259,13 +227,13 @@ namespace oxygine
         }
 
         //OX_ASSERT(bufferSize == 0);
-        _streamEnded = true;
+        _ended = true;
     }
 
     void OggStream::reset()
     {
         ov_pcm_seek(&_vorbisFile, 0);
-        _streamEnded = false;
+        _ended = false;
     }
 
     void OggStream::release()
@@ -273,9 +241,7 @@ namespace oxygine
         if (_vorbisFile.datasource)
             ov_clear(&_vorbisFile);
 
-        _file = 0;
-        _empty = true;
-        _streamEnded = false;
+        _ended = true;
     }
 
     int OggStream::seekPCM(int pcm)
@@ -292,7 +258,7 @@ namespace oxygine
     {
         unsigned int bytesUnpacked = 0;
 
-        int p = (int)ov_pcm_tell(&_vorbisFile);
+        //int p = (int)ov_pcm_tell(&_vorbisFile);
 
         while (1)
         {
@@ -305,7 +271,7 @@ namespace oxygine
                 }
                 else
                 {
-                    _streamEnded = true;
+                    _ended = true;
                     break;
                 }
             }
@@ -317,8 +283,6 @@ namespace oxygine
             if (bufferSize == 0)
                 break;
         }
-
-        p = int(ov_pcm_tell(&_vorbisFile)) - p;
 
         return bytesUnpacked;
     }

@@ -4,16 +4,28 @@ namespace oxygine
     class SoundStream
     {
     public:
+        SoundStream(): _channels(0), _rate(0), _duration(0), _pcm(0), _ended(true) {}
+        virtual ~SoundStream() {}
+
         virtual int decodeNextBlock(bool looped, void* data, int bufferSize) = 0;
+        virtual void decodeAll(void* data, int bufferSize) = 0;
         virtual void reset() = 0;
 
         virtual void setPosition(int tm) = 0;
 
-        virtual bool isStreamEnded() const = 0;
-        virtual int getRate() const = 0;
-        virtual int getNumChannels() const = 0;
-        virtual int getPosition() const = 0;;
+        bool isStreamEnded() const { return _ended; }
+        int getRate() const { return _rate; }
+        int getNumChannels() const { return _channels; }
+        int getDuration() const { return _duration; }
+        int getPCM() const { return _pcm; }
+        virtual int getPosition() const = 0;
 
-        virtual ~SoundStream() {}
+
+    protected:
+        int _channels;
+        int _rate;
+        int _duration;
+        int _pcm;
+        bool _ended;
     };
 }
