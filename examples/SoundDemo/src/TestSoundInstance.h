@@ -118,7 +118,7 @@ public:
     void clicked(string id)
     {
         if (id == "set_streaming")
-            set(splayer.play("track_44100_mono", PlayOptions().pause()));
+            set(splayer.play("wave", PlayOptions().pause()));
 
         if (id == "set_static")
             set(splayer.play("win_round", PlayOptions().pause()));

@@ -5,7 +5,7 @@
 #include "../oal.h"
 #include "../null/SoundSystemNull.h"
 #include "StreamingSoundHandleOAL.h"
-
+#include "core/oxygine.h"
 
 namespace oxygine
 {
@@ -121,6 +121,12 @@ namespace oxygine
         _device = alcOpenDevice("opensles");
 #else
         _device = alcOpenDevice(0);
+
+        if (!_device)
+        {
+            sleep(100);
+            _device = alcOpenDevice(0);
+        }
 #endif
         if (!_device)
         {
@@ -181,19 +187,7 @@ namespace oxygine
         alcCloseDevice(_device);
         _device = 0;
     }
-    /*
-    SoundOAL* SoundSystemOAL::createSound(std::vector<unsigned char>& buffer, bool swap)
-    {
-        if (!_context)
-            return 0;
 
-        SoundOAL* sound = 0;
-        sound = new SoundOAL();
-        sound->init(buffer, swap);
-        OAL_CHECK();
-
-        return sound;
-    }*/
 
     SoundOAL* SoundSystemOAL::createSound(const char* path, bool streaming)
     {

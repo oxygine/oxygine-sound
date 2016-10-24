@@ -117,7 +117,8 @@ namespace oxygine
 
         s->setPitch(opt._pitch);
         s->setLoop(opt._looped);
-        s->seek(opt._seek);
+        if (opt._seek)
+            s->seek(opt._seek);
         s->_updateVolume();
 
         if (opt._fadeIn)

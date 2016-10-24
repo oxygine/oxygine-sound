@@ -154,10 +154,18 @@ namespace oxygine
         SoundOAL* snd = (SoundOAL*)snd_;
 
         SoundHandleOAL* s;
-        if (snd->getAlBuffer())
-            s = new StaticSoundHandleOAL(snd->getAlBuffer());
-        else
-            s = new StreamingOggSoundHandleOAL(snd);
+        switch (snd->getType())
+        {
+            case SoundOAL::Buffer:
+                s = new StaticSoundHandleOAL(snd->getAlBuffer());
+                break;
+            case SoundOAL::Ogg:
+                s = new StreamingOggSoundHandleOAL(snd);
+                break;
+            case SoundOAL::Wav:
+                s = new StreamingWavSoundHandleOAL(snd);
+                break;
+        }
 
         s->_duration = snd->getDuration();
 

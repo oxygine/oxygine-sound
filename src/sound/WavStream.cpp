@@ -1,4 +1,6 @@
 #include "WavStream.h"
+#include <algorithm>
+
 namespace oxygine
 {
     struct  WAV_HEADER
@@ -18,7 +20,7 @@ namespace oxygine
         uint32_t             Subchunk2Size;
     };
 
-    WavStream::WavStream(): _fh(0), _close(false), _dataSize(0)
+    WavStream::WavStream(): _fh(0), _close(false), _dataSize(0), _memfile(0, 0)
     {
 
     }
@@ -45,7 +47,7 @@ namespace oxygine
         _rate = header.SamplesPerSec;
         _channels = header.NumOfChan;
 
-        _duration = (header.Subchunk2Size * 1000) / header.bytesPerSec;
+        _duration = int((int64_t(header.Subchunk2Size) * 1000) / header.bytesPerSec);
         _pcm = header.Subchunk2Size  / _channels / 2;
         _dataSize = header.Subchunk2Size;
         _dataPos = 0;
@@ -53,32 +55,47 @@ namespace oxygine
         _ended = false;
     }
 
-    int WavStream::decodeNextBlock(bool looped, void* data, int bufferSize)
+    void WavStream::init(const void* data, size_t size)
     {
-        wip
-        int leftSize = _dataSize - _dataPos;
-        if (leftSize <= bufferSize)
+        _memfile.init(data, size);
+        init(&_memfile, false);
+    }
+
+    void WavStream::init(const char* name)
+    {
+        file::handle fh = file::open(name, "srb");
+        init(fh, true);
+    }
+
+    int WavStream::decodeNextBlock(bool looped, void* data_, int bufferSize)
+    {
+        char* data = (char*)data_;
+        int total = bufferSize;
+        while (bufferSize > 0)
         {
-            file::read(_fh, data, leftSize);
-            if (looped)
+            int leftSize = _dataSize - _dataPos;
+            int bytes2read = std::min(leftSize, bufferSize);
+            int r = file::read(_fh, data, bytes2read);
+            data += bytes2read;
+            _dataPos += bytes2read;
+            bufferSize -= bytes2read;
+
+            if (bytes2read == leftSize)
             {
-                file::seek(_fh, sizeof(WAV_HEADER), SEEK_SET);
-                file::read(_fh, (char*)data + leftSize, bufferSize - leftSize);
-                _dataPos = bufferSize - leftSize;
+                if (looped)
+                {
+                    file::seek(_fh, sizeof(WAV_HEADER), SEEK_SET);
+                    _dataPos = 0;
+                }
+                else
+                {
+                    _ended = true;
+                    break;
+                }
             }
-            else
-            {
-                _dataPos = _dataSize;
-                _ended = true;
-            }
-        }
-        else
-        {
-            file::read(_fh, data, bufferSize);
-            _dataPos += bufferSize;
         }
 
-        return 0;
+        return total;
     }
 
     void WavStream::decodeAll(void* data, int bufferSize)
@@ -98,12 +115,16 @@ namespace oxygine
 
     void WavStream::setPosition(int tm)
     {
+        int  p = int(int64_t(tm) * 2 * _channels * _rate / 1000);
+        _dataPos = std::min(p, _dataSize);
+        file::seek(_fh, sizeof(WAV_HEADER) + _dataPos, SEEK_SET);
     }
 
 
     int WavStream::getPosition() const
     {
-        return 0;
+        int p = int((int64_t(_dataPos) * 1000) / _rate / _channels / 2);
+        return p;
     }
 
 }

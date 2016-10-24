@@ -80,7 +80,7 @@ namespace oxygine
             _format = AL_FORMAT_STEREO16;
 
 #ifdef OX_DEBUG
-        const int MAX_DURATION = 999999;
+        const int MAX_DURATION = 3500;
 #else
         const int MAX_DURATION = 3500;
 #endif
@@ -149,6 +149,9 @@ namespace oxygine
 
     void SoundOAL::initStream(WavStream& stream)
     {
-
+        if (_fileName.empty())
+            stream.init(&_fileBuffer.front(), (unsigned int)_fileBuffer.size());
+        else
+            stream.init(_fileName.c_str());
     }
 }
