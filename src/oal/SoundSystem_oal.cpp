@@ -5,7 +5,7 @@
 #include "pthread.h"
 #include "../oal.h"
 #include "../null/SoundSystemNull.h"
-
+#include "core/oxygine.h"
 //#ifdef EMSCRIPTEN
 //#include "../emscripten/SoundSystemEmscripten.h
 //#endif
@@ -114,6 +114,12 @@ namespace oxygine
         _device = alcOpenDevice("opensles");
 #else
         _device = alcOpenDevice(0);
+
+        if (!_device)
+        {
+            sleep(100);
+            _device = alcOpenDevice(0);
+        }
 #endif
         if (!_device)
         {
