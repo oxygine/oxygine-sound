@@ -36,7 +36,7 @@ namespace oxygine
         bool                _init(const ov_callbacks& cb, void* userData);
 
 
-        MemoryStream        _memStream;
+        fileRMem            _memStream;
         OggVorbis_File      _vorbisFile;
 
         vorbis_info* _info;

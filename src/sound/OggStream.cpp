@@ -18,37 +18,6 @@
 
 namespace oxygine
 {
-
-    size_t ms_ov_read_func(void* ptr, size_t size, size_t nmemb, void* datasource)
-    {
-        return ((MemoryStream*)datasource)->read(ptr, size, nmemb);
-    }
-
-    int ms_ov_seek_func(void* datasource, ogg_int64_t offset, int whence)
-    {
-        return ((MemoryStream*)datasource)->seek((int)offset, whence);
-    }
-
-    int ms_ov_close_func(void* datasource)
-    {
-        ((MemoryStream*)datasource)->reset();
-        return 0;
-    }
-
-    long int ms_ov_tell_func(void* datasource)
-    {
-        return ((MemoryStream*)datasource)->getPosition();
-    }
-
-    ov_callbacks cb_memoryStream =
-    {
-        ms_ov_read_func,
-        ms_ov_seek_func,
-        ms_ov_close_func,
-        ms_ov_tell_func
-    };
-
-
     size_t oxfile_ov_read_func(void* ptr, size_t size, size_t nmemb, void* datasource)
     {
         file::handle h = (file::handle)datasource;
@@ -146,9 +115,9 @@ namespace oxygine
     bool OggStream::init(const void* data, unsigned int len)
     {
         release();
-        _memStream = MemoryStream(data, len);
+        _memStream.init(data, len);
 
-        return _init(cb_memoryStream, &_memStream);
+        return _init(cb_oxfileNotClose, &_memStream);
     }
 
     bool  OggStream::init(const char* name)
