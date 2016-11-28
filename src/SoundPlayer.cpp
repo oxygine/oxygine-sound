@@ -97,6 +97,7 @@ namespace oxygine
             return 0;
 
         spSoundInstance s = new SoundInstance;
+        s->setName(ressound_->getName());
         sound_desc desc;
 
         float volume = opt._volume;
