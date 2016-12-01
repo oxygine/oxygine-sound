@@ -262,7 +262,7 @@ namespace oxygine
 
     int SoundInstance::getPosition() const
     {
-        if (_channel)
+        if (!_channel)
             return 0;
         return _channel->getPosition();
     }
