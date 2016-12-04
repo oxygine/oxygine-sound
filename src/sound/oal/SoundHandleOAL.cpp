@@ -153,7 +153,7 @@ namespace oxygine
     {
         SoundOAL* snd = (SoundOAL*)snd_;
 
-        SoundHandleOAL* s;
+        SoundHandleOAL* s = 0;
         switch (snd->getType())
         {
             case SoundOAL::Buffer:
@@ -165,6 +165,8 @@ namespace oxygine
             case SoundOAL::Wav:
                 s = new StreamingWavSoundHandleOAL(snd);
                 break;
+            default:
+                return 0;
         }
 
         s->_duration = snd->getDuration();

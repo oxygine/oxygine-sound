@@ -30,8 +30,9 @@ namespace oxygine
 
     unsigned int fileRMem::read(void* dest, unsigned int size)
     {
-        unsigned int bytes = std::min(size, _size - _pos);
+        unsigned int bytes = std::min(size, (unsigned int)(_size - _pos));
         memcpy(dest, (const char*)_data + _pos, bytes);
+        _pos += bytes;
         return bytes;
     }
 

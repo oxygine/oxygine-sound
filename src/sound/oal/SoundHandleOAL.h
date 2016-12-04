@@ -20,15 +20,15 @@ namespace oxygine
 
         class SoundSystemOAL* ss();
 
-        void _init();
-        void _play();
-        void _pause();
-        void _resume();
-        void _stop();
+        void _init() override;
+        void _play() override;
+        void _pause() override;
+        void _resume() override;
+        void _stop() override;
 
-        void _update();
-        void _updateVolume();
-        void _updatePitch();
+        void _update() override;
+        void _updateVolume() override;
+        void _updatePitch() override;
         void _updateLoop() override;
         void _setPosition(int tm) override;
 

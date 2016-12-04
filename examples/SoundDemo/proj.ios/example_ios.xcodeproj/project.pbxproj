@@ -27,6 +27,7 @@
 		9223FE901C2D9B22000B1FDA /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9223FE8F1C2D9B22000B1FDA /* GameController.framework */; };
 		9227003319C86F9200392D45 /* liboxygine-sound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9227003119C86F7B00392D45 /* liboxygine-sound.a */; };
 		9227003519C86F9900392D45 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9227003419C86F9900392D45 /* OpenAL.framework */; };
+		AD2963B21DF4255100FEB325 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2963B11DF4255100FEB325 /* AVFoundation.framework */; };
 		C8860D93875589970329DCCD /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DA100C319512824B7570663 /* test.cpp */; };
 		CD59C69314E9E74CD0A11E03 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = F6123B1E6FE4471A00F49751 /* sounds */; };
 		DA49ED8903C628BA578C8670 /* example.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9628FC8D38F9748F0CDEB /* example.cpp */; };
@@ -69,6 +70,13 @@
 			remoteGlobalIDString = 92AF25E919C637F80026E2CE;
 			remoteInfo = "oxygine-sound";
 		};
+		AD2963B61DF4255100FEB325 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04998D2F17F8A96E003441C3 /* SDL.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FAB598141BB5C1B100BE72C5;
+			remoteInfo = "libSDL-tv";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +105,7 @@
 		9223FE8F1C2D9B22000B1FDA /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		9227002C19C86F7B00392D45 /* oxygine-sound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "oxygine-sound.xcodeproj"; path = "../../../proj.ios/oxygine-sound.xcodeproj"; sourceTree = "<group>"; };
 		9227003419C86F9900392D45 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		AD2963B11DF4255100FEB325 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BA41FC88D76540A6905224D6 /* TestSoundFormats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestSoundFormats.h; path = ../src/TestSoundFormats.h; sourceTree = "<group>"; };
 		F196143B0370A9D348494ACC /* test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = test.h; path = ../src/test.h; sourceTree = "<group>"; };
 		F6123B1E6FE4471A00F49751 /* sounds */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = sounds; path = ../data/sounds; sourceTree = "<group>"; };
@@ -107,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD2963B21DF4255100FEB325 /* AVFoundation.framework in Frameworks */,
 				9223FE901C2D9B22000B1FDA /* GameController.framework in Frameworks */,
 				9227003519C86F9900392D45 /* OpenAL.framework in Frameworks */,
 				9227003319C86F9200392D45 /* liboxygine-sound.a in Frameworks */,
@@ -165,6 +175,7 @@
 		04998CEE17F8A933003441C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD2963B11DF4255100FEB325 /* AVFoundation.framework */,
 				9223FE8F1C2D9B22000B1FDA /* GameController.framework */,
 				9227003419C86F9900392D45 /* OpenAL.framework */,
 				04998EEB17F8ADD4003441C3 /* UIKit.framework */,
@@ -194,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				04998D3517F8A96E003441C3 /* libSDL2.a */,
+				AD2963B71DF4255100FEB325 /* libSDL2.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,7 +271,7 @@
 				ORGANIZATIONNAME = Mac;
 				TargetAttributes = {
 					04998CEB17F8A933003441C3 = {
-						DevelopmentTeam = QPA9676C88;
+						DevelopmentTeam = SG98QZPTLD;
 					};
 				};
 			};
@@ -315,6 +327,13 @@
 			fileType = archive.ar;
 			path = "liboxygine-sound.a";
 			remoteRef = 9227003019C86F7B00392D45 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AD2963B71DF4255100FEB325 /* libSDL2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDL2.a;
+			remoteRef = AD2963B61DF4255100FEB325 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -446,6 +465,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SG98QZPTLD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "example/example_ios-Prefix.pch";
 				GCC_WARN_UNUSED_VALUE = YES;
@@ -470,6 +490,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SG98QZPTLD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "example/example_ios-Prefix.pch";
 				GCC_WARN_UNUSED_VALUE = YES;

@@ -22,33 +22,41 @@
 		9227001C19C863BA00392D45 /* synthesis.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001719C863BA00392D45 /* synthesis.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		9227001D19C863BA00392D45 /* window.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001819C863BA00392D45 /* window.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		9227001F19C863DC00392D45 /* registry.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227001E19C863DC00392D45 /* registry.c */; };
-		92AF261C19C6383D0026E2CE /* Channel.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF25F119C6383D0026E2CE /* Channel.h */; };
-		92AF261D19C6383D0026E2CE /* Channels.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF25F219C6383D0026E2CE /* Channels.h */; };
-		92AF262419C6383D0026E2CE /* MemoryStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF25FA19C6383D0026E2CE /* MemoryStream.cpp */; };
-		92AF262519C6383D0026E2CE /* MemoryStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF25FB19C6383D0026E2CE /* MemoryStream.h */; };
-		92AF262619C6383D0026E2CE /* ChannelNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF25FD19C6383D0026E2CE /* ChannelNull.cpp */; };
-		92AF262719C6383D0026E2CE /* ChannelNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF25FE19C6383D0026E2CE /* ChannelNull.h */; };
-		92AF262819C6383D0026E2CE /* SoundNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF25FF19C6383D0026E2CE /* SoundNull.cpp */; };
-		92AF262919C6383D0026E2CE /* SoundNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF260019C6383D0026E2CE /* SoundNull.h */; };
-		92AF262A19C6383D0026E2CE /* SoundSystemNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF260119C6383D0026E2CE /* SoundSystemNull.cpp */; };
-		92AF262B19C6383D0026E2CE /* SoundSystemNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF260219C6383D0026E2CE /* SoundSystemNull.h */; };
-		92AF262C19C6383D0026E2CE /* Channel_oal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF260419C6383D0026E2CE /* Channel_oal.cpp */; };
-		92AF262D19C6383D0026E2CE /* Channel_oal.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF260519C6383D0026E2CE /* Channel_oal.h */; };
-		92AF262E19C6383D0026E2CE /* Sound_oal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF260619C6383D0026E2CE /* Sound_oal.cpp */; };
-		92AF262F19C6383D0026E2CE /* Sound_oal.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF260719C6383D0026E2CE /* Sound_oal.h */; };
-		92AF263019C6383D0026E2CE /* SoundSystem_oal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF260819C6383D0026E2CE /* SoundSystem_oal.cpp */; };
-		92AF263119C6383D0026E2CE /* SoundSystem_oal.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF260919C6383D0026E2CE /* SoundSystem_oal.h */; };
-		92AF263219C6383D0026E2CE /* oal.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF260A19C6383D0026E2CE /* oal.h */; };
-		92AF263319C6383D0026E2CE /* OggStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF260B19C6383D0026E2CE /* OggStream.cpp */; };
-		92AF263419C6383D0026E2CE /* OggStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF260C19C6383D0026E2CE /* OggStream.h */; };
-		92AF263519C6383D0026E2CE /* ResSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF260D19C6383D0026E2CE /* ResSound.cpp */; };
-		92AF263619C6383D0026E2CE /* ResSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF260E19C6383D0026E2CE /* ResSound.h */; };
-		92AF263D19C6383D0026E2CE /* Sound.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF261619C6383D0026E2CE /* Sound.h */; };
-		92AF263E19C6383D0026E2CE /* SoundInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF261719C6383D0026E2CE /* SoundInstance.cpp */; };
-		92AF263F19C6383D0026E2CE /* SoundInstance.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF261819C6383D0026E2CE /* SoundInstance.h */; };
-		92AF264019C6383D0026E2CE /* SoundPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92AF261919C6383D0026E2CE /* SoundPlayer.cpp */; };
-		92AF264119C6383D0026E2CE /* SoundPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF261A19C6383D0026E2CE /* SoundPlayer.h */; };
-		92AF264219C6383D0026E2CE /* SoundSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AF261B19C6383D0026E2CE /* SoundSystem.h */; };
+		AD29638E1DF424DE00FEB325 /* MemoryStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963691DF424DE00FEB325 /* MemoryStream.cpp */; };
+		AD29638F1DF424DE00FEB325 /* MemoryStream.h in Headers */ = {isa = PBXBuildFile; fileRef = AD29636A1DF424DE00FEB325 /* MemoryStream.h */; };
+		AD2963901DF424DE00FEB325 /* SoundNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD29636C1DF424DE00FEB325 /* SoundNull.cpp */; };
+		AD2963911DF424DE00FEB325 /* SoundNull.h in Headers */ = {isa = PBXBuildFile; fileRef = AD29636D1DF424DE00FEB325 /* SoundNull.h */; };
+		AD2963921DF424DE00FEB325 /* SoundSystemNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD29636E1DF424DE00FEB325 /* SoundSystemNull.cpp */; };
+		AD2963931DF424DE00FEB325 /* SoundSystemNull.h in Headers */ = {isa = PBXBuildFile; fileRef = AD29636F1DF424DE00FEB325 /* SoundSystemNull.h */; };
+		AD2963941DF424DE00FEB325 /* SoundHandleOAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963711DF424DE00FEB325 /* SoundHandleOAL.cpp */; };
+		AD2963951DF424DE00FEB325 /* SoundHandleOAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963721DF424DE00FEB325 /* SoundHandleOAL.h */; };
+		AD2963961DF424DE00FEB325 /* SoundOAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963731DF424DE00FEB325 /* SoundOAL.cpp */; };
+		AD2963971DF424DE00FEB325 /* SoundOAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963741DF424DE00FEB325 /* SoundOAL.h */; };
+		AD2963981DF424DE00FEB325 /* SoundSystemOAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963751DF424DE00FEB325 /* SoundSystemOAL.cpp */; };
+		AD2963991DF424DE00FEB325 /* SoundSystemOAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963761DF424DE00FEB325 /* SoundSystemOAL.h */; };
+		AD29639A1DF424DE00FEB325 /* StaticSoundHandleOAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963771DF424DE00FEB325 /* StaticSoundHandleOAL.cpp */; };
+		AD29639B1DF424DE00FEB325 /* StaticSoundHandleOAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963781DF424DE00FEB325 /* StaticSoundHandleOAL.h */; };
+		AD29639C1DF424DE00FEB325 /* StaticStreamOAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963791DF424DE00FEB325 /* StaticStreamOAL.cpp */; };
+		AD29639D1DF424DE00FEB325 /* StaticStreamOAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD29637A1DF424DE00FEB325 /* StaticStreamOAL.h */; };
+		AD29639E1DF424DE00FEB325 /* StreamingSoundHandleOAL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD29637B1DF424DE00FEB325 /* StreamingSoundHandleOAL.cpp */; };
+		AD29639F1DF424DE00FEB325 /* StreamingSoundHandleOAL.h in Headers */ = {isa = PBXBuildFile; fileRef = AD29637C1DF424DE00FEB325 /* StreamingSoundHandleOAL.h */; };
+		AD2963A01DF424DE00FEB325 /* oal.h in Headers */ = {isa = PBXBuildFile; fileRef = AD29637D1DF424DE00FEB325 /* oal.h */; };
+		AD2963A11DF424DE00FEB325 /* OggStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD29637E1DF424DE00FEB325 /* OggStream.cpp */; };
+		AD2963A21DF424DE00FEB325 /* OggStream.h in Headers */ = {isa = PBXBuildFile; fileRef = AD29637F1DF424DE00FEB325 /* OggStream.h */; };
+		AD2963A31DF424DE00FEB325 /* ResSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963801DF424DE00FEB325 /* ResSound.cpp */; };
+		AD2963A41DF424DE00FEB325 /* ResSound.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963811DF424DE00FEB325 /* ResSound.h */; };
+		AD2963A51DF424DE00FEB325 /* Sound.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963821DF424DE00FEB325 /* Sound.h */; };
+		AD2963A61DF424DE00FEB325 /* SoundHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963831DF424DE00FEB325 /* SoundHandle.cpp */; };
+		AD2963A71DF424DE00FEB325 /* SoundHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963841DF424DE00FEB325 /* SoundHandle.h */; };
+		AD2963A81DF424DE00FEB325 /* SoundInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963851DF424DE00FEB325 /* SoundInstance.cpp */; };
+		AD2963A91DF424DE00FEB325 /* SoundInstance.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963861DF424DE00FEB325 /* SoundInstance.h */; };
+		AD2963AA1DF424DE00FEB325 /* SoundPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD2963871DF424DE00FEB325 /* SoundPlayer.cpp */; };
+		AD2963AB1DF424DE00FEB325 /* SoundPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963881DF424DE00FEB325 /* SoundPlayer.h */; };
+		AD2963AC1DF424DE00FEB325 /* SoundStream.h in Headers */ = {isa = PBXBuildFile; fileRef = AD2963891DF424DE00FEB325 /* SoundStream.h */; };
+		AD2963AD1DF424DE00FEB325 /* SoundSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD29638A1DF424DE00FEB325 /* SoundSystem.cpp */; };
+		AD2963AE1DF424DE00FEB325 /* SoundSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = AD29638B1DF424DE00FEB325 /* SoundSystem.h */; };
+		AD2963AF1DF424DE00FEB325 /* WavStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD29638C1DF424DE00FEB325 /* WavStream.cpp */; };
+		AD2963B01DF424DE00FEB325 /* WavStream.h in Headers */ = {isa = PBXBuildFile; fileRef = AD29638D1DF424DE00FEB325 /* WavStream.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,33 +76,41 @@
 		9227001819C863BA00392D45 /* window.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = window.c; path = ../dependencies/tremor/Tremor/window.c; sourceTree = "<group>"; };
 		9227001E19C863DC00392D45 /* registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = registry.c; path = ../dependencies/tremor/Tremor/registry.c; sourceTree = "<group>"; };
 		92AF25E919C637F80026E2CE /* liboxygine-sound.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "liboxygine-sound.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		92AF25F119C6383D0026E2CE /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
-		92AF25F219C6383D0026E2CE /* Channels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channels.h; sourceTree = "<group>"; };
-		92AF25FA19C6383D0026E2CE /* MemoryStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryStream.cpp; sourceTree = "<group>"; };
-		92AF25FB19C6383D0026E2CE /* MemoryStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryStream.h; sourceTree = "<group>"; };
-		92AF25FD19C6383D0026E2CE /* ChannelNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChannelNull.cpp; sourceTree = "<group>"; };
-		92AF25FE19C6383D0026E2CE /* ChannelNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelNull.h; sourceTree = "<group>"; };
-		92AF25FF19C6383D0026E2CE /* SoundNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundNull.cpp; sourceTree = "<group>"; };
-		92AF260019C6383D0026E2CE /* SoundNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundNull.h; sourceTree = "<group>"; };
-		92AF260119C6383D0026E2CE /* SoundSystemNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundSystemNull.cpp; sourceTree = "<group>"; };
-		92AF260219C6383D0026E2CE /* SoundSystemNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundSystemNull.h; sourceTree = "<group>"; };
-		92AF260419C6383D0026E2CE /* Channel_oal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Channel_oal.cpp; sourceTree = "<group>"; };
-		92AF260519C6383D0026E2CE /* Channel_oal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel_oal.h; sourceTree = "<group>"; };
-		92AF260619C6383D0026E2CE /* Sound_oal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound_oal.cpp; sourceTree = "<group>"; };
-		92AF260719C6383D0026E2CE /* Sound_oal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound_oal.h; sourceTree = "<group>"; };
-		92AF260819C6383D0026E2CE /* SoundSystem_oal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundSystem_oal.cpp; sourceTree = "<group>"; };
-		92AF260919C6383D0026E2CE /* SoundSystem_oal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundSystem_oal.h; sourceTree = "<group>"; };
-		92AF260A19C6383D0026E2CE /* oal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oal.h; sourceTree = "<group>"; };
-		92AF260B19C6383D0026E2CE /* OggStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OggStream.cpp; sourceTree = "<group>"; };
-		92AF260C19C6383D0026E2CE /* OggStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OggStream.h; sourceTree = "<group>"; };
-		92AF260D19C6383D0026E2CE /* ResSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResSound.cpp; sourceTree = "<group>"; };
-		92AF260E19C6383D0026E2CE /* ResSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResSound.h; sourceTree = "<group>"; };
-		92AF261619C6383D0026E2CE /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
-		92AF261719C6383D0026E2CE /* SoundInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundInstance.cpp; sourceTree = "<group>"; };
-		92AF261819C6383D0026E2CE /* SoundInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundInstance.h; sourceTree = "<group>"; };
-		92AF261919C6383D0026E2CE /* SoundPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundPlayer.cpp; sourceTree = "<group>"; };
-		92AF261A19C6383D0026E2CE /* SoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundPlayer.h; sourceTree = "<group>"; };
-		92AF261B19C6383D0026E2CE /* SoundSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundSystem.h; sourceTree = "<group>"; };
+		AD2963691DF424DE00FEB325 /* MemoryStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MemoryStream.cpp; path = sound/MemoryStream.cpp; sourceTree = "<group>"; };
+		AD29636A1DF424DE00FEB325 /* MemoryStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemoryStream.h; path = sound/MemoryStream.h; sourceTree = "<group>"; };
+		AD29636C1DF424DE00FEB325 /* SoundNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundNull.cpp; sourceTree = "<group>"; };
+		AD29636D1DF424DE00FEB325 /* SoundNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundNull.h; sourceTree = "<group>"; };
+		AD29636E1DF424DE00FEB325 /* SoundSystemNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundSystemNull.cpp; sourceTree = "<group>"; };
+		AD29636F1DF424DE00FEB325 /* SoundSystemNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundSystemNull.h; sourceTree = "<group>"; };
+		AD2963711DF424DE00FEB325 /* SoundHandleOAL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHandleOAL.cpp; sourceTree = "<group>"; };
+		AD2963721DF424DE00FEB325 /* SoundHandleOAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundHandleOAL.h; sourceTree = "<group>"; };
+		AD2963731DF424DE00FEB325 /* SoundOAL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundOAL.cpp; sourceTree = "<group>"; };
+		AD2963741DF424DE00FEB325 /* SoundOAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundOAL.h; sourceTree = "<group>"; };
+		AD2963751DF424DE00FEB325 /* SoundSystemOAL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundSystemOAL.cpp; sourceTree = "<group>"; };
+		AD2963761DF424DE00FEB325 /* SoundSystemOAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundSystemOAL.h; sourceTree = "<group>"; };
+		AD2963771DF424DE00FEB325 /* StaticSoundHandleOAL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticSoundHandleOAL.cpp; sourceTree = "<group>"; };
+		AD2963781DF424DE00FEB325 /* StaticSoundHandleOAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticSoundHandleOAL.h; sourceTree = "<group>"; };
+		AD2963791DF424DE00FEB325 /* StaticStreamOAL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticStreamOAL.cpp; sourceTree = "<group>"; };
+		AD29637A1DF424DE00FEB325 /* StaticStreamOAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticStreamOAL.h; sourceTree = "<group>"; };
+		AD29637B1DF424DE00FEB325 /* StreamingSoundHandleOAL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StreamingSoundHandleOAL.cpp; sourceTree = "<group>"; };
+		AD29637C1DF424DE00FEB325 /* StreamingSoundHandleOAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamingSoundHandleOAL.h; sourceTree = "<group>"; };
+		AD29637D1DF424DE00FEB325 /* oal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = oal.h; path = sound/oal.h; sourceTree = "<group>"; };
+		AD29637E1DF424DE00FEB325 /* OggStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OggStream.cpp; path = sound/OggStream.cpp; sourceTree = "<group>"; };
+		AD29637F1DF424DE00FEB325 /* OggStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OggStream.h; path = sound/OggStream.h; sourceTree = "<group>"; };
+		AD2963801DF424DE00FEB325 /* ResSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ResSound.cpp; path = sound/ResSound.cpp; sourceTree = "<group>"; };
+		AD2963811DF424DE00FEB325 /* ResSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResSound.h; path = sound/ResSound.h; sourceTree = "<group>"; };
+		AD2963821DF424DE00FEB325 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sound.h; path = sound/Sound.h; sourceTree = "<group>"; };
+		AD2963831DF424DE00FEB325 /* SoundHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundHandle.cpp; path = sound/SoundHandle.cpp; sourceTree = "<group>"; };
+		AD2963841DF424DE00FEB325 /* SoundHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundHandle.h; path = sound/SoundHandle.h; sourceTree = "<group>"; };
+		AD2963851DF424DE00FEB325 /* SoundInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundInstance.cpp; path = sound/SoundInstance.cpp; sourceTree = "<group>"; };
+		AD2963861DF424DE00FEB325 /* SoundInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundInstance.h; path = sound/SoundInstance.h; sourceTree = "<group>"; };
+		AD2963871DF424DE00FEB325 /* SoundPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundPlayer.cpp; path = sound/SoundPlayer.cpp; sourceTree = "<group>"; };
+		AD2963881DF424DE00FEB325 /* SoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundPlayer.h; path = sound/SoundPlayer.h; sourceTree = "<group>"; };
+		AD2963891DF424DE00FEB325 /* SoundStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundStream.h; path = sound/SoundStream.h; sourceTree = "<group>"; };
+		AD29638A1DF424DE00FEB325 /* SoundSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundSystem.cpp; path = sound/SoundSystem.cpp; sourceTree = "<group>"; };
+		AD29638B1DF424DE00FEB325 /* SoundSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundSystem.h; path = sound/SoundSystem.h; sourceTree = "<group>"; };
+		AD29638C1DF424DE00FEB325 /* WavStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = WavStream.cpp; path = sound/WavStream.cpp; sourceTree = "<group>"; };
+		AD29638D1DF424DE00FEB325 /* WavStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WavStream.h; path = sound/WavStream.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,54 +172,64 @@
 		92AF25F019C6383D0026E2CE /* src */ = {
 			isa = PBXGroup;
 			children = (
+				AD2963691DF424DE00FEB325 /* MemoryStream.cpp */,
+				AD29636A1DF424DE00FEB325 /* MemoryStream.h */,
+				AD29636B1DF424DE00FEB325 /* null */,
+				AD2963701DF424DE00FEB325 /* oal */,
+				AD29637D1DF424DE00FEB325 /* oal.h */,
+				AD29637E1DF424DE00FEB325 /* OggStream.cpp */,
+				AD29637F1DF424DE00FEB325 /* OggStream.h */,
+				AD2963801DF424DE00FEB325 /* ResSound.cpp */,
+				AD2963811DF424DE00FEB325 /* ResSound.h */,
+				AD2963821DF424DE00FEB325 /* Sound.h */,
+				AD2963831DF424DE00FEB325 /* SoundHandle.cpp */,
+				AD2963841DF424DE00FEB325 /* SoundHandle.h */,
+				AD2963851DF424DE00FEB325 /* SoundInstance.cpp */,
+				AD2963861DF424DE00FEB325 /* SoundInstance.h */,
+				AD2963871DF424DE00FEB325 /* SoundPlayer.cpp */,
+				AD2963881DF424DE00FEB325 /* SoundPlayer.h */,
+				AD2963891DF424DE00FEB325 /* SoundStream.h */,
+				AD29638A1DF424DE00FEB325 /* SoundSystem.cpp */,
+				AD29638B1DF424DE00FEB325 /* SoundSystem.h */,
+				AD29638C1DF424DE00FEB325 /* WavStream.cpp */,
+				AD29638D1DF424DE00FEB325 /* WavStream.h */,
 				9227000519C8635200392D45 /* tremor */,
 				9227000019C8625600392D45 /* ogg */,
-				92AF25F119C6383D0026E2CE /* Channel.h */,
-				92AF25F219C6383D0026E2CE /* Channels.h */,
-				92AF25FA19C6383D0026E2CE /* MemoryStream.cpp */,
-				92AF25FB19C6383D0026E2CE /* MemoryStream.h */,
-				92AF25FC19C6383D0026E2CE /* null */,
-				92AF260319C6383D0026E2CE /* oal */,
-				92AF260A19C6383D0026E2CE /* oal.h */,
-				92AF260B19C6383D0026E2CE /* OggStream.cpp */,
-				92AF260C19C6383D0026E2CE /* OggStream.h */,
-				92AF260D19C6383D0026E2CE /* ResSound.cpp */,
-				92AF260E19C6383D0026E2CE /* ResSound.h */,
-				92AF261619C6383D0026E2CE /* Sound.h */,
-				92AF261719C6383D0026E2CE /* SoundInstance.cpp */,
-				92AF261819C6383D0026E2CE /* SoundInstance.h */,
-				92AF261919C6383D0026E2CE /* SoundPlayer.cpp */,
-				92AF261A19C6383D0026E2CE /* SoundPlayer.h */,
-				92AF261B19C6383D0026E2CE /* SoundSystem.h */,
 			);
 			name = src;
 			path = ../src;
 			sourceTree = "<group>";
 		};
-		92AF25FC19C6383D0026E2CE /* null */ = {
+		AD29636B1DF424DE00FEB325 /* null */ = {
 			isa = PBXGroup;
 			children = (
-				92AF25FD19C6383D0026E2CE /* ChannelNull.cpp */,
-				92AF25FE19C6383D0026E2CE /* ChannelNull.h */,
-				92AF25FF19C6383D0026E2CE /* SoundNull.cpp */,
-				92AF260019C6383D0026E2CE /* SoundNull.h */,
-				92AF260119C6383D0026E2CE /* SoundSystemNull.cpp */,
-				92AF260219C6383D0026E2CE /* SoundSystemNull.h */,
+				AD29636C1DF424DE00FEB325 /* SoundNull.cpp */,
+				AD29636D1DF424DE00FEB325 /* SoundNull.h */,
+				AD29636E1DF424DE00FEB325 /* SoundSystemNull.cpp */,
+				AD29636F1DF424DE00FEB325 /* SoundSystemNull.h */,
 			);
-			path = null;
+			name = null;
+			path = sound/null;
 			sourceTree = "<group>";
 		};
-		92AF260319C6383D0026E2CE /* oal */ = {
+		AD2963701DF424DE00FEB325 /* oal */ = {
 			isa = PBXGroup;
 			children = (
-				92AF260419C6383D0026E2CE /* Channel_oal.cpp */,
-				92AF260519C6383D0026E2CE /* Channel_oal.h */,
-				92AF260619C6383D0026E2CE /* Sound_oal.cpp */,
-				92AF260719C6383D0026E2CE /* Sound_oal.h */,
-				92AF260819C6383D0026E2CE /* SoundSystem_oal.cpp */,
-				92AF260919C6383D0026E2CE /* SoundSystem_oal.h */,
+				AD2963711DF424DE00FEB325 /* SoundHandleOAL.cpp */,
+				AD2963721DF424DE00FEB325 /* SoundHandleOAL.h */,
+				AD2963731DF424DE00FEB325 /* SoundOAL.cpp */,
+				AD2963741DF424DE00FEB325 /* SoundOAL.h */,
+				AD2963751DF424DE00FEB325 /* SoundSystemOAL.cpp */,
+				AD2963761DF424DE00FEB325 /* SoundSystemOAL.h */,
+				AD2963771DF424DE00FEB325 /* StaticSoundHandleOAL.cpp */,
+				AD2963781DF424DE00FEB325 /* StaticSoundHandleOAL.h */,
+				AD2963791DF424DE00FEB325 /* StaticStreamOAL.cpp */,
+				AD29637A1DF424DE00FEB325 /* StaticStreamOAL.h */,
+				AD29637B1DF424DE00FEB325 /* StreamingSoundHandleOAL.cpp */,
+				AD29637C1DF424DE00FEB325 /* StreamingSoundHandleOAL.h */,
 			);
-			path = oal;
+			name = oal;
+			path = sound/oal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,22 +239,25 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92AF263D19C6383D0026E2CE /* Sound.h in Headers */,
-				92AF262519C6383D0026E2CE /* MemoryStream.h in Headers */,
-				92AF263419C6383D0026E2CE /* OggStream.h in Headers */,
-				92AF262719C6383D0026E2CE /* ChannelNull.h in Headers */,
-				92AF261D19C6383D0026E2CE /* Channels.h in Headers */,
-				92AF263119C6383D0026E2CE /* SoundSystem_oal.h in Headers */,
-				92AF261C19C6383D0026E2CE /* Channel.h in Headers */,
-				92AF262D19C6383D0026E2CE /* Channel_oal.h in Headers */,
-				92AF262919C6383D0026E2CE /* SoundNull.h in Headers */,
-				92AF263219C6383D0026E2CE /* oal.h in Headers */,
-				92AF262B19C6383D0026E2CE /* SoundSystemNull.h in Headers */,
-				92AF263619C6383D0026E2CE /* ResSound.h in Headers */,
-				92AF264219C6383D0026E2CE /* SoundSystem.h in Headers */,
-				92AF262F19C6383D0026E2CE /* Sound_oal.h in Headers */,
-				92AF264119C6383D0026E2CE /* SoundPlayer.h in Headers */,
-				92AF263F19C6383D0026E2CE /* SoundInstance.h in Headers */,
+				AD2963A71DF424DE00FEB325 /* SoundHandle.h in Headers */,
+				AD29638F1DF424DE00FEB325 /* MemoryStream.h in Headers */,
+				AD2963AC1DF424DE00FEB325 /* SoundStream.h in Headers */,
+				AD2963A51DF424DE00FEB325 /* Sound.h in Headers */,
+				AD2963A21DF424DE00FEB325 /* OggStream.h in Headers */,
+				AD2963931DF424DE00FEB325 /* SoundSystemNull.h in Headers */,
+				AD2963A41DF424DE00FEB325 /* ResSound.h in Headers */,
+				AD2963991DF424DE00FEB325 /* SoundSystemOAL.h in Headers */,
+				AD29639B1DF424DE00FEB325 /* StaticSoundHandleOAL.h in Headers */,
+				AD2963AE1DF424DE00FEB325 /* SoundSystem.h in Headers */,
+				AD2963911DF424DE00FEB325 /* SoundNull.h in Headers */,
+				AD2963AB1DF424DE00FEB325 /* SoundPlayer.h in Headers */,
+				AD2963A01DF424DE00FEB325 /* oal.h in Headers */,
+				AD2963971DF424DE00FEB325 /* SoundOAL.h in Headers */,
+				AD2963B01DF424DE00FEB325 /* WavStream.h in Headers */,
+				AD2963951DF424DE00FEB325 /* SoundHandleOAL.h in Headers */,
+				AD29639D1DF424DE00FEB325 /* StaticStreamOAL.h in Headers */,
+				AD29639F1DF424DE00FEB325 /* StreamingSoundHandleOAL.h in Headers */,
+				AD2963A91DF424DE00FEB325 /* SoundInstance.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,31 +312,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92AF263E19C6383D0026E2CE /* SoundInstance.cpp in Sources */,
-				92AF262A19C6383D0026E2CE /* SoundSystemNull.cpp in Sources */,
-				92AF263319C6383D0026E2CE /* OggStream.cpp in Sources */,
-				92AF262619C6383D0026E2CE /* ChannelNull.cpp in Sources */,
-				92AF262E19C6383D0026E2CE /* Sound_oal.cpp in Sources */,
 				9227001119C8639300392D45 /* info.c in Sources */,
 				9227001F19C863DC00392D45 /* registry.c in Sources */,
+				AD2963901DF424DE00FEB325 /* SoundNull.cpp in Sources */,
+				AD2963941DF424DE00FEB325 /* SoundHandleOAL.cpp in Sources */,
+				AD29639A1DF424DE00FEB325 /* StaticSoundHandleOAL.cpp in Sources */,
+				AD2963981DF424DE00FEB325 /* SoundSystemOAL.cpp in Sources */,
+				AD2963A11DF424DE00FEB325 /* OggStream.cpp in Sources */,
 				9227001B19C863BA00392D45 /* sharedbook.c in Sources */,
 				9227000319C8627200392D45 /* bitwise.c in Sources */,
-				92AF262819C6383D0026E2CE /* SoundNull.cpp in Sources */,
 				9227001A19C863BA00392D45 /* res012.c in Sources */,
 				9227001919C863BA00392D45 /* mdct.c in Sources */,
+				AD2963AA1DF424DE00FEB325 /* SoundPlayer.cpp in Sources */,
+				AD2963AD1DF424DE00FEB325 /* SoundSystem.cpp in Sources */,
+				AD29638E1DF424DE00FEB325 /* MemoryStream.cpp in Sources */,
+				AD29639C1DF424DE00FEB325 /* StaticStreamOAL.cpp in Sources */,
 				9227000D19C8639300392D45 /* block.c in Sources */,
+				AD2963A61DF424DE00FEB325 /* SoundHandle.cpp in Sources */,
 				9227001019C8639300392D45 /* floor1.c in Sources */,
+				AD2963A81DF424DE00FEB325 /* SoundInstance.cpp in Sources */,
 				9227001D19C863BA00392D45 /* window.c in Sources */,
+				AD29639E1DF424DE00FEB325 /* StreamingSoundHandleOAL.cpp in Sources */,
 				9227001219C8639300392D45 /* mapping0.c in Sources */,
-				92AF262C19C6383D0026E2CE /* Channel_oal.cpp in Sources */,
-				92AF263519C6383D0026E2CE /* ResSound.cpp in Sources */,
 				9227000E19C8639300392D45 /* codebook.c in Sources */,
+				AD2963921DF424DE00FEB325 /* SoundSystemNull.cpp in Sources */,
 				9227001319C8639300392D45 /* vorbisfile.c in Sources */,
 				9227000F19C8639300392D45 /* floor0.c in Sources */,
-				92AF263019C6383D0026E2CE /* SoundSystem_oal.cpp in Sources */,
-				92AF264019C6383D0026E2CE /* SoundPlayer.cpp in Sources */,
-				92AF262419C6383D0026E2CE /* MemoryStream.cpp in Sources */,
 				9227001C19C863BA00392D45 /* synthesis.c in Sources */,
+				AD2963AF1DF424DE00FEB325 /* WavStream.cpp in Sources */,
+				AD2963961DF424DE00FEB325 /* SoundOAL.cpp in Sources */,
+				AD2963A31DF424DE00FEB325 /* ResSound.cpp in Sources */,
 				9227000419C8627200392D45 /* framing.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

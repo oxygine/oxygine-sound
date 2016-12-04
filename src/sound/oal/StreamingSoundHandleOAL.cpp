@@ -152,7 +152,7 @@ namespace oxygine
 
         for (int i = 0; i < num; ++i)
         {
-            log::messageln("decode %d", getTimeMS());
+            //log::messageln("decode %d", getTimeMS());
             ALuint buffer = buffers[i];
             size = _stream->decodeNextBlock(_looping, data, size);
             if (!size)
