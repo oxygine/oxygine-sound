@@ -60,6 +60,7 @@ namespace oxygine
                 if (channel.isFree())
                     return &channel;
             }
+            OX_ASSERT(!"no more free channels");
             return 0;
         }
     };
