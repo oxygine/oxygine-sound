@@ -6,6 +6,8 @@ namespace oxygine
 {
 #define EXIT_IF_EMPTY() if (!_handle) return
 
+#define LOGD(str) log::messageln("ss: %s '%s'", str, getName().c_str());
+
     SoundInstance::SoundInstance(SoundPlayer* player, SoundHandle* h):
         _player(player),
         _handle(h),
@@ -59,6 +61,7 @@ namespace oxygine
     void SoundInstance::play()
     {
         EXIT_IF_EMPTY();
+        LOGD("play");
 
         //if (!(_state == Paused || _state == Stopped))
         //  return;
@@ -71,6 +74,7 @@ namespace oxygine
     void SoundInstance::pause()
     {
         EXIT_IF_EMPTY();
+        LOGD("pause");
 
         _state = Paused;
         _handle->pause();
@@ -80,6 +84,7 @@ namespace oxygine
     void SoundInstance::resume()
     {
         EXIT_IF_EMPTY();
+        LOGD("resume");
 
         _state = Normal;
         _handle->resume();
@@ -89,6 +94,7 @@ namespace oxygine
     void SoundInstance::stop()
     {
         EXIT_IF_EMPTY();
+        LOGD("stop");
         //if (_state == Stopped)
         //  return;
 
@@ -101,11 +107,13 @@ namespace oxygine
 
     void SoundInstance::fadeOut(int ms)
     {
+        LOGD("fadeOut");
         _fadeOut(ms, true);
     }
 
     void SoundInstance::fadeOutPause(int ms)
     {
+        LOGD("fadeOutPause");
         _fadeOut(ms, false);
     }
 
@@ -163,6 +171,7 @@ namespace oxygine
 
     void SoundInstance::fadeIn(int ms)
     {
+        LOGD("fadeIn");
         timeMS ct = _player->getTime();
         float p;
 

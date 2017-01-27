@@ -147,6 +147,8 @@ namespace oxygine
 
     void StreamingSoundHandleOAL::decode(ALuint* buffers, int num)
     {
+        OAL_CHECK();
+
         int size;
         void* data = getSoundStreamTempBuffer(size);
 
