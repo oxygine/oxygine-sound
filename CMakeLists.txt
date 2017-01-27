@@ -16,9 +16,6 @@ set(OXYGINESOUND_DEFINITIONS
 	-DOXYGINE_SOUND=1)
 
 set(SRC
-	src/sound/sound/Channel.h
-	src/sound/sound/MemoryStream.cpp
-	src/sound/sound/MemoryStream.h	
 	src/sound/ResSound.cpp
 	src/sound/ResSound.h
 	src/sound/Sound.h
@@ -26,12 +23,11 @@ set(SRC
 	src/sound/SoundInstance.h
 	src/sound/SoundPlayer.cpp
 	src/sound/SoundPlayer.h
+	src/sound/SoundSystem.cpp
 	src/sound/SoundSystem.h
 
 	src/sound/null/SoundSystemNull.cpp
 	src/sound/null/SoundSystemNull.h
-	src/sound/null/ChannelNull.cpp
-	src/sound/null/ChannelNull.h
 	src/sound/null/SoundNull.cpp
 	src/sound/null/SoundNull.h
 	)
@@ -54,16 +50,23 @@ else(EMSCRIPTEN)
 	set (SRC ${SRC}
 		src/sound/OggStream.cpp
 		src/sound/OggStream.h
+		src/sound/MemoryStream.cpp
+		src/sound/MemoryStream.h
+		src/sound/WavStream.cpp
+		src/sound/WavStream.h
 
-		src/sound/oal/Channel_oal.cpp
-		src/sound/oal/Channel_oal.h
-		src/sound/oal/SoundSystem_oal.cpp
-		src/sound/oal/SoundSystem_oal.h
-		src/sound/oal/Sound_oal.cpp
-		src/sound/oal/Sound_oal.h
+		src/sound/oal/SoundHandleOAL.cpp
+		src/sound/oal/SoundHandleOAL.h
+		src/sound/oal/SoundOAL.cpp
+		src/sound/oal/SoundOAL.h
+		src/sound/oal/SoundSystemOAL.cpp
+		src/sound/oal/SoundSystemOAL.h
 		src/sound/oal/StreamingSoundHandleOAL.cpp
+		src/sound/oal/StreamingSoundHandleOAL.h
 		src/sound/oal/StaticSoundHandleOAL.cpp
-		src/sound/oal/Sound_oal.h
+		src/sound/oal/StaticSoundHandleOAL.h
+		src/sound/oal/StaticStreamOAL.cpp
+		src/sound/oal/StaticStreamOAL.h
 		)
 
 endif(EMSCRIPTEN)
