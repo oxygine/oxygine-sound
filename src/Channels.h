@@ -1,4 +1,6 @@
 #pragma once
+#include "oxygine-include.h"
+
 namespace oxygine
 {
     template <class T>
