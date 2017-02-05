@@ -49,3 +49,4 @@ examples/SoundDemo/proj.win32/Debug_vs*
 examples/SoundDemo/proj.win32/Release_v*
 examples/SoundDemo/proj.emscripten/data/
 proj.win32/Release_v*
+examples/SoundDemo/proj.android/.gradle/
