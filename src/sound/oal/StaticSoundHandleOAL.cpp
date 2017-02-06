@@ -56,8 +56,9 @@ namespace oxygine
 
     void StaticSoundHandleOAL::_xstop()
     {
-        if (_alSource)
-            alSourcei(_alSource, AL_BUFFER, 0);
+        alSourceStop(_alSource);
+        alSourcei(_alSource, AL_BUFFER, 0);
+        OAL_CHECK();
     }
 
     void StaticSoundHandleOAL::_xsetPosition(int tm)

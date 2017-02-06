@@ -93,12 +93,10 @@ namespace oxygine
     {
         if (_alSource)
         {
-            alSourceStop(_alSource);
-            OAL_CHECK();
+            _xstop();
+
             ss()->freeSource(_alSource);
         }
-
-        _xstop();
 
         _alSource = 0;
         _state = stopped;

@@ -211,7 +211,9 @@ namespace oxygine
 
     size_t StreamingSoundHandleOAL::stopAsyncDecode()
     {
-        return (size_t)_messages.sendCallback(this, 0, threadStopProcessing, 0, true);
+        size_t res = (size_t)_messages.sendCallback(this, 0, threadStopProcessing, 0, true);
+        OAL_CHECK();
+        return res;
     }
 
     void StreamingSoundHandleOAL::_xplay()
@@ -247,7 +249,11 @@ namespace oxygine
 
             if (state == AL_STOPPED)
             {
-                alSourcei(_alSource, AL_BUFFER, 0);
+                //alSourcei(_alSource, AL_BUFFER, 0);
+                ALuint buffers[STREAM_BUFFERS];
+                alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, buffers);
+                OAL_CHECK();
+
                 _ended();
             }
 
@@ -268,7 +274,6 @@ namespace oxygine
     timeMS StreamingSoundHandleOAL::_getPosition() const
     {
         return _stream->getPosition();
-
     }
 
 
@@ -301,8 +306,11 @@ namespace oxygine
     void StreamingSoundHandleOAL::_xstop()
     {
         stopAsyncDecode();
-        if (_alSource)
-            alSourcei(_alSource, AL_BUFFER, 0);
+
+        alSourceStop(_alSource);
+
+        ALuint buffers[STREAM_BUFFERS];
+        alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, buffers);        
         OAL_CHECK();
     }
 
