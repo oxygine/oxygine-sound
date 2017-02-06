@@ -227,6 +227,10 @@ namespace oxygine
     void StreamingSoundHandleOAL::_xpause()
     {
         stopAsyncDecode();
+        
+        alSourceStop(_alSource);
+        OAL_CHECK();
+
         alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, _buffers);
         OAL_CHECK();
     }

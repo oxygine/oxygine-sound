@@ -17,6 +17,9 @@ namespace oxygine
 
     void StaticSoundHandleOAL::_xpause()
     {
+        alSourceStop(_alSource);
+        OAL_CHECK();
+
         alSourcei(_alSource, AL_BUFFER, 0);
     }
 

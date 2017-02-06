@@ -74,9 +74,6 @@ namespace oxygine
         alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
         OAL_CHECK();
 
-        alSourceStop(_alSource);
-        OAL_CHECK();
-
         _xpause();
 
         //_stream->pause(this);
