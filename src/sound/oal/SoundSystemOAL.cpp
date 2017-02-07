@@ -220,6 +220,27 @@ namespace oxygine
         }
     }
 
+    void checkSource(ALuint source)
+    {
+#ifdef OX_DEBUG
+        int queued = 0;
+        alGetSourcei(source, AL_BUFFERS_QUEUED, &queued);
+        OX_ASSERT(queued == 0);
+
+        int unqueued = 0;
+        alGetSourcei(source, AL_BUFFERS_PROCESSED, &unqueued);
+        OX_ASSERT(unqueued == 0);
+
+        int buf;
+        alGetSourcei(source, AL_BUFFER, &buf);
+        OX_ASSERT(buf == 0);
+
+        int state;
+        alGetSourcei(source, AL_SOURCE_STATE, &state);
+        OX_ASSERT(state == AL_STOPPED || state == AL_INITIAL);
+#endif
+    }
+
     ALuint SoundSystemOAL::getSource()
     {
         ALuint source;
@@ -233,6 +254,7 @@ namespace oxygine
 
         source = _freeSources.back();
         _freeSources.pop_back();
+        checkSource(source);
 
         return source;
     }
@@ -241,19 +263,7 @@ namespace oxygine
     {
         _freeSources.push_back(source);
 
-#ifdef OX_DEBUG
-        int queued = 0;
-        alGetSourcei(source, AL_BUFFERS_QUEUED, &queued);
-        OX_ASSERT(queued == 0);
-
-        int unqueued = 0;
-        alGetSourcei(source, AL_BUFFERS_PROCESSED, &unqueued);
-        OX_ASSERT(unqueued == 0);
-
-        int buf;
-        alGetSourcei(source, AL_BUFFER, &buf);
-        OX_ASSERT(buf == 0);
-#endif
+        checkSource(source);
     }
 
 

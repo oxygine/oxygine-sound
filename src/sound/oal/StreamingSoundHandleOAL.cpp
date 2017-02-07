@@ -220,6 +220,7 @@ namespace oxygine
     {
         checkNoAsync();
 
+        alSourcei(_alSource, AL_LOOPING, AL_FALSE);
         _stream->reset();
         decode(_buffers, STREAM_BUFFERS);
     }
@@ -238,7 +239,7 @@ namespace oxygine
     void StreamingSoundHandleOAL::_xresume()
     {
         checkNoAsync();
-
+        alSourcei(_alSource, AL_LOOPING, AL_FALSE);
         alSourceQueueBuffers(_alSource, STREAM_BUFFERS, _buffers);
         OAL_CHECK();
     }
@@ -265,14 +266,10 @@ namespace oxygine
         }
 
         ALint nump;
-        alGetSourcei(_alSource, AL_BUFFERS_PROCESSED, &nump);
-
+        alGetSourcei(_alSource, AL_BUFFERS_PROCESSED, &nump);        
+        
         if (nump)
-        {
-            //for (int i = 0; i < 1000; ++i)
             _messages.postCallback(this, 0, threadDecode, 0);
-
-        }
     }
 
     timeMS StreamingSoundHandleOAL::_getPosition() const
