@@ -254,12 +254,17 @@ namespace oxygine
 
             if (state == AL_STOPPED)
             {
-                //alSourcei(_alSource, AL_BUFFER, 0);
-                ALuint buffers[STREAM_BUFFERS];
-                alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, buffers);
-                OAL_CHECK();
+                stopAsyncDecode();
+                alGetSourcei(_alSource, AL_SOURCE_STATE, &state);
+                if (state == AL_STOPPED)
+                { 
+                    //alSourcei(_alSource, AL_BUFFER, 0);
+                    ALuint buffers[STREAM_BUFFERS];
+                    alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, buffers);
+                    OAL_CHECK();
 
-                _ended();
+                    _ended();
+                }
             }
 
             return;
