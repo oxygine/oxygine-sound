@@ -355,6 +355,8 @@ namespace oxygine
                 }
             }
             break;
+            default:
+                break;
         }
 
     }

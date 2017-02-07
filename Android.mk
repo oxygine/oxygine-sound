@@ -12,20 +12,26 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := oxygine-sound_static
 LOCAL_MODULE_FILENAME := liboxygine-sound
 
+
+SRC := src/sound
+
 LOCAL_SRC_FILES := \
-		src/sound/MemoryStream.cpp \
-		src/sound/OggStream.cpp \
-		src/sound/ResSound.cpp \
-		src/sound/SoundInstance.cpp \
-		src/sound/SoundPlayer.cpp \
-		src/sound/oal/Channel_oal.cpp \
-		src/sound/oal/SoundSystem_oal.cpp \
-		src/sound/oal/Sound_oal.cpp \
-		src/sound/oal/StreamingSoundHandleOAL.cpp \
-		src/sound/oal/StaticSoundHandleOAL.cpp \
-		src/sound/null/SoundSystemNull.cpp \
-		src/sound/null/SoundNull.cpp \
-		src/sound/null/ChannelNull.cpp
+		$(SRC)/MemoryStream.cpp \
+		$(SRC)/OggStream.cpp \
+		$(SRC)/ResSound.cpp \
+		$(SRC)/SoundHandle.cpp \
+		$(SRC)/SoundInstance.cpp \
+		$(SRC)/SoundPlayer.cpp \
+		$(SRC)/SoundSystem.cpp \
+		$(SRC)/WavStream.cpp \
+		$(SRC)/oal/SoundHandleOAL.cpp \
+		$(SRC)/oal/SoundOAL.cpp \
+		$(SRC)/oal/SoundSystemOAL.cpp \
+		$(SRC)/oal/StaticSoundHandleOAL.cpp \
+		$(SRC)/oal/StaticStreamOAL.cpp \
+		$(SRC)/oal/StreamingSoundHandleOAL.cpp \
+		$(SRC)/null/SoundSystemNull.cpp \
+		$(SRC)/null/SoundNull.cpp
 
 
 LOCAL_CFLAGS := -DOXYGINE_SOUND=1
