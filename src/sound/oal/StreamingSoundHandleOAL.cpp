@@ -125,6 +125,11 @@ namespace oxygine
         _messages.unlockMessages();
         _messages.reply((void*)num);
     }
+    
+    void StreamingSoundHandleOAL::clearThreadQueue()
+    {
+        _messages.send(123213,0,0);
+    }
 
     void StreamingSoundHandleOAL::asyncDecode()
     {
@@ -231,9 +236,6 @@ namespace oxygine
         
         alSourceStop(_alSource);
         OAL_CHECK();
-
-        alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, _buffers);
-        OAL_CHECK();
     }
 
     void StreamingSoundHandleOAL::_xresume()
@@ -257,12 +259,7 @@ namespace oxygine
                 stopAsyncDecode();
                 alGetSourcei(_alSource, AL_SOURCE_STATE, &state);
                 if (state == AL_STOPPED)
-                { 
-                    //alSourcei(_alSource, AL_BUFFER, 0);
-                    ALuint buffers[STREAM_BUFFERS];
-                    alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, buffers);
-                    OAL_CHECK();
-
+                {
                     _ended();
                 }
             }

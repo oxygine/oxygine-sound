@@ -116,6 +116,7 @@ namespace oxygine
         spSoundInstance s = new SoundInstance(this, handle);
 
         s->setName(ressound->getPath());
+        handle->setName(s->getName());
 
         s->setPitch(opt._pitch);
         s->setLoop(opt._looped);

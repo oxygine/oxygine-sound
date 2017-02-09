@@ -19,8 +19,6 @@ namespace oxygine
     {
         alSourceStop(_alSource);
         OAL_CHECK();
-
-        alSourcei(_alSource, AL_BUFFER, 0);
     }
 
 
@@ -52,7 +50,6 @@ namespace oxygine
 
         if (state == AL_STOPPED)
         {
-            alSourcei(_alSource, AL_BUFFER, 0);
             _ended();
         }
     }
@@ -60,7 +57,6 @@ namespace oxygine
     void StaticSoundHandleOAL::_xstop()
     {
         alSourceStop(_alSource);
-        alSourcei(_alSource, AL_BUFFER, 0);
         OAL_CHECK();
     }
 

@@ -79,8 +79,6 @@ namespace oxygine
         //_stream->pause(this);
 
 
-        alSourcei(_alSource, AL_LOOPING, AL_FALSE);
-
         ss()->freeSource(_alSource);
         _alSource = 0;
         _state = paused;
@@ -138,6 +136,7 @@ namespace oxygine
 
     void SoundHandleOAL::_ended()
     {
+        
         _state = ended;
         ss()->freeSource(_alSource);
         _alSource = 0;

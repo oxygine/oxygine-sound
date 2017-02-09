@@ -16,6 +16,8 @@ namespace oxygine
     public:
         static void runThread();
         static void stopThread();
+        static void clearThreadQueue();
+        
         //control size of buffer for streaming sound
         static void setBufferSize(int);
 
