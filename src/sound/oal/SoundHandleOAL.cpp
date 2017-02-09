@@ -71,7 +71,14 @@ namespace oxygine
         if (!_alSource)
             return;
 
+        
         alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
+        
+#ifdef __APPLE__
+        //crash ios workaround?
+        _pos = 0;
+#endif
+        
         OAL_CHECK();
 
         _xpause();
