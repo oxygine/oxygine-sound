@@ -34,13 +34,12 @@ namespace oxygine
     pthread_key_t _tls;
 
     bool _synchronized = true;
-    //const int BUFF_SIZE = 64000;
     int BUFF_SIZE = 12000;
     void* localMem = 0;
 
 
-
     const int evnt_exit = 123;
+    const int evnt_pause = 124;
 
     void StreamingSoundHandleOAL::setBufferSize(int v)
     {
@@ -91,6 +90,7 @@ namespace oxygine
 
     void StreamingSoundHandleOAL::stopThread()
     {
+        _messages.clear();
         _messages.post(evnt_exit, 0, 0);
         if (pthread_equal(_thread, pthread_self()))
             return;
@@ -98,6 +98,13 @@ namespace oxygine
         pthread_join(_thread, &ptr);
         free(localMem);
         localMem = 0;
+    }
+
+
+    void StreamingSoundHandleOAL::clearThreadQueue()
+    {
+        _messages.clear();
+        _messages.send(evnt_pause, 0, 0);
     }
 
     void threadDecode(const ThreadMessages::message& msg)
@@ -126,10 +133,6 @@ namespace oxygine
         _messages.reply((void*)num);
     }
     
-    void StreamingSoundHandleOAL::clearThreadQueue()
-    {
-        _messages.send(123213,0,0);
-    }
 
     void StreamingSoundHandleOAL::asyncDecode()
     {
@@ -289,9 +292,7 @@ namespace oxygine
             _stream->setPosition(tm);
 
             alSourceStop(_alSource);
-
-            ALuint buffers[STREAM_BUFFERS];
-            alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, buffers);
+            alSourcei(_alSource, AL_BUFFER, 0);
             OAL_CHECK();
 
             decode(_buffers, STREAM_BUFFERS);
@@ -312,8 +313,6 @@ namespace oxygine
 
         alSourceStop(_alSource);
 
-        ALuint buffers[STREAM_BUFFERS];
-        alSourceUnqueueBuffers(_alSource, STREAM_BUFFERS, buffers);        
         OAL_CHECK();
     }
 

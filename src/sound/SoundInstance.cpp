@@ -6,7 +6,31 @@ namespace oxygine
 {
 #define EXIT_IF_EMPTY() if (!_handle) return
 
-#define LOGD(str) log::messageln("ss: %s '%s'", str, getName().c_str());
+#define LOGD(str) log::messageln("ss: %s (from %s) %d '%s'", str, state2str(_state), __id, getName().c_str());
+
+    const char* state2str(SoundInstance::State s)
+    {
+        switch (s)
+        {
+        case SoundInstance::FadingIn:
+            return "FadingIn";
+        case SoundInstance::FadingOutStop:
+            return "FadingOutStop";
+        case SoundInstance::FadingOutPause:
+            return "FadingOutPause";
+        case SoundInstance::Normal:
+            return "Normal";
+        case SoundInstance::Paused:
+            return "Paused";
+        case SoundInstance::Stopped:
+            return "Stopped";
+        case SoundInstance::Ended:
+            return "Ended";
+        default:
+            break;
+        }
+        return "";
+    }
 
     SoundInstance::SoundInstance(SoundPlayer* player, SoundHandle* h):
         _player(player),
@@ -32,6 +56,7 @@ namespace oxygine
 
     void SoundInstance::finished()
     {
+        LOGD("finished");
         //OX_ASSERT(_finished == false);
         //_finished = true;
         //_player->removeSoundInstance(this);
