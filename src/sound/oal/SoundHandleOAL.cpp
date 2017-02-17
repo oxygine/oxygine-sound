@@ -71,14 +71,14 @@ namespace oxygine
         if (!_alSource)
             return;
 
-        
+
         alGetSourcei(_alSource, AL_BYTE_OFFSET, &_pos);
-        
+
 #ifdef __APPLE__
         //crash ios workaround?
         _pos = 0;
 #endif
-        
+
         OAL_CHECK();
 
         _xpause();
@@ -143,7 +143,7 @@ namespace oxygine
 
     void SoundHandleOAL::_ended()
     {
-        
+
         _state = ended;
         ss()->freeSource(_alSource);
         _alSource = 0;

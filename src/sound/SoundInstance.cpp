@@ -12,22 +12,22 @@ namespace oxygine
     {
         switch (s)
         {
-        case SoundInstance::FadingIn:
-            return "FadingIn";
-        case SoundInstance::FadingOutStop:
-            return "FadingOutStop";
-        case SoundInstance::FadingOutPause:
-            return "FadingOutPause";
-        case SoundInstance::Normal:
-            return "Normal";
-        case SoundInstance::Paused:
-            return "Paused";
-        case SoundInstance::Stopped:
-            return "Stopped";
-        case SoundInstance::Ended:
-            return "Ended";
-        default:
-            break;
+            case SoundInstance::FadingIn:
+                return "FadingIn";
+            case SoundInstance::FadingOutStop:
+                return "FadingOutStop";
+            case SoundInstance::FadingOutPause:
+                return "FadingOutPause";
+            case SoundInstance::Normal:
+                return "Normal";
+            case SoundInstance::Paused:
+                return "Paused";
+            case SoundInstance::Stopped:
+                return "Stopped";
+            case SoundInstance::Ended:
+                return "Ended";
+            default:
+                break;
         }
         return "";
     }

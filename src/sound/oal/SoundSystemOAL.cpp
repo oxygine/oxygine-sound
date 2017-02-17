@@ -17,7 +17,7 @@ namespace oxygine
         if (error != AL_NO_ERROR)
         {
             log::messageln("AL error: %d '%s'", error, alGetString(error));
-            
+
             OX_ASSERT(!"open al error");
 
         }
@@ -63,7 +63,7 @@ namespace oxygine
         */
 
         StreamingOggSoundHandleOAL::clearThreadQueue();
-        
+
 #if defined(__ANDROID__)
         //android needs special workaround
         alcSuspend();
@@ -268,7 +268,7 @@ namespace oxygine
         alSourcei(source, AL_LOOPING, AL_FALSE);
         alSourcei(source, AL_BUFFER, 0);
         OAL_CHECK();
-        
+
         _freeSources.push_back(source);
 
         checkSource(source);
