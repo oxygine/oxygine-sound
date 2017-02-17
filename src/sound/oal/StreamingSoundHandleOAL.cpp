@@ -245,7 +245,10 @@ namespace oxygine
     {
         checkNoAsync();
         alSourcei(_alSource, AL_LOOPING, AL_FALSE);
-        alSourceQueueBuffers(_alSource, STREAM_BUFFERS, _buffers);
+        decode(_buffers, STREAM_BUFFERS);
+        ALint nump;
+        alGetSourcei(_alSource, AL_BUFFERS_PROCESSED, &nump);
+        OX_ASSERT(nump == 0);
         OAL_CHECK();
     }
 
