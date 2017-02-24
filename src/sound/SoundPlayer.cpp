@@ -115,7 +115,7 @@ namespace oxygine
         SoundHandle* handle = SoundHandleOAL::create(ressound->getSound());
         spSoundInstance s = new SoundInstance(this, handle);
 
-        s->setName(ressound->getPath());
+        s->setName(res->getName());
         handle->setName(s->getName());
 
         s->setPitch(opt._pitch);
@@ -242,16 +242,20 @@ namespace oxygine
 
         for (size_t i = 0; i < _sounds.size();)
         {
-            bool end = false;
-            {
-                spSoundInstance s = _sounds[i];
-                s->update();
-                end = s->getState() == SoundInstance::Ended;
+            spSoundInstance s = _sounds[i];
+            s->update();
 
-                if (DebugActor::instance)
-                    DebugActor::instance->addDebugString("%s '%s'", s->getName().c_str(), state2str(s->getState()));
-                end = s->getState() == SoundInstance::Ended || s->getState() == SoundInstance::Paused;
+            if (DebugActor::instance)
+            {
+                string name = s->getName();
+                size_t p = name.find_last_of('/') + 1;
+                name = name.substr(p);
+
+                DebugActor::instance->addDebugString("%s '%s'", name.c_str(), state2str(s->getState()));
             }
+                
+            bool end = s->getState() == SoundInstance::Ended || s->getState() == SoundInstance::Paused;
+            
             if (end)
                 _sounds.erase(_sounds.begin() + i);
             else
