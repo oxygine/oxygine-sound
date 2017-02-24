@@ -111,9 +111,12 @@ namespace oxygine
         EXIT_IF_EMPTY();
         LOGD("resume");
 
-        _state = Normal;
+        if (_state == Normal)
+            return;
+
         _handle->resume();
         _player->addSoundInstance(this);
+        _state = Normal;
     }
 
     void SoundInstance::stop()

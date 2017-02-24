@@ -65,7 +65,7 @@ namespace oxygine
     void SoundPlayer::addSoundInstance(SoundInstance* s)
     {
         playingSounds::iterator i = std::find(_sounds.begin(), _sounds.end(), s);
-        //OX_ASSERT(i == _sounds.end());
+        OX_ASSERT(i == _sounds.end());
         if (i == _sounds.end())
             _sounds.push_back(s);
     }
@@ -246,7 +246,7 @@ namespace oxygine
             {
                 spSoundInstance s = _sounds[i];
                 s->update();
-                end = s->getState() == SoundInstance::Ended;
+                end = s->getState() == SoundInstance::Ended || s->getState() == SoundInstance::Paused;
             }
             if (end)
                 _sounds.erase(_sounds.begin() + i);
