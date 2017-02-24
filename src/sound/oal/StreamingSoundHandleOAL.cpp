@@ -246,10 +246,6 @@ namespace oxygine
         checkNoAsync();
         alSourcei(_alSource, AL_LOOPING, AL_FALSE);
         decode(_buffers, STREAM_BUFFERS);
-        ALint nump;
-        alGetSourcei(_alSource, AL_BUFFERS_PROCESSED, &nump);
-        OX_ASSERT(nump == 0);
-        OAL_CHECK();
     }
 
     void StreamingSoundHandleOAL::_xupdate()

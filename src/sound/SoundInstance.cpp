@@ -238,7 +238,7 @@ namespace oxygine
     {
         _fadeInMS = dur;
         _state = FadingIn;
-        _handle->play();
+        _handle->resume();
         _player->addSoundInstance(this);
     }
 
