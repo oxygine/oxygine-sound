@@ -47,6 +47,7 @@ namespace oxygine
         ALuint _format;
         ALuint _rate;
         ALuint _buffers[STREAM_BUFFERS];
+        bool _reset;
     };
 
 

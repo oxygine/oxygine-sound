@@ -10,6 +10,7 @@ namespace oxygine
 
     class SoundHandle;
 
+
     DECLARE_SMART(SoundInstance, spSoundInstance);
     class SoundInstance: public Object
     {
@@ -110,4 +111,7 @@ namespace oxygine
 
         State _state;
     };
+
+
+    const char* state2str(SoundInstance::State s);
 }
