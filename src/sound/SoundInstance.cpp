@@ -41,6 +41,7 @@ namespace oxygine
         _state(Paused),
         _volume(1.0f),
         _startFadeIn(0),
+        _fadedOut(0),
         _finished(false),
         _startFadeOut(0)
     {
@@ -67,11 +68,13 @@ namespace oxygine
         if (_fadeOutMS)
             return;
 
+        /*
         if (_cbDone)
         {
             SoundEvent ev(SoundEvent::EVENT_DONE, this);
             _cbDone(&ev);
         }
+        */
     }
 
     void SoundInstance::aboutDone()
@@ -92,6 +95,7 @@ namespace oxygine
         //  return;
         _updateVolume();
         _state = Normal;
+        _fadedOut = false;
         _handle->play();
         _player->addSoundInstance(this);
     }
@@ -115,6 +119,7 @@ namespace oxygine
             return;
 
         _handle->resume();
+        _fadedOut = false;
         _player->addSoundInstance(this);
         _state = Normal;
     }
@@ -242,6 +247,7 @@ namespace oxygine
         _fadeInMS = dur;
         _state = FadingIn;
         _handle->resume();
+        _fadedOut = false;
         _player->addSoundInstance(this);
     }
 
@@ -258,6 +264,11 @@ namespace oxygine
     bool SoundInstance::isFadingOut() const
     {
         return _state == FadingOutPause || _state == FadingOutStop;
+    }
+
+    bool SoundInstance::isFadedOut() const
+    {
+        return _fadedOut;
     }
 
     float SoundInstance::getVolume() const
@@ -369,6 +380,15 @@ namespace oxygine
                     {
                         _handle->pause();
                         _state = Paused;
+                        _fadedOut = true;
+
+                        /*
+                        if (_cbDone)
+                        {
+                            SoundEvent ev(SoundEvent::EVENT_DONE, this);
+                            _cbDone(&ev);
+                        }
+                        */
                     }
                     else
                     {

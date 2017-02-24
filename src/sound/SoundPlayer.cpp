@@ -253,11 +253,19 @@ namespace oxygine
 
                 DebugActor::instance->addDebugString("%s '%s'", name.c_str(), state2str(s->getState()));
             }
-                
+
             bool end = s->getState() == SoundInstance::Ended || s->getState() == SoundInstance::Paused;
-            
+
             if (end)
+            {
                 _sounds.erase(_sounds.begin() + i);
+
+                if (s->_cbDone)
+                {
+                    Event ev(Event::COMPLETE);
+                    s->_cbDone(&ev);
+                }
+            }
             else
                 ++i;
         }

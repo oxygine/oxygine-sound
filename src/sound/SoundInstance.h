@@ -21,7 +21,7 @@ namespace oxygine
             enum
             {
                 EVENT_ABOUT_DONE = makefourcc('S', 'I', 'A', 'D'),
-                EVENT_DONE = makefourcc('S', 'I', 'D', 'N')
+                EVENT_DONE = Event::COMPLETE,
             };
             SoundEvent(eventType tp, SoundInstance* ins): Event(tp), instance(ins) {}
             SoundInstance* instance;
@@ -66,6 +66,7 @@ namespace oxygine
         bool        isPlaying() const;
         bool        isPaused() const;
         bool        isFadingOut() const;
+        bool        isFadedOut() const;
 
         void    setVolume(float v);
         void    setCoord(const Vector2& pos, float z = 0);
@@ -98,6 +99,7 @@ namespace oxygine
         SoundHandle* _handle;
 
         bool _finished;
+        bool _fadedOut;
 
         float _volume;//primary volume
         unsigned int _startTime;
