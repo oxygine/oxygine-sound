@@ -10,7 +10,7 @@
 
 #include "ResSound.h"
 #include "oal/StaticSoundHandleOAL.h"
-
+#include "DebugActor.h"
 #include <algorithm>
 
 namespace oxygine
@@ -247,6 +247,9 @@ namespace oxygine
                 spSoundInstance s = _sounds[i];
                 s->update();
                 end = s->getState() == SoundInstance::Ended;
+
+                if (DebugActor::instance)
+                    DebugActor::instance->addDebugString("%s '%s'", s->getName().c_str(), state2str(s->getState()));
             }
             if (end)
                 _sounds.erase(_sounds.begin() + i);

@@ -244,6 +244,11 @@ namespace oxygine
     void StreamingSoundHandleOAL::_xresume()
     {
         checkNoAsync();
+        if (_reset)
+        {
+            _reset = false;
+            _stream->reset();
+        }
         alSourcei(_alSource, AL_LOOPING, AL_FALSE);
         decode(_buffers, STREAM_BUFFERS);
         ALint nump;
@@ -313,6 +318,8 @@ namespace oxygine
     void StreamingSoundHandleOAL::_xstop()
     {
         stopAsyncDecode();
+        _reset = true;
+        //_stream->reset();
 
         alSourceStop(_alSource);
 
