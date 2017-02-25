@@ -65,30 +65,9 @@ namespace oxygine
     void SoundPlayer::addSoundInstance(SoundInstance* s)
     {
         playingSounds::iterator i = std::find(_sounds.begin(), _sounds.end(), s);
-        OX_ASSERT(i == _sounds.end());
+        //OX_ASSERT(i == _sounds.end());
         if (i == _sounds.end())
             _sounds.push_back(s);
-    }
-
-
-    void SoundPlayer::_onSoundDone(void* sound_instance, Channel* channel, const sound_desc& desc)
-    {
-        SoundInstance* t = (SoundInstance*)sound_instance;
-        t->finished();
-    }
-
-    void SoundPlayer::_onSoundAboutDone(void* sound_instance, Channel* channel, const sound_desc& desc)
-    {
-        SoundInstance* t = (SoundInstance*)sound_instance;
-        t->aboutDone();
-    }
-
-    void SoundPlayer::onSoundAboutDone(SoundInstance* soundInstance, Channel* channel, const sound_desc& desc)
-    {
-        /*
-        soundInstance->_channel = 0;
-        removeSoundInstance(soundInstance);
-        */
     }
 
     spSoundInstance SoundPlayer::getSoundByIndex(int index)

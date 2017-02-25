@@ -84,11 +84,6 @@ namespace oxygine
         void addSoundInstance(SoundInstance*);
 
 
-        static void _onSoundDone(void* This, Channel* channel, const sound_desc& desc);
-
-        static void _onSoundAboutDone(void* This, Channel* channel, const sound_desc& desc);
-        void onSoundAboutDone(SoundInstance* soundInstance, Channel* channel, const sound_desc& desc);
-
         Resources* _resources;
         float _volume;
 

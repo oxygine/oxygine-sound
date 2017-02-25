@@ -97,6 +97,7 @@ namespace oxygine
         _state = Normal;
         _fadedOut = false;
         _handle->play();
+
         _player->addSoundInstance(this);
     }
 
