@@ -6,7 +6,8 @@ namespace oxygine
 {
 #define EXIT_IF_EMPTY() if (!_handle) return
 
-#define LOGD(str) log::messageln("ss: %s (from %s) %d '%s'", str, state2str(_state), __id, getName().c_str());
+//#define LOGD(str) log::messageln("ss: %s (from %s) %d '%s'", str, state2str(_state), __id, getName().c_str());
+#define LOGD(str) {}
 
     const char* state2str(SoundInstance::State s)
     {
