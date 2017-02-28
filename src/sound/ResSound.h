@@ -26,8 +26,8 @@ namespace oxygine
     private:
         Sound* _getSound();
 
-        void _load(LoadResourcesContext* context);
-        void _unload();
+        void _load(LoadResourcesContext* context) override;
+        void _unload() override;
 
         std::string _file;
         bool _streaming;
