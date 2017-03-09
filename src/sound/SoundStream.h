@@ -1,4 +1,5 @@
 #pragma once
+#include "core/file.h"
 namespace oxygine
 {
     class SoundStream
@@ -6,6 +7,9 @@ namespace oxygine
     public:
         SoundStream(): _channels(0), _rate(0), _duration(0), _pcm(0), _ended(true) {}
         virtual ~SoundStream() {}
+
+        virtual bool init(file::handle, bool close) = 0;
+        virtual bool init(const void* data, unsigned int len) = 0;
 
         virtual int decodeNextBlock(bool looped, void* data, int bufferSize) = 0;
         virtual void decodeAll(void* data, int bufferSize) = 0;

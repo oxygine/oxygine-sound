@@ -26,6 +26,13 @@ namespace oxygine
         return rs;
     }
 
+    ResSound* ResSound::create(std::vector<unsigned char>& data, bool swap)
+    {
+        ResSound* rs = new ResSound;
+        rs->init(data, swap);
+        return rs;
+    }
+
     ResSound::ResSound(): _sound(0), _streaming(false)
     {
 
@@ -43,6 +50,16 @@ namespace oxygine
         path::normalize(file.c_str(), str);
         _file = str;
         return true;
+    }
+
+    bool ResSound::init(std::vector<unsigned char>& data, bool swap)
+    {
+        _streaming = false;
+        _sound = SoundSystem::get()->createSound(data, swap);
+        if (_sound)
+            _sound->setRes(this);
+
+        return _sound != 0;
     }
 
     bool ResSound::init(CreateResourceContext& context)

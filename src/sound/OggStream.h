@@ -18,7 +18,7 @@ namespace oxygine
 
         bool init(const void* data, unsigned int len);
         bool init(const char* path);
-        bool init(file::handle h, bool close);
+        bool init(file::handle h, bool close) override;
 
         void reset();
         void release();

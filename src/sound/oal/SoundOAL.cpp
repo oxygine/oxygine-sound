@@ -15,29 +15,17 @@ namespace oxygine
 
     SoundOAL::SoundOAL(const string& path, file::handle fh): _alBuffer(0), _format(0), _timeMS(0), _fileName(path), _type(Unknown)
     {
-        OggStream oggStream;
-        WavStream wavStream;
         char header[4];
         if (file::read(fh, header, 4) != 4)
             return;
 
         file::seek(fh, 0, SEEK_SET);
 
-        SoundStream* stream = 0;
 
-        if (header[0] == 'R' && header[1] == 'I'  && header[2] == 'F' && header[3] == 'F')
-        {
-            stream = &wavStream;
-            wavStream.init(fh, false);
-            _type = Wav;
-        }
-        else if (header[0] == 'O' && header[1] == 'g'  && header[2] == 'g' && header[3] == 'S')
-        {
-            stream = &oggStream;
-            oggStream.init(fh, false);
-            _type = Ogg;
-        }
-
+        OggStream oggStream;
+        WavStream wavStream;
+        SoundStream* stream = init0(header, oggStream, wavStream);
+        stream->init(fh, false);
 
         bool streaming = _init(*stream);
         if (streaming)
@@ -52,6 +40,37 @@ namespace oxygine
         }
 
         file::close(fh);
+    }
+
+    SoundOAL::SoundOAL(std::vector<unsigned char>& data, bool swap)
+    {
+        if (swap)
+            std::swap(_fileBuffer, data);
+        else
+            _fileBuffer = data;
+
+        OggStream oggStream;
+        WavStream wavStream;
+        SoundStream* stream = init0((char*)&_fileBuffer.front(), oggStream, wavStream);
+        stream->init(&_fileBuffer.front(), _fileBuffer.size());
+        _init(*stream);
+    }
+
+    SoundStream* SoundOAL::init0(char header[4], OggStream& oggStream, WavStream& wavStream)
+    {
+        SoundStream* stream = 0;
+        if (header[0] == 'R' && header[1] == 'I'  && header[2] == 'F' && header[3] == 'F')
+        {
+            stream = &wavStream;
+            _type = Wav;
+        }
+        else if (header[0] == 'O' && header[1] == 'g'  && header[2] == 'g' && header[3] == 'S')
+        {
+            stream = &oggStream;
+            _type = Ogg;
+        }
+
+        return stream;
     }
 
     SoundOAL::~SoundOAL()
@@ -108,31 +127,6 @@ namespace oxygine
         return false;
     }
 
-    void SoundOAL::init(std::vector<unsigned char>& buffer, bool swap)
-    {
-        OggStream stream;
-        stream.init(&buffer.front(), (unsigned int)buffer.size());
-
-        bool streaming = _init(stream);
-        if (streaming)
-        {
-            if (swap)
-                buffer.swap(_fileBuffer);
-            else
-                _fileBuffer = buffer;
-        }
-    }
-
-    bool SoundOAL::init(const char* path)
-    {
-        _fileName = path;
-
-        OggStream stream;
-        bool res = stream.init(path);
-
-        _init(stream);
-        return res;
-    }
 
     int SoundOAL::getDuration() const
     {

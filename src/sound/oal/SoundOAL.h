@@ -20,11 +20,8 @@ namespace oxygine
         };
 
         SoundOAL(const std::string& path, file::handle fh);
+        SoundOAL(std::vector<unsigned char>& data, bool swap);
         ~SoundOAL();
-
-        void init(std::vector<unsigned char>& buffer, bool swap);
-        bool init(const char* path);
-
 
         unsigned int    getAlBuffer() const {return _alBuffer;}
         int             getDuration() const;
@@ -37,6 +34,8 @@ namespace oxygine
 
     private:
         bool _init(SoundStream& stream);
+
+        SoundStream* init0(char header[4], OggStream& oggStream, WavStream& wavStream);
 
         unsigned int _format;
         int _timeMS;

@@ -10,6 +10,7 @@ namespace oxygine
     class ResSound;
     class Resources;
     class Channel;
+    class Sound;
     struct sound_desc;
 
     using namespace std;
@@ -54,6 +55,7 @@ namespace oxygine
 
 
         spSoundInstance play(Resource*, const PlayOptions& = PlayOptions());
+        spSoundInstance play(Sound*, const PlayOptions& = PlayOptions());
         spSoundInstance play(const std::string& id, const PlayOptions& = PlayOptions());
         spSoundInstance continuePlay(Resource*, Channel*, const PlayOptions& = PlayOptions());
 
