@@ -33,7 +33,13 @@ namespace oxygine
         return rs;
     }
 
-    ResSound::ResSound(): _sound(0), _streaming(false)
+    oxygine::ResSound::ResSound* ResSound::create(const std::vector<unsigned char>& data_)
+    {
+        std::vector<unsigned char>& data = const_cast<std::vector<unsigned char>& >(data_);
+        return create(data, false);
+    }
+
+    ResSound::ResSound() : _sound(0), _streaming(false)
     {
 
     }
