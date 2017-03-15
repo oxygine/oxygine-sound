@@ -1,8 +1,8 @@
 #include "StreamingSoundHandleOAL.h"
-#include "core/ThreadDispatcher.h"
+#include "oxygine/core/ThreadDispatcher.h"
 #include "SoundSystemOAL.h"
 #include "pthread.h"
-#include "core/ThreadDispatcher.h"
+#include "oxygine/core/ThreadDispatcher.h"
 
 namespace oxygine
 {

@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "core/ref_counter.h"
-#include "core/oxygine.h"
+#include "oxygine/core/ref_counter.h"
+#include "oxygine/core/oxygine.h"
 
 namespace oxygine
 {

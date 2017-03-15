@@ -1,11 +1,11 @@
 #include "SoundSystemOAL.h"
-#include "DebugActor.h"
-#include "utils/stringUtils.h"
+#include "oxygine/DebugActor.h"
+#include "oxygine/utils/stringUtils.h"
 #include "pthread.h"
 #include "../oal.h"
 #include "../null/SoundSystemNull.h"
 #include "StreamingSoundHandleOAL.h"
-#include "core/oxygine.h"
+#include "oxygine/core/oxygine.h"
 
 namespace oxygine
 {

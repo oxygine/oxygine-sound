@@ -1,7 +1,6 @@
 #pragma once
 #include "test.h"
 #include "oxygine-sound.h"
-#include "core/ImageDataOperations.h"
 
 
 extern SoundPlayer splayer;

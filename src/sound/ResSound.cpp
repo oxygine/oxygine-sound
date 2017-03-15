@@ -1,10 +1,10 @@
 #include "ResSound.h"
-#include "core/file.h"
+#include "oxygine/core/file.h"
 #include "Sound.h"
 #include "SoundSystem.h"
-#include "res/CreateResourceContext.h"
-#include "res/Resources.h"
-#include "utils/stringUtils.h"
+#include "oxygine/res/CreateResourceContext.h"
+#include "oxygine/res/Resources.h"
+#include "oxygine/utils/stringUtils.h"
 
 namespace oxygine
 {

@@ -2,7 +2,7 @@
 #include "../OggStream.h"
 #include "../oal.h"
 #include "SoundSystemOAL.h"
-#include "core/ThreadDispatcher.h"
+#include "oxygine/core/ThreadDispatcher.h"
 #include "StaticSoundHandleOAL.h"
 #include "StreamingSoundHandleOAL.h"
 

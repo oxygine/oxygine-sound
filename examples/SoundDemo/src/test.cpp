@@ -1,7 +1,5 @@
 #include "test.h"
 #include "oxygine-framework.h"
-#include "core/STDFileSystem.h"
-#include "WebImage.h"
 
 Resources Test::resourcesUI;
 file::STDFileSystem extfs(true);

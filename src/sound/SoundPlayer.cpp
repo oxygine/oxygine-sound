@@ -1,7 +1,7 @@
-#include "core/file.h"
-#include "core/oxygine.h"
-#include "res/Resources.h"
-#include "res/CreateResourceContext.h"
+#include "oxygine/core/file.h"
+#include "oxygine/core/oxygine.h"
+#include "oxygine/res/Resources.h"
+#include "oxygine/res/CreateResourceContext.h"
 
 #include "SoundPlayer.h"
 #include "Sound.h"
@@ -10,7 +10,7 @@
 
 #include "ResSound.h"
 #include "oal/StaticSoundHandleOAL.h"
-#include "DebugActor.h"
+#include "oxygine/DebugActor.h"
 #include <algorithm>
 
 namespace oxygine

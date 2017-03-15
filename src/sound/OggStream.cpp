@@ -1,5 +1,5 @@
 #include "OggStream.h"
-#include "core/file.h"
+#include "oxygine/core/file.h"
 
 
 #if TREMOLO
@@ -8,7 +8,7 @@
 #include "ogg/ogg.h"
 #endif
 
-#include "core/ox_debug.h"
+#include "oxygine/core/ox_debug.h"
 
 //#include "s3eDevice.h"
 

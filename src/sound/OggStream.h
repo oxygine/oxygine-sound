@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "core/Object.h"
-#include "core/file.h"
+#include "oxygine/core/Object.h"
+#include "oxygine/core/file.h"
 #include "ivorbisfile.h"
 #include "MemoryStream.h"
 #include "SoundStream.h"
