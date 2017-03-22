@@ -90,13 +90,15 @@ namespace oxygine
         void _updateVolume();
         void _setHanleVolume(float v);
 
+
+        SoundHandle* _handle;
+
     private:
         SoundPlayer* _player;
         EventCallback _cbDone;
         EventCallback _cbAboutDone;
 
         Channel* _channel;
-        SoundHandle* _handle;
 
         bool _finished;
         bool _fadedOut;

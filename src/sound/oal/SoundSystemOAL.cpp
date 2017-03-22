@@ -207,6 +207,14 @@ namespace oxygine
         return sound;
     }
 
+    oxygine::SoundOAL* SoundSystemOAL::createSound(std::vector<unsigned char>& data, bool swap)
+    {
+        if (!_context)
+            return 0;
+
+        return new SoundOAL(data, swap);
+    }
+
     void SoundSystemOAL::update()
     {
         if (!_device)

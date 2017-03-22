@@ -37,7 +37,7 @@ namespace oxygine
         _fh = 0;
     }
 
-    void WavStream::init(file::handle fh, bool close)
+    bool WavStream::init(file::handle fh, bool close)
     {
         _fh = fh;
         _close = close;
@@ -53,12 +53,14 @@ namespace oxygine
         _dataPos = 0;
         OX_ASSERT(header.Subchunk2Size == _pcm * _channels * 2);
         _ended = false;
+
+        return true;
     }
 
-    void WavStream::init(const void* data, size_t size)
+    bool  WavStream::init(const void* data, size_t size)
     {
         _memfile.init(data, size);
-        init(&_memfile, false);
+        return init(&_memfile, false);
     }
 
     void WavStream::init(const char* name)

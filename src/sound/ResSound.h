@@ -12,11 +12,14 @@ namespace oxygine
     public:
         static Resource* createResSound(CreateResourceContext& context);
         static ResSound* create(const std::string& file, bool streaming);
+        static ResSound* create(std::vector<unsigned char>& data, bool swap);
+        static ResSound* create(const std::vector<unsigned char>& data);
 
         ResSound();
         ~ResSound();
 
         bool init(const std::string& file, bool streaming);
+        bool init(std::vector<unsigned char>& data, bool swap);
         bool init(CreateResourceContext& context);
 
         Sound*              getSound() const;
