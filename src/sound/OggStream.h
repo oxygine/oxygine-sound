@@ -16,7 +16,7 @@ namespace oxygine
         OggStream();
         ~OggStream();
 
-        bool init(const void* data, unsigned int len);
+        bool init(const void* data, size_t len) override;
         bool init(const char* path);
         bool init(file::handle h, bool close) override;
 
