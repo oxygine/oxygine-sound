@@ -118,7 +118,7 @@ namespace oxygine
 
     void ResSound::_load(LoadResourcesContext* context)
     {
-
+        _getSound();
     }
 
     void ResSound::_unload()

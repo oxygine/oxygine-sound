@@ -13,7 +13,7 @@ namespace oxygine
 
         bool init(file::handle fh, bool close) override;
         void init(const char* name);
-        bool init(const void* data, size_t size);
+        bool init(const void* data, size_t size) override;
 
         int  decodeNextBlock(bool looped, void* data, int bufferSize) override;
         void decodeAll(void* data, int bufferSize) override;
