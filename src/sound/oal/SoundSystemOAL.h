@@ -12,12 +12,12 @@ namespace oxygine
         SoundSystemOAL();
         ~SoundSystemOAL();
 
-        void init(int channels_num);
-        void release();
+        void init(int channels_num) override;
+        void release() override;
 
-        void pause();
-        void resume();
-        void stop();
+        void pause() override;
+        void resume() override;
+        void stop() override;
 
         SoundOAL* createSound(const char* path, bool streaming) override;
         SoundOAL* createSound(std::vector<unsigned char>& data, bool swap) override;
@@ -28,7 +28,7 @@ namespace oxygine
 
         void setContext();
 
-        void update();
+        void update() override;
 
         ALuint getSource();
         void   freeSource(ALuint);

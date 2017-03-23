@@ -20,17 +20,17 @@ namespace oxygine
         bool init(const char* path);
         bool init(file::handle h, bool close) override;
 
-        void reset();
+        void reset() override;
         void release();
 
         int                 getCurrentPCM() const;
         int                 getCurrentMS() const;
-        int                 getPosition() const { return getCurrentMS(); }
+        int                 getPosition() const override { return getCurrentMS(); }
         int                 seekPCM(int pcm);
         int                 seekMS(int ms);
-        void                setPosition(int ms) { seekMS(ms); }
-        int                 decodeNextBlock(bool looped, void* data, int bufferSize);
-        void                decodeAll(void* data, int bufferSize);
+        void                setPosition(int ms) override { seekMS(ms); }
+        int                 decodeNextBlock(bool looped, void* data, int bufferSize) override;
+        void                decodeAll(void* data, int bufferSize) override;
 
     private:
         bool                _init(const ov_callbacks& cb, void* userData);
