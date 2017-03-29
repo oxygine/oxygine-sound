@@ -34,7 +34,7 @@ namespace oxygine
     pthread_key_t _tls;
 
     bool _synchronized = true;
-    int BUFF_SIZE = 12000;
+    int BUFF_SIZE = 20000;
     void* localMem = 0;
 
 
