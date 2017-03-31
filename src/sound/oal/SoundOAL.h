@@ -4,12 +4,13 @@
 #include "../OggStream.h"
 #include "../Sound.h"
 #include "../oal.h"
-
+#include "SoundHandleOAL.h"
 
 namespace oxygine
 {
     class WavStream;
     class OggStream;
+    class SoundHandleOAL;
 
     class SoundOAL: public Sound
     {
@@ -31,6 +32,7 @@ namespace oxygine
         void initStream(OggStream& stream);
         void initStream(WavStream& stream);
 
+        SoundHandleOAL* createSH() override;
 
     private:
         bool _init(SoundStream& stream);

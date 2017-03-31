@@ -35,12 +35,7 @@ set(SRC
 if(EMSCRIPTEN)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 	set(SRC ${SRC}
-		src/sound/emscripten/SoundSystemEmscripten.cpp
-		src/sound/emscripten/SoundSystemEmscripten.h
-		src/sound/emscripten/ChannelEmscripten.cpp
-		src/sound/emscripten/ChannelEmscripten.h
-		src/sound/emscripten/SoundEmscripten.cpp
-		src/sound/emscripten/SoundEmscripten.h
+		src/sound/emscripten/SoundSystemEmscriptenNull.cpp
 	)
 
 else(EMSCRIPTEN)
