@@ -88,7 +88,10 @@ namespace oxygine
 
     spSoundInstance SoundPlayer::_play(Sound* snd, const PlayOptions& opt, const string& name)
     {
-        SoundHandle* handle = SoundHandleOAL::create(snd);
+        SoundHandle* handle = snd->createSH();
+        if (!handle)
+            return 0;
+
         spSoundInstance s = new SoundInstance(this, handle);
 
         s->setName(name);

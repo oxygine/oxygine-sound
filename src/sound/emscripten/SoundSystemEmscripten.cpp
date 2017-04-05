@@ -1,4 +1,4 @@
-#include "SoundSystemEmscripten.h"
+#include "../SoundSystemEmscripten.h"
 #include "SoundEmscripten.h"
 #include "DebugActor.h"
 #include "utils/stringUtils.h"
