@@ -9,7 +9,7 @@ namespace oxygine
         SoundNull();
         ~SoundNull();
 
-        int getDuration() const;
+        int getDuration() const override;
 
         SoundHandle *createSH() override;
     private:

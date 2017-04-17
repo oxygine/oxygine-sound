@@ -25,7 +25,7 @@ namespace oxygine
         ~SoundOAL();
 
         unsigned int    getAlBuffer() const {return _alBuffer;}
-        int             getDuration() const;
+        int             getDuration() const override;
         unsigned int    getFormat() const {return _format;}
         Type            getType() const { return _type; }
 
