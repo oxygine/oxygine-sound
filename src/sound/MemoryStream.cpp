@@ -5,7 +5,11 @@
 
 namespace oxygine
 {
-    fileRMem::fileRMem(const void* data, size_t size, delfn del, delself fns): _data(data), _size(size), _pos(0), _delete(del), _deleteSelf(fns)
+#if OXYGINE_VERSION < 6
+    fileRMem::fileRMem(const void* data, size_t size, delfn del, delself fns) : _data(data), _size(size), _pos(0), _delete(del), _deleteSelf(fns)
+#else
+    fileRMem::fileRMem(file::FileSystem * fs, const void* data, size_t size, delfn del, delself fns) : fileHandle(fs), _data(data), _size(size), _pos(0), _delete(del), _deleteSelf(fns)
+#endif
     {
 
     }

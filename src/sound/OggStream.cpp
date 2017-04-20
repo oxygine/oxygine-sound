@@ -102,7 +102,11 @@ namespace oxygine
 
 
     OggStream::OggStream():
+#if OXYGINE_VERSION < 6
         _memStream(0, 0), _section(0),  _info(0)
+#else
+        _memStream(0, 0, 0), _section(0), _info(0)
+#endif
     {
         memset(&_vorbisFile, 0, sizeof(_vorbisFile));
     }

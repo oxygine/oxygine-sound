@@ -11,7 +11,7 @@ namespace oxygine
 
         int getDuration() const override;
 
-        SoundHandle *createSH() override;
+        SoundHandle* createSH() override;
     private:
     };
 }
