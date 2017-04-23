@@ -1,5 +1,5 @@
 #pragma once
-#include "SoundSystem.h"
+#include "../SoundSystem.h"
 #include "ChannelEmscripten.h"
 #include "Channels.h"
 

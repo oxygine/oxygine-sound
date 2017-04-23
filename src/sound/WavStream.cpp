@@ -20,7 +20,11 @@ namespace oxygine
         uint32_t             Subchunk2Size;
     };
 
-    WavStream::WavStream(): _fh(0), _close(false), _dataSize(0), _memfile(0, 0)
+#if OXYGINE_VERSION < 6
+    WavStream::WavStream() : _fh(0), _close(false), _dataSize(0), _memfile(0, 0)
+#else
+    WavStream::WavStream() : _fh(0), _close(false), _dataSize(0), _memfile(0, 0, 0)
+#endif
     {
 
     }

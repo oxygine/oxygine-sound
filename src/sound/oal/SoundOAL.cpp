@@ -148,4 +148,10 @@ namespace oxygine
         else
             stream.init(_fileName.c_str());
     }
+
+    oxygine::SoundHandleOAL* SoundOAL::createSH()
+    {
+        return SoundHandleOAL::create(this);
+    }
+
 }

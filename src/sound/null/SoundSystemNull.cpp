@@ -36,26 +36,12 @@ namespace oxygine
         return new SoundNull;
     }
 
-    Sound* SoundSystemNull::createSound(const char* file)
+    Sound* SoundSystemNull::createSound(const char* file, bool)
     {
         return new SoundNull;
     }
 
 
-    Channel*    SoundSystemNull::getFreeChannel()
-    {
-        return 0;
-    }
-
-    float       SoundSystemNull::getVolume() const
-    {
-        return 1.0f;
-    }
-
-    void SoundSystemNull::setVolume(float)
-    {
-
-    }
 
     void SoundSystemNull::update()
     {

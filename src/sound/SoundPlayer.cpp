@@ -83,8 +83,19 @@ namespace oxygine
 
     spSoundInstance SoundPlayer::play(Sound* snd, const PlayOptions& opt)
     {
-        SoundHandle* handle = SoundHandleOAL::create(snd);
+        return _play(snd, opt, "");
+    }
+
+    spSoundInstance SoundPlayer::_play(Sound* snd, const PlayOptions& opt, const string& name)
+    {
+        SoundHandle* handle = snd->createSH();
+        if (!handle)
+            return 0;
+
         spSoundInstance s = new SoundInstance(this, handle);
+
+        s->setName(name);
+        handle->setName(name);
 
         s->setPitch(opt._pitch);
         s->setLoop(opt._looped);
@@ -108,9 +119,7 @@ namespace oxygine
         if (!ressound || !ressound->getSound())
             return 0;
 
-        spSoundInstance ins = play(ressound->getSound());
-        ins->setName(res->getName());
-        ins->_handle->setName(res->getName());
+        spSoundInstance ins = _play(ressound->getSound(), opt, res->getName());
         return ins;
     }
 
@@ -124,21 +133,6 @@ namespace oxygine
             return 0;
 
         return play(res, opt);
-    }
-
-    spSoundInstance SoundPlayer::continuePlay(Resource* res, Channel* ch, const PlayOptions& opt)
-    {
-        return 0;
-        /*
-        spSoundInstance s = prepareSound(res, ch, opt);
-        if (!s)
-            return 0;
-
-        _sounds.push_back(s);
-        ch->continuePlay(s->_desc);
-
-        return s;
-        */
     }
 
     void SoundPlayer::pause()

@@ -115,6 +115,7 @@ namespace oxygine
         {
             alSourceStop(_sources[i]);
         }
+        OAL_CHECK();
     }
 
     void SoundSystemOAL::init(int channels_num)

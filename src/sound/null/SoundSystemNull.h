@@ -8,21 +8,16 @@ namespace oxygine
     class SoundSystemNull : public SoundSystem
     {
     public:
-        void init(int channels);
-        void release();
-        void pause();
-        void resume();
-        void stop();
+        void init(int channels) override;
+        void release() override;
+        void pause() override;
+        void resume() override;
+        void stop() override;
 
 
-        Sound* createSound(std::vector<unsigned char>& data, bool swap);
-        Sound* createSound(const char* file);
+        Sound* createSound(std::vector<unsigned char>& data, bool swap) override;
+        Sound* createSound(const char* file, bool streaming) override;
 
-
-        Channel*    getFreeChannel();
-        float       getVolume() const;
-
-        void setVolume(float);
-        void update();
+        void update()  override;
     };
 }

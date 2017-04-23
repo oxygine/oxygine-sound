@@ -14,4 +14,9 @@ namespace oxygine
     {
         return 0;
     }
+
+    SoundHandle* SoundNull::createSH()
+    {
+        return 0;
+    }
 }

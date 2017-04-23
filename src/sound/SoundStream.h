@@ -9,7 +9,7 @@ namespace oxygine
         virtual ~SoundStream() {}
 
         virtual bool init(file::handle, bool close) = 0;
-        virtual bool init(const void* data, unsigned int len) = 0;
+        virtual bool init(const void* data, size_t len) = 0;
 
         virtual int decodeNextBlock(bool looped, void* data, int bufferSize) = 0;
         virtual void decodeAll(void* data, int bufferSize) = 0;

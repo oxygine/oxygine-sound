@@ -6,6 +6,7 @@
 namespace oxygine
 {
     class ResSound;
+    class SoundHandle;
 
     class Sound
     {
@@ -16,6 +17,8 @@ namespace oxygine
         ResSound*   getRes() { return _parent;}
         void        setRes(ResSound* rs) { _parent = rs; }
         virtual int getDuration() const = 0;
+
+        virtual SoundHandle* createSH() = 0;
     private:
         ResSound* _parent;
     };

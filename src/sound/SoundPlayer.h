@@ -57,7 +57,6 @@ namespace oxygine
         spSoundInstance play(Resource*, const PlayOptions& = PlayOptions());
         spSoundInstance play(Sound*, const PlayOptions& = PlayOptions());
         spSoundInstance play(const std::string& id, const PlayOptions& = PlayOptions());
-        spSoundInstance continuePlay(Resource*, Channel*, const PlayOptions& = PlayOptions());
 
         spSoundInstance getSoundByIndex(int index);
         int             getSoundsNum()const {return (int)_sounds.size();}
@@ -84,6 +83,8 @@ namespace oxygine
         friend class SoundInstance;
         void removeSoundInstance(SoundInstance*);
         void addSoundInstance(SoundInstance*);
+
+        spSoundInstance _play(Sound*, const PlayOptions& opt, const string& name);
 
 
         Resources* _resources;

@@ -14,7 +14,13 @@ namespace oxygine
         typedef void(*delself)(fileRMem*);
         static void notdelself(fileRMem*) {}
 
+#if OXYGINE_VERSION < 6
         fileRMem(const void* data, size_t size, delfn fn = notdel, delself fns = notdelself);
+#else
+        fileRMem(file::FileSystem* fs, const void* data, size_t size, delfn fn = notdel, delself fns = notdelself);
+#endif
+
+
         ~fileRMem() { release(); }
 
         void init(const void* data, size_t size, delfn fn = notdel, delself fns = notdelself);
