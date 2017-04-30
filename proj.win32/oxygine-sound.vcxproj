@@ -128,6 +128,11 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>../../oxygine-framework/oxygine/src/;../../oxygine-framework\oxygine\third_party\win32\pthreads\include/;..\dependencies\openal\include\;..\dependencies\tremor\tremor;..\dependencies\libogg\include\;../src</AdditionalIncludeDirectories>
     </ClCompile>
+    <Lib>
+      <AdditionalDependencies>libogg_static.lib;openAL32.lib;tremor.lib;</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(VisualStudioVersion)' == '14.0' or '$(VisualStudioVersion)' == '15.0'">libogg_static_vs2013.lib;openAL32.lib;tremor.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../libs/win32;</AdditionalLibraryDirectories>
+    </Lib>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
