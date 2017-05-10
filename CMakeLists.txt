@@ -90,7 +90,7 @@ else(EMSCRIPTEN)
 		set(LIBOGG libogg_static)
 
 		if (MSVC)
-			if (MSVC_VERSION EQUAL "1900")
+			if(NOT (MSVC_VERSION LESS 1900))
 				set(LIBOGG ${LIBOGG}_vs2013)
 			endif()
 		endif()	
