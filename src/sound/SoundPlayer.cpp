@@ -10,7 +10,7 @@
 
 #include "ResSound.h"
 #include "oal/StaticSoundHandleOAL.h"
-#include "oxygine/DebugActor.h"
+#include "oxygine/actor/DebugActor.h"
 #include <algorithm>
 
 namespace oxygine

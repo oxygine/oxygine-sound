@@ -1,5 +1,5 @@
 #include "SoundSystemOAL.h"
-#include "oxygine/DebugActor.h"
+#include "oxygine/actor/DebugActor.h"
 #include "oxygine/utils/stringUtils.h"
 #include "pthread.h"
 #include "../oal.h"
