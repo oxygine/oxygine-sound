@@ -34,7 +34,7 @@ namespace oxygine
             float tm;
             alGetSourcef(_alSource, AL_SEC_OFFSET, &tm);
 
-            return tm * 1000;
+            return (timeMS)(tm * 1000);
         }
 
         return 0;
