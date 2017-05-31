@@ -15,7 +15,7 @@ namespace oxygine
 
     int SoundEmscripten::getDuration() const
     {
-        return 1000;
+        return 30000;
     }
 
     SoundHandle* SoundEmscripten::createSH()

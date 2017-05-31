@@ -56,10 +56,17 @@ namespace oxygine
 
     void SoundHandleEmscripten::_resume()
     {
-        EM_ASM_ARGS(
+        if (_handle)
         {
-            sound.resume($0);
-        }, _handle);
+            EM_ASM_ARGS(
+            {
+                sound.resume($0);
+            }, _handle);
+        }   
+        else
+        {
+            _play();
+        }
     }
 
     void SoundHandleEmscripten::_stop()
