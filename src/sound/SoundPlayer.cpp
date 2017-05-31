@@ -7,9 +7,9 @@
 #include "Sound.h"
 #include "SoundInstance.h"
 #include "SoundSystem.h"
+#include "SoundHandle.h"
 
 #include "ResSound.h"
-#include "oal/StaticSoundHandleOAL.h"
 #include "DebugActor.h"
 #include <algorithm>
 
@@ -159,6 +159,7 @@ namespace oxygine
 
     void SoundPlayer::stopByID(const string& id)
     {
+        OX_ASSERT(0);
         /*
         bool try_again = true;
         while (try_again)

@@ -1,7 +1,8 @@
-#include "../SoundSystemEmscripten.h"
+#include "SoundSystemEmscripten.h"
 #include "SoundEmscripten.h"
 #include "DebugActor.h"
 #include "utils/stringUtils.h"
+#include <emscripten.h>
 
 namespace oxygine
 {
@@ -24,17 +25,15 @@ namespace oxygine
 
     void SoundSystemEmscripten::init(int channels_num)
     {
-        _channels._channels.resize(channels_num);
-
-        for (int i = 0; i < channels_num; ++i)
+        EM_ASM_ARGS(
         {
-            _channels._channels[i].init(this, i);
-        }
+            sound.init();
+        }, 0);
     }
 
     void SoundSystemEmscripten::release()
     {
-        _channels._channels.clear();
+        //_channels._channels.clear();
     }
 
     void SoundSystemEmscripten::pause()
@@ -49,8 +48,7 @@ namespace oxygine
 
     void SoundSystemEmscripten::stop()
     {
-        _channels.stop();
-
+        //_channels.stop();
     }
 
 
@@ -59,35 +57,26 @@ namespace oxygine
         return 0;
     }
 
-    Sound* SoundSystemEmscripten::createSound(const char* file)
+    Sound* SoundSystemEmscripten::createSound(const char* file, bool streaming)
     {
         return new SoundEmscripten(file);
     }
 
 
-    Channel*    SoundSystemEmscripten::getFreeChannel()
-    {
-        ChannelEmscripten* channel = _channels.getFree();
-        return channel;
-    }
-
-    float       SoundSystemEmscripten::getVolume() const
-    {
-        return 1.0f;
-    }
-
-    void SoundSystemEmscripten::setVolume(float v)
-    {
-        _channels.setVolume(v);
-    }
 
     void SoundSystemEmscripten::update()
     {
-        _channels.update();
+        //_channels.update();
         if (DebugActor::instance)
         {
+
+            int num = EM_ASM_INT(
+            {
+                return sound.stats();
+            }, 0);
+
             char str[255];
-            safe_sprintf(str, "channels: %d", _channels._channels.size() - _channels.getFreeNum());
+            safe_sprintf(str, "handles: %d", num);
             DebugActor::instance->addDebugString(str);
         }
     }

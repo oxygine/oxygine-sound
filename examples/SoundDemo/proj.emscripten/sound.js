@@ -9,15 +9,20 @@ function myb64(bytes)
 }
 
 
-function looped()
+function loopEnded()
 {
 	this.currentTime = 0;
 	this.play();
 }
 
 var sound = {
-	_handles:{},
+	j2c: null,
+	init: function() {
+		this.j2c = js2cppX.alloc();
+	},
+	create: function(){
 
+	},
 	play: function(path, volume, loop){
 		try{
 			var data = FS.readFile(path, {encoding:'binary'});	
@@ -37,15 +42,28 @@ var sound = {
 
 		if (loop)
 		{
-			a.addEventListener('ended', looped, false);
+			a.addEventListener('ended', loopEnded, false);
 		}
 
 		var obj = {instance:a, looped:loop};
 
-		return js2cpp.create(obj);
+		return this.j2c.create(obj);
 	},
 	get: function(id){
-		return js2cpp.get(id);
+		return this.j2c.get(id);
+	},
+	setLoop: function(id, loop){
+		var s = sound.get(id);
+		if (!s)
+			return;
+		if (s.looped == loop)
+			return;
+		s.looped = loop;
+		if (loop)
+			s.instance.addEventListener('ended', loopEnded, false);
+		else
+			s.instance.removeEventListener('ended', loopEnded);
+
 	},
 	setVolume: function(id, volume){
 		var s = sound.get(id);
@@ -70,17 +88,22 @@ var sound = {
 		if (!s)
 			return;
 		if (s.looped)
-			s.instance.removeEventListener('ended', looped);
+			s.instance.removeEventListener('ended', loopEnded);
 		s.instance.pause(); 
 	},
 	update: function(id){
 		var s = sound.get(id);
 		if (!s)
-			return;
+			return true;
+		if (s.looped)
+			return false;
 		var ended = s.instance.ended;
 		return ended;
 	},	
 	free: function(id){
-		js2cpp.free(id);
-	}
+		this.j2c.free(id);
+	},
+	stats: function(){
+		return this.j2c.get_size();
+	},
 };

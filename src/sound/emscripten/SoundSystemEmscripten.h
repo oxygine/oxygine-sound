@@ -1,12 +1,11 @@
 #pragma once
 #include "../SoundSystem.h"
-#include "ChannelEmscripten.h"
-#include "Channels.h"
+
 
 namespace oxygine
 {
-    class Sound;
-    class Channel;
+    class SoundEmscripten;
+
 
     class SoundSystemEmscripten : public SoundSystem
     {
@@ -14,24 +13,19 @@ namespace oxygine
         SoundSystemEmscripten();
         ~SoundSystemEmscripten();
 
-        void init(int channels);
-        void release();
-        void pause();
-        void resume();
-        void stop();
+        void init(int channels) override;
+        void release() override;
+        void pause() override;
+        void resume() override;
+        void stop() override;
 
 
-        Sound* createSound(std::vector<unsigned char>& data, bool swap);
-        Sound* createSound(const char* file);
+        Sound* createSound(const char* file, bool streaming) override;
+        Sound* createSound(std::vector<unsigned char>& data, bool swap) override;
 
-
-        Channel*    getFreeChannel();
-        float       getVolume() const;
-
-        void setVolume(float);
-        void update();
+        void update() override;
 
     private:
-        Channels<ChannelEmscripten> _channels;
+
     };
 }

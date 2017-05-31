@@ -1,10 +1,11 @@
 #include "SoundEmscripten.h"
-#include <emscripten.h>
-#include "utils/stringUtils.h"
+#include "SoundHandleEmscripten.h"
+
 namespace oxygine
 {
-    SoundEmscripten::SoundEmscripten(const char* file): _file(file)
+    SoundEmscripten::SoundEmscripten(const char *file):_path(file)
     {
+
     }
 
     SoundEmscripten::~SoundEmscripten()
@@ -14,6 +15,13 @@ namespace oxygine
 
     int SoundEmscripten::getDuration() const
     {
-        return 10000;
+        return 1000;
+    }
+
+    SoundHandle* SoundEmscripten::createSH()
+    {
+        SoundHandleEmscripten *handle = new SoundHandleEmscripten(_path);
+
+        return handle;
     }
 }
