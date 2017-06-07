@@ -44,8 +44,6 @@ namespace oxygine
             }
 #endif
 
-            device = 0;
-
             if (device)
             {
                 ALCcontext* context = alcCreateContext(device, 0);
