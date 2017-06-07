@@ -18,7 +18,7 @@ namespace oxygine
         void _pause() override;
         void _resume() override;
         void _stop() override;
-        void _setPosition(int tm) {}
+        void _setPosition(int tm) override;
 
 
         int _duration;
@@ -26,6 +26,6 @@ namespace oxygine
         int _lastUpdate;
 
 
-        timeMS _getPosition() const;
+        timeMS _getPosition() const override;
     };
 }

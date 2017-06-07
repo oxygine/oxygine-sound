@@ -31,7 +31,8 @@ LOCAL_SRC_FILES := \
 		$(SRC)/oal/StaticStreamOAL.cpp \
 		$(SRC)/oal/StreamingSoundHandleOAL.cpp \
 		$(SRC)/null/SoundSystemNull.cpp \
-		$(SRC)/null/SoundNull.cpp
+		$(SRC)/null/SoundNull.cpp \
+		$(SRC)/null/SoundHandleNull.cpp
 
 
 LOCAL_CFLAGS := -DOXYGINE_SOUND=1

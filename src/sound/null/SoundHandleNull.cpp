@@ -49,4 +49,9 @@ namespace oxygine
     void SoundHandleNull::_stop()
     {
     }
+
+    void SoundHandleNull::_setPosition(int tm)
+    {
+        _pos = tm;
+    }
 }
