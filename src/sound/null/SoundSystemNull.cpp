@@ -1,14 +1,11 @@
 #include "SoundSystemNull.h"
 #include "SoundNull.h"
+#include "../OggStream.h"
 
 namespace oxygine
 {
     SoundSystem* SoundSystem::instance = 0;
 
-    void SoundSystemNull::init(int channels)
-    {
-
-    }
 
     void SoundSystemNull::release()
     {
@@ -33,12 +30,19 @@ namespace oxygine
 
     Sound* SoundSystemNull::createSound(std::vector<unsigned char>& data, bool swap)
     {
-        return new SoundNull;
+        OggStream oggStream;
+        oggStream.init(&data.front(), data.size());
+
+
+        return new SoundNull(oggStream.getDuration());
     }
 
     Sound* SoundSystemNull::createSound(const char* file, bool)
     {
-        return new SoundNull;
+        OggStream oggStream;
+        oggStream.init(file);
+
+        return new SoundNull(oggStream.getDuration());
     }
 
 

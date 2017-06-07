@@ -10,7 +10,7 @@
 
 namespace oxygine
 {
-    SoundHandleEmscripten::SoundHandleEmscripten(const std::string &path): _handle(0), _path(path)
+    SoundHandleEmscripten::SoundHandleEmscripten(const std::string& path): _handle(0), _path(path)
     {
 
     }
@@ -37,7 +37,7 @@ namespace oxygine
         {
             return sound.update($0);
         }, _handle);
-        
+
         if (r == 1)
         {
             _stop();
@@ -62,7 +62,7 @@ namespace oxygine
             {
                 sound.resume($0);
             }, _handle);
-        }   
+        }
         else
         {
             _play();
@@ -87,8 +87,8 @@ namespace oxygine
         }, _handle, _volume);
     }
 
-    
-    void SoundHandleEmscripten::_updatePitch() 
+
+    void SoundHandleEmscripten::_updatePitch()
     {
     }
 
@@ -100,11 +100,11 @@ namespace oxygine
         }, _handle, _looping);
     }
 
-    void SoundHandleEmscripten::_init() 
+    void SoundHandleEmscripten::_init()
     {
     }
 
-    void SoundHandleEmscripten::_setPosition(int tm) 
+    void SoundHandleEmscripten::_setPosition(int tm)
     {
     }
 

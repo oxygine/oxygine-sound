@@ -13,7 +13,6 @@ namespace oxygine
         SoundSystemEmscripten();
         ~SoundSystemEmscripten();
 
-        void init(int channels) override;
         void release() override;
         void pause() override;
         void resume() override;

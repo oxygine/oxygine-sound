@@ -9,7 +9,7 @@ namespace oxygine
     class SoundHandleEmscripten : public SoundHandle
     {
     public:
-        SoundHandleEmscripten(const std::string &path);
+        SoundHandleEmscripten(const std::string& path);
         ~SoundHandleEmscripten();
 
     protected:
@@ -19,7 +19,7 @@ namespace oxygine
         void _updatePitch() override;
         void _updateLoop() override;
         void _update() override;
-        
+
         void _init() override;
         void _play() override;
         void _pause() override;

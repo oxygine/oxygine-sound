@@ -5,7 +5,7 @@ namespace oxygine
     class SoundEmscripten : public Sound
     {
     public:
-        SoundEmscripten(const char *file);
+        SoundEmscripten(const char* file);
         ~SoundEmscripten();
 
         int getDuration() const  override;

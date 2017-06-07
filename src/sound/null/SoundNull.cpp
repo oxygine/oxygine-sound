@@ -1,7 +1,8 @@
 #include "SoundNull.h"
+#include "SoundHandleNull.h"
 namespace oxygine
 {
-    SoundNull::SoundNull()
+    SoundNull::SoundNull(int duration): _duration(duration)
     {
     }
 
@@ -17,6 +18,6 @@ namespace oxygine
 
     SoundHandle* SoundNull::createSH()
     {
-        return 0;
+        return new SoundHandleNull(_duration);
     }
 }

@@ -8,7 +8,6 @@ namespace oxygine
     class SoundSystemNull : public SoundSystem
     {
     public:
-        void init(int channels) override;
         void release() override;
         void pause() override;
         void resume() override;

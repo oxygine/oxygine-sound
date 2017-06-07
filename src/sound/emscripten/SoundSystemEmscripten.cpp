@@ -16,19 +16,15 @@ namespace oxygine
 
     SoundSystemEmscripten::SoundSystemEmscripten()
     {
+        EM_ASM_ARGS(
+        {
+            sound.init();
+        }, 0);
     }
 
     SoundSystemEmscripten::~SoundSystemEmscripten()
     {
 
-    }
-
-    void SoundSystemEmscripten::init(int channels_num)
-    {
-        EM_ASM_ARGS(
-        {
-            sound.init();
-        }, 0);
     }
 
     void SoundSystemEmscripten::release()

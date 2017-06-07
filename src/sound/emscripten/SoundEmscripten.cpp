@@ -3,7 +3,7 @@
 
 namespace oxygine
 {
-    SoundEmscripten::SoundEmscripten(const char *file):_path(file)
+    SoundEmscripten::SoundEmscripten(const char* file): _path(file)
     {
 
     }
@@ -20,7 +20,7 @@ namespace oxygine
 
     SoundHandle* SoundEmscripten::createSH()
     {
-        SoundHandleEmscripten *handle = new SoundHandleEmscripten(_path);
+        SoundHandleEmscripten* handle = new SoundHandleEmscripten(_path);
 
         return handle;
     }

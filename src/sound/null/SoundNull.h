@@ -6,12 +6,14 @@ namespace oxygine
     class SoundNull: public Sound
     {
     public:
-        SoundNull();
+        SoundNull(int duration);
         ~SoundNull();
 
         int getDuration() const override;
 
         SoundHandle* createSH() override;
+
     private:
+        int _duration;
     };
 }

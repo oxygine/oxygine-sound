@@ -9,10 +9,9 @@ namespace oxygine
     class SoundSystemOAL : public SoundSystem
     {
     public:
-        SoundSystemOAL();
+        SoundSystemOAL(ALCdevice* device, ALCcontext* context);
         ~SoundSystemOAL();
 
-        void init(int channels_num) override;
         void release() override;
 
         void pause() override;

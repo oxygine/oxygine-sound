@@ -30,6 +30,8 @@ set(SRC
 	src/sound/null/SoundSystemNull.h
 	src/sound/null/SoundNull.cpp
 	src/sound/null/SoundNull.h
+	src/sound/null/SoundHandleNull.cpp
+	src/sound/null/SoundHandleNull.h
 	)
 
 if(EMSCRIPTEN)
@@ -41,6 +43,7 @@ if(EMSCRIPTEN)
 		src/sound/emscripten/SoundHandleEmscripten.cpp
 		src/sound/emscripten/SoundEmscripten.h
 		src/sound/emscripten/SoundEmscripten.cpp
+
 	)
 
 else(EMSCRIPTEN)
