@@ -28,13 +28,65 @@ namespace oxygine
     SoundSystem* SoundSystem::create()
     {
         if (!SoundSystem::instance)
-            SoundSystem::instance = new SoundSystemOAL;
+        {
+
+            ALCdevice* device = 0;
+
+#ifdef __ANDROID__
+            device = alcOpenDevice("opensles");
+#else
+            device = alcOpenDevice(0);
+
+            if (!device)
+            {
+                sleep(100);
+                device = alcOpenDevice(0);
+            }
+#endif
+
+            if (device)
+            {
+                ALCcontext* context = alcCreateContext(device, 0);
+                if (context)
+                    SoundSystem::instance = new SoundSystemOAL(device, context);
+            }
+
+
+            if (!SoundSystem::instance)
+            {
+                OX_ASSERT(0);
+                log::error("can't create SoundSystemOAL");
+
+                SoundSystem::instance = new SoundSystemNull;
+            }
+        }
 
         return SoundSystem::instance;
     }
 
-    SoundSystemOAL::SoundSystemOAL(): _device(0), _context(0), _volume(1.0)
+    SoundSystemOAL::SoundSystemOAL(ALCdevice* device, ALCcontext* context): _device(device), _context(context), _volume(1.0)
     {
+
+        log::messageln("SoundSystemOAL init");
+
+        alcMakeContextCurrent(_context);
+        OAL_CHECK();
+
+        /*
+        ALCint nummono, numstereo;
+        alcGetIntegerv(_device, ALC_MONO_SOURCES, 1, &nummono);
+        alcGetIntegerv(_device, ALC_STEREO_SOURCES, 1, &numstereo);
+        */
+
+        ALuint sources[6];
+        alGenSources(6, sources);
+
+        _freeSources.assign(sources, sources + 6);
+        _sources = _freeSources;
+
+        StreamingSoundHandleOAL::runThread();
+        OAL_CHECK();
+
 #ifdef __S3E__
 //      alcInit();
 #endif
@@ -115,55 +167,6 @@ namespace oxygine
         {
             alSourceStop(_sources[i]);
         }
-        OAL_CHECK();
-    }
-
-    void SoundSystemOAL::init(int channels_num)
-    {
-        log::messageln("SoundSystemOAL init");
-#ifdef __ANDROID__
-        _device = alcOpenDevice("opensles");
-#else
-        _device = alcOpenDevice(0);
-
-        if (!_device)
-        {
-            sleep(100);
-            _device = alcOpenDevice(0);
-        }
-#endif
-        if (!_device)
-        {
-            OX_ASSERT(0);
-            log::error("can't create alc device");
-            return;
-        }
-
-        _context = alcCreateContext(_device, 0);
-
-        if (!_context)
-        {
-            OX_ASSERT(0);
-            log::error("can't create alc context");
-            return;
-        }
-
-        alcMakeContextCurrent(_context);
-        OAL_CHECK();
-
-        /*
-        ALCint nummono, numstereo;
-        alcGetIntegerv(_device, ALC_MONO_SOURCES, 1, &nummono);
-        alcGetIntegerv(_device, ALC_STEREO_SOURCES, 1, &numstereo);
-        */
-
-        ALuint sources[6];
-        alGenSources(6, sources);
-
-        _freeSources.assign(sources, sources + 6);
-        _sources = _freeSources;
-
-        StreamingSoundHandleOAL::runThread();
         OAL_CHECK();
     }
 

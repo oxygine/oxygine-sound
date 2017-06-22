@@ -30,12 +30,20 @@ set(SRC
 	src/sound/null/SoundSystemNull.h
 	src/sound/null/SoundNull.cpp
 	src/sound/null/SoundNull.h
+	src/sound/null/SoundHandleNull.cpp
+	src/sound/null/SoundHandleNull.h
 	)
 
 if(EMSCRIPTEN)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 	set(SRC ${SRC}
-		src/sound/emscripten/SoundSystemEmscriptenNull.cpp
+		src/sound/emscripten/SoundSystemEmscripten.h
+		src/sound/emscripten/SoundSystemEmscripten.cpp
+		src/sound/emscripten/SoundHandleEmscripten.h
+		src/sound/emscripten/SoundHandleEmscripten.cpp
+		src/sound/emscripten/SoundEmscripten.h
+		src/sound/emscripten/SoundEmscripten.cpp
+
 	)
 
 else(EMSCRIPTEN)

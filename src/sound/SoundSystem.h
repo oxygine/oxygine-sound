@@ -22,7 +22,7 @@ namespace oxygine
         static void free();
 
 
-        virtual void init(int channels) = 0;
+        void init(int) {}
         virtual void release() = 0;
         virtual void pause() = 0;
         virtual void resume() = 0;

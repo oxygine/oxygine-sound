@@ -1,19 +1,17 @@
 #pragma once
-#include "Sound.h"
-#include <string>
-
+#include "../Sound.h"
 namespace oxygine
 {
-    using namespace std;
-    class SoundEmscripten: public Sound
+    class SoundEmscripten : public Sound
     {
     public:
         SoundEmscripten(const char* file);
         ~SoundEmscripten();
 
-        int getDuration() const;
+        int getDuration() const  override;
+        SoundHandle* createSH() override;
 
-    private:
-        string _file;
+    protected:
+        std::string _path;
     };
 }

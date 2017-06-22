@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F20727B1EE8247A00B0EC76 /* SoundHandleNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F2072791EE8247A00B0EC76 /* SoundHandleNull.cpp */; };
+		4F20727C1EE8247A00B0EC76 /* SoundHandleNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F20727A1EE8247A00B0EC76 /* SoundHandleNull.h */; };
 		9227000319C8627200392D45 /* bitwise.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000119C8627200392D45 /* bitwise.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		9227000419C8627200392D45 /* framing.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000219C8627200392D45 /* framing.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		9227000D19C8639300392D45 /* block.c in Sources */ = {isa = PBXBuildFile; fileRef = 9227000619C8639300392D45 /* block.c */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -60,6 +62,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F2072791EE8247A00B0EC76 /* SoundHandleNull.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundHandleNull.cpp; sourceTree = "<group>"; };
+		4F20727A1EE8247A00B0EC76 /* SoundHandleNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundHandleNull.h; sourceTree = "<group>"; };
 		9227000119C8627200392D45 /* bitwise.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bitwise.c; path = ../dependencies/libogg/src/bitwise.c; sourceTree = "<group>"; };
 		9227000219C8627200392D45 /* framing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = framing.c; path = ../dependencies/libogg/src/framing.c; sourceTree = "<group>"; };
 		9227000619C8639300392D45 /* block.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = block.c; path = ../dependencies/tremor/Tremor/block.c; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 		AD29636B1DF424DE00FEB325 /* null */ = {
 			isa = PBXGroup;
 			children = (
+				4F2072791EE8247A00B0EC76 /* SoundHandleNull.cpp */,
+				4F20727A1EE8247A00B0EC76 /* SoundHandleNull.h */,
 				AD29636C1DF424DE00FEB325 /* SoundNull.cpp */,
 				AD29636D1DF424DE00FEB325 /* SoundNull.h */,
 				AD29636E1DF424DE00FEB325 /* SoundSystemNull.cpp */,
@@ -258,6 +264,7 @@
 				AD29639D1DF424DE00FEB325 /* StaticStreamOAL.h in Headers */,
 				AD29639F1DF424DE00FEB325 /* StreamingSoundHandleOAL.h in Headers */,
 				AD2963A91DF424DE00FEB325 /* SoundInstance.h in Headers */,
+				4F20727C1EE8247A00B0EC76 /* SoundHandleNull.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +339,7 @@
 				9227001019C8639300392D45 /* floor1.c in Sources */,
 				AD2963A81DF424DE00FEB325 /* SoundInstance.cpp in Sources */,
 				9227001D19C863BA00392D45 /* window.c in Sources */,
+				4F20727B1EE8247A00B0EC76 /* SoundHandleNull.cpp in Sources */,
 				AD29639E1DF424DE00FEB325 /* StreamingSoundHandleOAL.cpp in Sources */,
 				9227001219C8639300392D45 /* mapping0.c in Sources */,
 				9227000E19C8639300392D45 /* codebook.c in Sources */,
