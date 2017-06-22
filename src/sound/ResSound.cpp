@@ -141,7 +141,7 @@ namespace oxygine
 
             EM_ASM_ARGS(
             {
-                var p = Preloading("hello");
+                var p = AssetPreloader("hello");
                 p.add(Pointer_stringify($0));
                 p.start();
             }, rs->getPath().c_str());
