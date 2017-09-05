@@ -141,11 +141,22 @@ namespace oxygine
 
             EM_ASM_ARGS(
             {
-                var p = AssetPreloader("hello");
-                p.add(Pointer_stringify($0));
-                p.start();
+                assetsPreloader.add(Pointer_stringify($0));
             }, rs->getPath().c_str());
         }
 #endif
+    }
+
+    int emscGetNumPreloadingSounds()
+    {
+#ifdef EMSCRIPTEN
+
+        int r = EM_ASM_ARGS(
+        {
+            return assetsPreloader.getLeft();
+        }, 0);
+        return r;
+#endif
+        return 0;
     }
 }
