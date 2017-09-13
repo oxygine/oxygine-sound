@@ -40,4 +40,5 @@ namespace oxygine
 
 
     void emscStartSoundsPreloading(Resources& res);
+    int emscGetNumPreloadingSounds();
 }

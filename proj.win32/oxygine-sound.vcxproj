@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\sound\MemoryStream.h" />
+    <ClInclude Include="..\src\sound\null\SoundHandleNull.h" />
     <ClInclude Include="..\src\sound\null\SoundNull.h" />
     <ClInclude Include="..\src\sound\null\SoundSystemNull.h" />
     <ClInclude Include="..\src\sound\oal.h" />
@@ -33,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\sound\MemoryStream.cpp" />
+    <ClCompile Include="..\src\sound\null\SoundHandleNull.cpp" />
     <ClCompile Include="..\src\sound\null\SoundNull.cpp" />
     <ClCompile Include="..\src\sound\null\SoundSystemNull.cpp" />
     <ClCompile Include="..\src\sound\oal\SoundHandleOAL.cpp" />

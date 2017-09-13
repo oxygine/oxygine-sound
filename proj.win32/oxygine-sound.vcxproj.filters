@@ -69,6 +69,9 @@
     <ClInclude Include="..\src\sound\oal\SoundSystemOAL.h">
       <Filter>sound\oal</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\sound\null\SoundHandleNull.h">
+      <Filter>sound\null</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\sound\MemoryStream.cpp">
@@ -118,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="..\src\sound\SoundSystem.cpp">
       <Filter>sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\sound\null\SoundHandleNull.cpp">
+      <Filter>sound\null</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
