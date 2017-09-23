@@ -25,17 +25,20 @@ namespace oxygine
         OggStream oggStream;
         WavStream wavStream;
         SoundStream* stream = init0(header, oggStream, wavStream);
-        stream->init(fh, false);
-
-        bool streaming = _init(*stream);
-        if (streaming)
+        if (stream)
         {
-            if (_fileName.empty())
+            stream->init(fh, false);
+
+            bool streaming = _init(*stream);
+            if (streaming)
             {
-                file::seek(fh, 0, SEEK_SET);
-                file::buffer bf;
-                file::read(fh, bf);
-                std::swap(_fileBuffer, bf.data);
+                if (_fileName.empty())
+                {
+                    file::seek(fh, 0, SEEK_SET);
+                    file::buffer bf;
+                    file::read(fh, bf);
+                    std::swap(_fileBuffer, bf.data);
+                }
             }
         }
 
