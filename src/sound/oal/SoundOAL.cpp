@@ -17,7 +17,10 @@ namespace oxygine
     {
         char header[4];
         if (file::read(fh, header, 4) != 4)
+        {
+            file::close(fh);
             return;
+        }
 
         file::seek(fh, 0, SEEK_SET);
 
