@@ -1,7 +1,7 @@
 #include "SoundHandleEmscripten.h"
 
 #include <emscripten.h>
-#include "core/log.h"
+#include "ox/log.hpp"
 //#include "Sound.h"
 #include "../ResSound.h"
 #include "SoundSystemEmscripten.h"

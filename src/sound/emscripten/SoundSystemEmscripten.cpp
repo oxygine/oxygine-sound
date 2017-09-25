@@ -1,7 +1,7 @@
 #include "SoundSystemEmscripten.h"
 #include "SoundEmscripten.h"
-#include "DebugActor.h"
-#include "utils/stringUtils.h"
+#include "ox/DebugActor.hpp"
+#include "ox/stringUtils.hpp"
 #include <emscripten.h>
 
 namespace oxygine
