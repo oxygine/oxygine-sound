@@ -134,8 +134,8 @@ namespace oxygine
         //  return;
 
         _handle->stop();
-        _player->removeSoundInstance(this);
         _state = Stopped;
+        _player->removeSoundInstance(this);        
         //delete _handle;
         //_handle = 0;
     }
