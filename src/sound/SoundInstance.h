@@ -63,6 +63,7 @@ namespace oxygine
         float       getPitch() const;
         State       getState() const { return _state; }
 
+        bool        isLooped() const;
         bool        isPlaying() const;
         bool        isPaused() const;
         bool        isFadingOut() const;

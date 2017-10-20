@@ -253,6 +253,11 @@ namespace oxygine
         _player->addSoundInstance(this);
     }
 
+    bool  SoundInstance::isLooped() const
+    {
+        return _handle->getLoop();
+    }
+
     bool SoundInstance::isPlaying() const
     {
         return _handle->getState() == SoundHandle::playing;
