@@ -3,6 +3,7 @@
 #include "SoundSystemOAL.h"
 #include "pthread.h"
 #include "core/ThreadDispatcher.h"
+#include <stdlib.h>
 
 namespace oxygine
 {
