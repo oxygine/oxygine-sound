@@ -179,7 +179,7 @@ namespace oxygine
 
 
 
-    StreamingSoundHandleOAL::StreamingSoundHandleOAL(): _stream(0)
+    StreamingSoundHandleOAL::StreamingSoundHandleOAL(): _stream(0), _reset(false)
     {
         for (int i = 0; i < STREAM_BUFFERS; ++i)
             _buffers[i] = ss()->getBuffer();
