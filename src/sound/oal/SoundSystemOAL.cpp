@@ -106,13 +106,6 @@ namespace oxygine
     void SoundSystemOAL::pause()
     {
         log::messageln("SoundSystemOAL::pause");
-        /*
-        for (channels::iterator i = _channels.begin(); i != _channels.end(); ++i)
-        {
-            ChannelOAL& channel = *i;
-            channel.pause();
-        }
-        */
 
         StreamingOggSoundHandleOAL::clearThreadQueue();
 
