@@ -3,7 +3,6 @@
 namespace oxygine
 {
     class Sound;
-    class Channel;
 
     class SoundSystemNull : public SoundSystem
     {

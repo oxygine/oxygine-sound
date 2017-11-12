@@ -117,10 +117,11 @@ void example_update()
 void example_destroy()
 {
     splayer.stop();
+    resources.free();
+
     SoundPlayer::free();
     SoundSystem::free();
 
-    resources.free();
     Test::free();
 }
 

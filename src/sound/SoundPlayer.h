@@ -9,7 +9,6 @@ namespace oxygine
     class Resource;
     class ResSound;
     class Resources;
-    class Channel;
     class Sound;
     struct sound_desc;
 

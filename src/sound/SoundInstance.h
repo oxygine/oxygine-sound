@@ -6,8 +6,6 @@
 namespace oxygine
 {
     class SoundPlayer;
-    class Channel;
-
     class SoundHandle;
 
 
@@ -98,8 +96,6 @@ namespace oxygine
         SoundPlayer* _player;
         EventCallback _cbDone;
         EventCallback _cbAboutDone;
-
-        Channel* _channel;
 
         bool _finished;
         bool _fadedOut;

@@ -3,8 +3,6 @@
 
 namespace oxygine
 {
-
-    class Channel;
     class Sound;
     class SoundHandle;
 

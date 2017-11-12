@@ -5,8 +5,8 @@
     You can start from example.cpp and example.h, which main functions are called from here.
 */
 #include "oxygine/core/oxygine.h"
-#include "oxygine/Stage.h"
-#include "oxygine/DebugActor.h"
+#include "oxygine/actor/Stage.h"
+#include "oxygine/actor/DebugActor.h"
 #include "example.h"
 
 
@@ -63,7 +63,7 @@ void run()
 
 
     // Create the stage. Stage is a root node for all updateable and drawable objects
-    Stage::instance = new Stage(true);
+    Stage::instance = new Stage(false);
     Point size = core::getDisplaySize();
     getStage()->setSize(size);
 
