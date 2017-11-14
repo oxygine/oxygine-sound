@@ -53,3 +53,4 @@ examples/SoundDemo/data/*.dll
 *.opendb
 examples/SoundDemo/proj.win32/SoundDemo.VC.db
 examples/SoundDemo/proj.android/.gradle/
+**/.vs/
