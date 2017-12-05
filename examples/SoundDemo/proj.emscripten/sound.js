@@ -11,20 +11,24 @@ function myb64(bytes)
 
 function loopEnded()
 {
-	this.currentTime = 0;
-	this.play();
+	var buffer = .4;
+	if(this.currentTime > this.duration - buffer)
+	{
+        this.currentTime = 0;
+        this.play()
+	};
 }
 
 var sound = {
 	j2c: null,
 	init: function() {
-		this.j2c = js2cppX.alloc();
+		this.j2c = js2cppX();
 	},
 	create: function(){
 
 	},
 	play: function(path, volume, loop){
-		try{
+		try {
 			var data = FS.readFile(path, {encoding:'binary'});	
 		}
 		catch(er)
@@ -39,13 +43,15 @@ var sound = {
 		a.src = src;
 		a.play();
 		a.volume = volume;
+		//a.loop = true;
+
 
 		if (loop)
 		{
-			a.addEventListener('ended', loopEnded, false);
+			a.addEventListener('timeupdate', loopEnded, false);
 		}
 
-		var obj = {instance:a, looped:loop};
+		var obj = {instance:a, looped:loop, path:path};
 
 		return this.j2c.create(obj);
 	},
@@ -60,9 +66,9 @@ var sound = {
 			return;
 		s.looped = loop;
 		if (loop)
-			s.instance.addEventListener('ended', loopEnded, false);
+			s.instance.addEventListener('timeupdate', loopEnded, false);
 		else
-			s.instance.removeEventListener('ended', loopEnded);
+			s.instance.removeEventListener('timeupdate', loopEnded);
 
 	},
 	setVolume: function(id, volume){
@@ -75,7 +81,9 @@ var sound = {
 		var s = sound.get(id);
 		if (!s)
 			return;
+		console.log("pause " + s.path + " " + s.instance.readyState);
 		s.instance.pause();
+		console.log("pause end" + s.path + " " + s.instance.readyState);
 	},
 	resume: function(id){
 		var s = sound.get(id);
@@ -88,8 +96,11 @@ var sound = {
 		if (!s)
 			return;
 		if (s.looped)
-			s.instance.removeEventListener('ended', loopEnded);
-		s.instance.pause(); 
+			s.instance.removeEventListener('timeupdate', loopEnded);
+		console.log("stop " + s.path + " " + s.instance.readyState);
+		if (s.instance.readyState == 4)
+				s.instance.pause(); 
+		console.log("stop end" + s.path + " " + s.instance.readyState);
 	},
 	update: function(id){
 		var s = sound.get(id);

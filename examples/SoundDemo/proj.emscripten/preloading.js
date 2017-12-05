@@ -50,7 +50,7 @@ function Preloading(id){
 
             
             //t += "/";
-    		preloadFile("data/" + path, function(e){
+    		preloadFile(path, function(e){
                 var result = new Uint8Array(e.currentTarget.response);
 
                 createFolder(path);
