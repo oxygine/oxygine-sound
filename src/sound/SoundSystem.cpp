@@ -14,7 +14,8 @@ namespace oxygine
 
     void SoundSystem::free()
     {
-        instance->release();
+        if (instance)
+            instance->release();
         delete instance;
         instance = 0;
     }
