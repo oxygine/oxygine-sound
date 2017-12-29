@@ -97,7 +97,16 @@
 #define SIZEOF_UINT 4
 
 /* Define to the size of a void pointer type */
+
+
+
+#include <stdint.h>
+#if UINTPTR_MAX == 0xffffffff
 #define SIZEOF_VOIDP 4
+#elif UINTPTR_MAX == 0xffffffffffffffff
+#define SIZEOF_VOIDP 8
+#endif
+
 
 /* Define if we have GCC's destructor attribute */
 #define HAVE_GCC_DESTRUCTOR 1
