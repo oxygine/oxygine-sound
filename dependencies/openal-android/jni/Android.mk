@@ -9,7 +9,6 @@ ANALYZE_OUTPUT?=/dev/null
 
 include $(CLEAR_VARS)
 TARGET_ARCH_ABI  ?=armeabi-v7a
-LOCAL_LDLIBS     := -llog
 LOCAL_MODULE     := openal
 LOCAL_ARM_MODE   := arm
 CLANG_VERSION    ?= 3.1
@@ -23,8 +22,7 @@ else
     BINDIR       := $(abspath $(BINDIR) )
 endif
 
-ANDROID_NDK_ROOT=/Developer/DestinyCloudFist/android-ndk-r8b
-
+ 
 LOCAL_CFLAGS    +=  -I$(ROOTDIR)/$(OPENAL_DIR) \
                     -I$(ROOTDIR)/$(OPENAL_DIR)/include \
                     -I$(ROOTDIR)/$(OPENAL_DIR)/OpenAL32/Include \
@@ -38,15 +36,7 @@ LOCAL_CFLAGS    +=  -I$(ROOTDIR)/$(OPENAL_DIR) \
                     -DHAVE_GCC_VISIBILITY \
                     -O3 \
                     -g \
-
-LOCAL_LDLIBS    += -Wl,--build-id -Bsymbolic -shared
-
-# Default to Fixed-point math
-ifeq ($(TARGET_ARCH_ABI),armeabi)
-  # ARMv5, used fixed point math
-  LOCAL_CFLAGS += -marm -DOPENAL_FIXED_POINT -DOPENAL_FIXED_POINT_SHIFT=16
-endif
-
+ 
 
 MAX_SOURCES_LOW ?= 4
 MAX_SOURCES_START ?= 8
@@ -55,6 +45,7 @@ LOCAL_CFLAGS += -DMAX_SOURCES_LOW=$(MAX_SOURCES_LOW) -DMAX_SOURCES_START=$(MAX_S
 
 LOCAL_SRC_FILES :=  \
                     $(OPENAL_DIR)/Alc/android.c              \
+                    $(OPENAL_DIR)/Alc/opensles.c             \
                     $(OPENAL_DIR)/OpenAL32/alAuxEffectSlot.c \
                     $(OPENAL_DIR)/OpenAL32/alBuffer.c        \
                     $(OPENAL_DIR)/OpenAL32/alDatabuffer.c    \
@@ -83,9 +74,8 @@ LOCAL_SRC_FILES :=  \
 
 # If building for versions after FROYO
 
-LOCAL_CFLAGS +=   -DPOST_FROYO -I$(ANDROID_NDK_ROOT)/platforms/android-9/arch-arm/usr/include/
-LOCAL_LDLIBS += -ldl -L$(ANDROID_NDK_ROOT)/platforms/android-9/arch-arm/usr/lib/
-LOCAL_SRC_FILES += $(OPENAL_DIR)/Alc/opensles.c
+LOCAL_CFLAGS +=   -DPOST_FROYO
+
 
 
 
