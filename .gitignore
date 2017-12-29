@@ -54,3 +54,7 @@ examples/SoundDemo/data/*.dll
 examples/SoundDemo/proj.win32/SoundDemo.VC.db
 examples/SoundDemo/proj.android/.gradle/
 **/.vs/
+**/.externalNativeBuild
+**/.idea
+**/proj.android.iml
+**/local.properties
