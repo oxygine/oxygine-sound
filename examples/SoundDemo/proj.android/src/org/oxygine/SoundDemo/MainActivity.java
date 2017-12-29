@@ -1,4 +1,4 @@
-package org.oxygine.Demo;
+package org.oxygine.SoundDemo;
 
 import org.oxygine.lib.OxygineActivity;
 

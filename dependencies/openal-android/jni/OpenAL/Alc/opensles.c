@@ -316,7 +316,6 @@ SLresult alc_opensles_init_extradata(ALCdevice *pDevice)
 }
 
 static void start_playback(ALCdevice *pDevice) {
-    LOGV("start_playback 1");
     opesles_data_t *devState = NULL;
 	int i;
 
@@ -328,14 +327,12 @@ static void start_playback(ALCdevice *pDevice) {
         devState = (opesles_data_t *) pDevice->ExtraData;
     }
 
-    LOGV("start_playback 2");
 
     if (devState->threadShouldRun == 1) {
         // Gratuitous resume
         return;
     }
 
-    LOGV("start_playback 3");
     // start/restart playback thread
     devState->threadShouldRun = 1;
 
@@ -347,15 +344,10 @@ static void start_playback(ALCdevice *pDevice) {
     //pthread_attr_setschedparam(&playbackThreadAttr, &playbackThreadParam);
     pthread_create(&(devState->playbackThread), &playbackThreadAttr, playback_function,  (void *) pDevice);
 
-    LOGV("start_playback 4");
     while (devState->threadShouldRun && (0 == devState->threadIsReady))
     {
-        LOGV("start_playback ...");
-        usleep(100);
-        //sched_yield();
+        sched_yield();
     }
-
-    LOGV("start_playback 5");
 }
 
 static void stop_playback(ALCdevice *pDevice) {
@@ -428,26 +420,20 @@ SLresult alc_opensles_create_native_audio_engine()
     SLresult result;
 
     // create engine
-    LOGV("OpenSLES>> 1");
     result = slCreateEngine(&engineObject, 0, NULL, 0, NULL, NULL);
     assert(SL_RESULT_SUCCESS == result);
 
-    LOGV("OpenSLES>> 2");
     // realize the engine
     result = (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
     assert(SL_RESULT_SUCCESS == result);
 
-    LOGV("OpenSLES>> 3");
     // get the engine interface, which is needed in order to create other objects
     result = (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineEngine);
     assert(SL_RESULT_SUCCESS == result);
 
-    LOGV("OpenSLES>> 4");
     // create output mix
     result = (*engineEngine)->CreateOutputMix(engineEngine, &outputMixObject, 0, NULL, NULL);
     assert(SL_RESULT_SUCCESS == result);
-
-    LOGV("OpenSLES>> 5");
 
     // realize the output mix
     result = (*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
@@ -462,6 +448,9 @@ static ALCboolean opensles_open_playback(ALCdevice *pDevice, const ALCchar *devi
     LOGV("opensles_open_playback pDevice=%p, deviceName=%s", pDevice, deviceName);
 
     // Check if probe has linked the opensl symbols
+
+    alc_opensles_probe(DEVICE_PROBE);
+
     /*
     if (pslCreateEngine == NULL) {
         alc_opensles_probe(DEVICE_PROBE);
