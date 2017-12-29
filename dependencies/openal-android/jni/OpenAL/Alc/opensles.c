@@ -52,12 +52,14 @@
 
 #include "apportable_openal_funcs.h"
 
+/*
 #define MAKE_SYM_POINTER(sym) static typeof(sym) * p##sym = NULL
 MAKE_SYM_POINTER(SL_IID_ENGINE);
 MAKE_SYM_POINTER(SL_IID_ANDROIDSIMPLEBUFFERQUEUE);
 MAKE_SYM_POINTER(SL_IID_PLAY);
 MAKE_SYM_POINTER(SL_IID_BUFFERQUEUE);
 MAKE_SYM_POINTER(slCreateEngine);
+*/
 
 // engine interfaces
 static SLObjectItf engineObject = NULL;
@@ -314,6 +316,7 @@ SLresult alc_opensles_init_extradata(ALCdevice *pDevice)
 }
 
 static void start_playback(ALCdevice *pDevice) {
+    LOGV("start_playback 1");
     opesles_data_t *devState = NULL;
 	int i;
 
@@ -325,25 +328,34 @@ static void start_playback(ALCdevice *pDevice) {
         devState = (opesles_data_t *) pDevice->ExtraData;
     }
 
+    LOGV("start_playback 2");
+
     if (devState->threadShouldRun == 1) {
         // Gratuitous resume
         return;
     }
 
+    LOGV("start_playback 3");
     // start/restart playback thread
     devState->threadShouldRun = 1;
 
     pthread_attr_t playbackThreadAttr;
     pthread_attr_init(&playbackThreadAttr);
-    struct sched_param playbackThreadParam;
-    playbackThreadParam.sched_priority = sched_get_priority_max(SCHED_RR);
-    pthread_attr_setschedpolicy(&playbackThreadAttr, SCHED_RR);
-    pthread_attr_setschedparam(&playbackThreadAttr, &playbackThreadParam);
+    //struct sched_param playbackThreadParam;
+    //playbackThreadParam.sched_priority = sched_get_priority_max(SCHED_RR);
+    //pthread_attr_setschedpolicy(&playbackThreadAttr, SCHED_RR);
+    //pthread_attr_setschedparam(&playbackThreadAttr, &playbackThreadParam);
     pthread_create(&(devState->playbackThread), &playbackThreadAttr, playback_function,  (void *) pDevice);
+
+    LOGV("start_playback 4");
     while (devState->threadShouldRun && (0 == devState->threadIsReady))
     {
-        sched_yield();
+        LOGV("start_playback ...");
+        usleep(100);
+        //sched_yield();
     }
+
+    LOGV("start_playback 5");
 }
 
 static void stop_playback(ALCdevice *pDevice) {
@@ -416,20 +428,26 @@ SLresult alc_opensles_create_native_audio_engine()
     SLresult result;
 
     // create engine
-    result = pslCreateEngine(&engineObject, 0, NULL, 0, NULL, NULL);
+    LOGV("OpenSLES>> 1");
+    result = slCreateEngine(&engineObject, 0, NULL, 0, NULL, NULL);
     assert(SL_RESULT_SUCCESS == result);
 
+    LOGV("OpenSLES>> 2");
     // realize the engine
     result = (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
     assert(SL_RESULT_SUCCESS == result);
 
+    LOGV("OpenSLES>> 3");
     // get the engine interface, which is needed in order to create other objects
-    result = (*engineObject)->GetInterface(engineObject, *pSL_IID_ENGINE, &engineEngine);
+    result = (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineEngine);
     assert(SL_RESULT_SUCCESS == result);
 
+    LOGV("OpenSLES>> 4");
     // create output mix
     result = (*engineEngine)->CreateOutputMix(engineEngine, &outputMixObject, 0, NULL, NULL);
     assert(SL_RESULT_SUCCESS == result);
+
+    LOGV("OpenSLES>> 5");
 
     // realize the output mix
     result = (*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
@@ -444,12 +462,14 @@ static ALCboolean opensles_open_playback(ALCdevice *pDevice, const ALCchar *devi
     LOGV("opensles_open_playback pDevice=%p, deviceName=%s", pDevice, deviceName);
 
     // Check if probe has linked the opensl symbols
+    /*
     if (pslCreateEngine == NULL) {
         alc_opensles_probe(DEVICE_PROBE);
         if (pslCreateEngine == NULL) {
             return ALC_FALSE;
         }
     }
+    */
 
     if (pDevice->ExtraData == NULL) {
         alc_opensles_init_extradata(pDevice);
@@ -519,7 +539,7 @@ static ALCboolean opensles_reset_playback(ALCdevice *pDevice)
 
     // create audio player
     LOGV("create audio player");
-    const SLInterfaceID ids[1] = {*pSL_IID_ANDROIDSIMPLEBUFFERQUEUE};
+    const SLInterfaceID ids[1] = {SL_IID_ANDROIDSIMPLEBUFFERQUEUE};
     const SLboolean req[1] = {SL_BOOLEAN_TRUE};
     result = (*engineEngine)->CreateAudioPlayer(engineEngine, &devState->bqPlayerObject, &audioSrc, &audioSnk,
         1, ids, req);
@@ -533,11 +553,11 @@ static ALCboolean opensles_reset_playback(ALCdevice *pDevice)
     assert(SL_RESULT_SUCCESS == result);
 
     // get the play interface
-    result = (*devState->bqPlayerObject)->GetInterface(devState->bqPlayerObject, *pSL_IID_PLAY, &devState->bqPlayerPlay);
+    result = (*devState->bqPlayerObject)->GetInterface(devState->bqPlayerObject, SL_IID_PLAY, &devState->bqPlayerPlay);
     assert(SL_RESULT_SUCCESS == result);
 
     // get the buffer queue interface
-    result = (*devState->bqPlayerObject)->GetInterface(devState->bqPlayerObject, *pSL_IID_BUFFERQUEUE,
+    result = (*devState->bqPlayerObject)->GetInterface(devState->bqPlayerObject, SL_IID_BUFFERQUEUE,
             &devState->bqPlayerBufferQueue);
     if ((result != SL_RESULT_SUCCESS) || (devState->bqPlayerBufferQueue == NULL)) {
         //RELEASE_LOG("get the buffer queue interface is null or errored: %lx", result);
@@ -753,19 +773,27 @@ void alc_opensles_probe(int type)
 {
     char *error;
     struct stat statinfo;
+    /*
     if (stat("/system/lib/libOpenSLES.so", &statinfo) != 0) {
         LOGV("alc_opensles_probe OpenSLES support not found.");
         return;
     }
+    */
 
     dlerror(); // Clear dl errors
+
+    /*
     void *dlHandle = dlopen("/system/lib/libOpenSLES.so", RTLD_NOW | RTLD_GLOBAL);
     if (!dlHandle || (error = (typeof(error))dlerror()) != NULL) {
         LOGV("OpenSLES could not be loaded.");
         return;
     }
-
+    */
+/*
 #define LOAD_SYM_POINTER(sym) \
+    p##sym = sym;
+
+    
     do { \
         p##sym = dlsym(dlHandle, #sym); \
         if((error=(typeof(error))dlerror()) != NULL) { \
@@ -774,12 +802,14 @@ void alc_opensles_probe(int type)
             return; \
         } \
     } while(0)
+  
 
     LOAD_SYM_POINTER(slCreateEngine);
     LOAD_SYM_POINTER(SL_IID_ENGINE);
     LOAD_SYM_POINTER(SL_IID_ANDROIDSIMPLEBUFFERQUEUE);
     LOAD_SYM_POINTER(SL_IID_PLAY);
     LOAD_SYM_POINTER(SL_IID_BUFFERQUEUE);
+  */
 
     apportableOpenALFuncs.alc_android_suspend = alc_opensles_suspend;
     apportableOpenALFuncs.alc_android_resume = alc_opensles_resume;

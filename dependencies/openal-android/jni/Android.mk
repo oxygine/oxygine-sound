@@ -1,32 +1,18 @@
-ifeq ("$(ROOTDIR)","")
-    LOCAL_PATH := $(call my-dir)
-else
-    LOCAL_PATH := $(ROOTDIR)
-endif
-
-ANALYZE      ?= no
-ANALYZE_OUTPUT?=/dev/null
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-TARGET_ARCH_ABI  ?=armeabi-v7a
+
 LOCAL_MODULE     := openal
 LOCAL_ARM_MODE   := arm
-CLANG_VERSION    ?= 3.1
-ROOTDIR          ?= $(LOCAL_PATH)
 OPENAL_DIR       := OpenAL
 MODULE           := openal
-MODULE_DST       := obj/local/$(TARGET_ARCH_ABI)/objs/openal
-ifeq ("$(BINDIR)","")
-    BINDIR       := $(abspath $(ROOTDIR)/../obj/local/$(TARGET_ARCH_ABI)/objs/ )
-else
-    BINDIR       := $(abspath $(BINDIR) )
-endif
 
+
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(OPENAL_DIR) \
+					$(LOCAL_PATH)/$(OPENAL_DIR)/include \
+					$(LOCAL_PATH)/$(OPENAL_DIR)/OpenAL32/Include \
  
-LOCAL_CFLAGS    +=  -I$(ROOTDIR)/$(OPENAL_DIR) \
-                    -I$(ROOTDIR)/$(OPENAL_DIR)/include \
-                    -I$(ROOTDIR)/$(OPENAL_DIR)/OpenAL32/Include \
-                    -DAL_ALEXT_PROTOTYPES \
+LOCAL_CFLAGS    +=  -DAL_ALEXT_PROTOTYPES \
                     -DANDROID \
                     -fpic \
                     -ffunction-sections \
