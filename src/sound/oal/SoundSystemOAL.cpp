@@ -16,7 +16,7 @@ namespace oxygine
 
         if (error != AL_NO_ERROR)
         {
-            log::messageln("AL error: %d '%s'", error, alGetString(error));
+            logs::messageln("AL error: %d '%s'", error, alGetString(error));
 
             OX_ASSERT(!"open al error");
 
@@ -55,7 +55,7 @@ namespace oxygine
             if (!SoundSystem::instance)
             {
                 OX_ASSERT(0);
-                log::error("can't create SoundSystemOAL");
+                logs::error("can't create SoundSystemOAL");
 
                 SoundSystem::instance = new SoundSystemNull;
             }
@@ -67,7 +67,7 @@ namespace oxygine
     SoundSystemOAL::SoundSystemOAL(ALCdevice* device, ALCcontext* context): _device(device), _context(context), _volume(1.0)
     {
 
-        log::messageln("SoundSystemOAL init");
+        logs::messageln("SoundSystemOAL init");
 
         alcMakeContextCurrent(_context);
         OAL_CHECK();
@@ -105,7 +105,7 @@ namespace oxygine
 
     void SoundSystemOAL::pause()
     {
-        log::messageln("SoundSystemOAL::pause");
+        logs::messageln("SoundSystemOAL::pause");
 
         StreamingOggSoundHandleOAL::clearThreadQueue();
 
@@ -127,7 +127,7 @@ namespace oxygine
 
     void SoundSystemOAL::resume()
     {
-        log::messageln("SoundSystemOAL::resume");
+        logs::messageln("SoundSystemOAL::resume");
 
 #if defined(__ANDROID__)
         alcResume();

@@ -8,8 +8,8 @@ namespace oxygine
 {
 
 #ifdef CHANNEL_DEBUG
-#define  LOG2DN(...)  log::messageln(__VA_ARGS__)
-#define  LOG2D(...)  log::message(__VA_ARGS__)
+#define  LOG2DN(...)  logs::messageln(__VA_ARGS__)
+#define  LOG2D(...)  logs::message(__VA_ARGS__)
 
 #else
 #define  LOG2DN(...) ((void)0)
@@ -17,8 +17,8 @@ namespace oxygine
 #endif
 
 #ifdef CHANNEL_DEBUG
-#define  LOGDN(...)  log::messageln(__VA_ARGS__)
-#define  LOGD(...)  log::message(__VA_ARGS__)
+#define  LOGDN(...)  logs::messageln(__VA_ARGS__)
+#define  LOGD(...)  logs::message(__VA_ARGS__)
 
 #else
 #define  LOGDN(...)  ((void)0)
@@ -162,7 +162,7 @@ namespace oxygine
 
         for (int i = 0; i < num; ++i)
         {
-            //log::messageln("decode %d", getTimeMS());
+            //logs::messageln("decode %d", getTimeMS());
             ALuint buffer = buffers[i];
             size = _stream->decodeNextBlock(_looping, data, size);
             if (!size)

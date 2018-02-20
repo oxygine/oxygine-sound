@@ -246,7 +246,7 @@ namespace oxygine
                 ++i;
         }
 
-        //log::messageln("sounds %d", _sounds.size());
+        //logs::messageln("sounds %d", _sounds.size());
 
         _lastUpdateTime = t;
     }
