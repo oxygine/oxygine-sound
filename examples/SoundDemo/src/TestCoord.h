@@ -23,7 +23,7 @@ public:
         orange->addEventListener(TouchEvent::OUTX, CLOSURE(this, &TestCoord::onEvent));
 
         orange->setTouchChildrenEnabled(false);
-        orange->attachTo(content);
+        orange->attachTo(_content);
     }
 
     void onEvent(Event* ev)
