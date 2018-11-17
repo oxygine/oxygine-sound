@@ -28,6 +28,9 @@ namespace oxygine
 
         alSourcef(_alSource, AL_PITCH, _pitch);
         OAL_CHECK();
+
+        alSource3f(_alSource, AL_POSITION, _pos3d.x, _pos3d.y, _pos3d.z);
+        OAL_CHECK();
     }
 
     void SoundHandleOAL::_play()

@@ -56,7 +56,7 @@ namespace oxygine
         ~SoundPlayer();
 
 
-        spSoundInstance play(Resource*, const PlayOptions& = PlayOptions());
+        spSoundInstance play(const Resource*, const PlayOptions& = PlayOptions());
         spSoundInstance play(Sound*, const PlayOptions& = PlayOptions());
         spSoundInstance play(const std::string& id, const PlayOptions& = PlayOptions());
 

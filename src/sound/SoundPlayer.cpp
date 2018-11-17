@@ -114,9 +114,9 @@ namespace oxygine
     }
 
 
-    spSoundInstance SoundPlayer::play(Resource* res, const PlayOptions& opt)
+    spSoundInstance SoundPlayer::play(const Resource* res, const PlayOptions& opt)
     {
-        ResSound* ressound = safeCast<ResSound*>(res);
+        const ResSound* ressound = safeCast<const ResSound*>(res);
         if (!ressound || !ressound->getSound())
             return 0;
 
