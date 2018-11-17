@@ -19,7 +19,7 @@ namespace oxygine
     class PlayOptions
     {
     public:
-        PlayOptions() : _looped(false), _pitch(1.0f), _fadeIn(0), _fadeOut(0), _paused(false), _volume(-1.0f), _seek(0), _position3D(0,0,0){}
+        PlayOptions() : _looped(false), _pitch(1.0f), _fadeIn(0), _fadeOut(0), _paused(false), _volume(-1.0f), _seek(0), _position3D(0, 0, 0) {}
 
         PlayOptions& loop(bool loop = true) { _looped = loop; return *this; }
         PlayOptions& pitch(float v)  { _pitch = v; return *this; }
@@ -27,7 +27,7 @@ namespace oxygine
         PlayOptions& fade(timeMS fadeIn, timeMS fadeOut = 0) { _fadeIn = fadeIn; _fadeOut = fadeOut; return *this; }
         PlayOptions& pause() { _paused = true; return *this; }
         PlayOptions& seek(timeMS ms) { _seek = ms; return *this; }
-        PlayOptions& position3d(const Vector3 &pos) { _position3D = pos; return *this; }
+        PlayOptions& position3d(const Vector3& pos) { _position3D = pos; return *this; }
 
 
         float _pitch;

@@ -299,7 +299,7 @@ namespace oxygine
         _volume = v;
         _updateVolume();
     }
-    
+
     void SoundInstance::setPitch(float v)
     {
         _handle->setPitch(v);
@@ -315,7 +315,7 @@ namespace oxygine
         _handle->setPosition(tm);
     }
 
-    void SoundInstance::setPosition3D(const Vector3 &pos)
+    void SoundInstance::setPosition3D(const Vector3& pos)
     {
         _handle->setPosition3D(pos);
     }

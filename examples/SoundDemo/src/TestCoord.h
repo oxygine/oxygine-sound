@@ -8,46 +8,67 @@ class TestCoord: public Test
 {
 public:
 
-    spSprite orange;
+    spColorRectSprite sprite;
     spSoundInstance snd;
 
     TestCoord()
     {
-        orange = new ColorRectSprite;
-        orange->setColor(Color::Orange);
-        orange->setSize(getSize() - Vector2(100, 100));
-        orange->setPosition(getSize() / 2 - orange->getSize() / 2);
+        _content->addEventListener(TouchEvent::TOUCH_DOWN, CLOSURE(this, &TestCoord::onEvent));
+        _content->addEventListener(TouchEvent::TOUCH_UP, CLOSURE(this, &TestCoord::onEvent));
+        _content->addEventListener(TouchEvent::MOVE, CLOSURE(this, &TestCoord::onEvent));
+    }
 
-        orange->addEventListener(TouchEvent::OVER, CLOSURE(this, &TestCoord::onEvent));
-        orange->addEventListener(TouchEvent::MOVE, CLOSURE(this, &TestCoord::onEvent));
-        orange->addEventListener(TouchEvent::OUTX, CLOSURE(this, &TestCoord::onEvent));
+    ~TestCoord()
+    {
 
-        orange->setTouchChildrenEnabled(false);
-        orange->attachTo(_content);
     }
 
     void onEvent(Event* ev)
     {
         TouchEvent* te = safeCast<TouchEvent*>(ev);
 
-        if (ev->type == TouchEvent::OVER)
+
+        Vector2 center = _content->getSize() / 2;
+        Vector2 dir = te->localPosition - center;
+        Vector3 pos3d = Vector3(dir.x, dir.y, 0) / 1000.0f;
+
+
+
+        if (ev->type == TouchEvent::TOUCH_DOWN)
         {
-            orange->setColor(Color::Green);
-            snd = splayer.play("amb_bird_2", PlayOptions().loop());
+            spColorRectSprite spr;
+            spr = new ColorRectSprite;
+            spr->setSize(20, 20);
+            spr->attachTo(_content);
+            spr->setTouchEnabled(false);
+            spr->setAnchor(0.5f, 0.5f);
+            spr->setPosition(te->localPosition);
+            sprite = spr;
+
+            snd = splayer.play("amb_bird_2", PlayOptions().loop().position3d(pos3d));
+
+#ifdef OX_HAS_CPP11
+            snd->setDoneCallback([spr](Event*)
+            {
+                spr->detach();
+            });
+#endif
         }
-        else if (ev->type == TouchEvent::OUTX)
-        {
-            orange->setColor(Color::Orange);
-            snd->stop();
 
+        if (!snd)
+            return;
+
+        if (ev->type == TouchEvent::TOUCH_UP)
+        {
+            snd->setLoop(false);
+            sprite = 0;
+            snd = 0;
         }
-        else     // TouchEvent::MOVE
+
+        if (ev->type == TouchEvent::MOVE)
         {
-
-            Vector2 const center = orange->getSize() / 2;
-            Vector2 const dir    = te->localPosition - center;
-
-            snd->setPosition3D(Vector3(dir.x, dir.y, 0) / 1000.0f);
+            snd->setPosition3D(pos3d);
+            sprite->setPosition(te->localPosition);
         }
     }
 };

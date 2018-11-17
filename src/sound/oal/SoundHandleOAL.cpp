@@ -140,7 +140,7 @@ namespace oxygine
     {
         if (!_alSource)
             return;
-        
+
         alSource3f(_alSource, AL_POSITION, _pos3d.x, _pos3d.y, _pos3d.z);
     }
 

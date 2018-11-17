@@ -24,7 +24,7 @@ namespace oxygine
         void setPitch(float pitch) { _pitch = pitch; _updatePitch(); }
         void setLoop(bool loop) { _looping = loop; _updateLoop(); }
         void setPosition(timeMS pos) { _setPosition(pos); }
-        void setPosition3D(const Vector3 &pos) { _pos3d = pos; _updatePosition3D(); }
+        void setPosition3D(const Vector3& pos) { _pos3d = pos; _updatePosition3D(); }
 
         float           getVolume() const { return _volume; }
         float           getPitch() const { return _pitch; }
@@ -55,7 +55,7 @@ namespace oxygine
         virtual void _pause() {}
         virtual void _resume() {}
         virtual void _stop() {}
-        virtual void _setPosition(int tm) {}        
+        virtual void _setPosition(int tm) {}
 
         virtual timeMS _getPosition() const = 0;
 

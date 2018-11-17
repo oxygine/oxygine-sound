@@ -73,7 +73,7 @@ namespace oxygine
         void    setPitch(float v);
         void    setLoop(bool loop);
         void    seek(int tm);
-        void    setPosition3D(const Vector3 &);
+        void    setPosition3D(const Vector3&);
 
         /**called when sound done*/
         void    setDoneCallback(EventCallback cb) {_cbDone = cb;}
