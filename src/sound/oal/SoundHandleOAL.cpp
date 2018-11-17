@@ -12,7 +12,7 @@ namespace oxygine
         return (SoundSystemOAL*)SoundSystem::get();
     }
 
-    SoundHandleOAL::SoundHandleOAL() : _alSource(0), _pos(0)//, _stream(0)
+    SoundHandleOAL::SoundHandleOAL() : _alSource(0), _pos(0)
     {
     }
 
@@ -136,6 +136,14 @@ namespace oxygine
         _xupdateLoop();
     }
 
+    void SoundHandleOAL::_updatePosition3D()
+    {
+        if (!_alSource)
+            return;
+        
+        alSource3f(_alSource, AL_POSITION, _pos3d.x, _pos3d.y, _pos3d.z);
+    }
+
     void SoundHandleOAL::_setPosition(int tm)
     {
         _xsetPosition(tm);
@@ -143,7 +151,6 @@ namespace oxygine
 
     void SoundHandleOAL::_ended()
     {
-
         _state = ended;
         ss()->freeSource(_alSource);
         _alSource = 0;

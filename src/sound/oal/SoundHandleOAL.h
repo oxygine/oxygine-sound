@@ -30,6 +30,7 @@ namespace oxygine
         void _updateVolume() override;
         void _updatePitch() override;
         void _updateLoop() override;
+        void _updatePosition3D() override;
         void _setPosition(int tm) override;
 
         void _ended();

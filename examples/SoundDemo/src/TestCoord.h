@@ -47,7 +47,7 @@ public:
             Vector2 const center = orange->getSize() / 2;
             Vector2 const dir    = te->localPosition - center;
 
-            snd->setCoord(dir / 1000);
+            snd->setPosition3D(Vector3(dir.x, dir.y, 0) / 1000.0f);
         }
     }
 };

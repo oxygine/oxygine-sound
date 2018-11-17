@@ -2,6 +2,7 @@
 #include "oxygine/core/Object.h"
 #include "oxygine/EventDispatcher.h"
 #include "oxygine/Event.h"
+#include "oxygine/math/Vector3.h"
 
 namespace oxygine
 {
@@ -54,12 +55,13 @@ namespace oxygine
 
 
 
-        int         getDuration() const;
-        int         getPosition() const;
-        float       getVolume() const;
-        float       getCurrentVolume() const;
-        float       getPitch() const;
-        State       getState() const { return _state; }
+        int             getDuration() const;
+        int             getPosition() const;
+        float           getVolume() const;
+        float           getCurrentVolume() const;
+        float           getPitch() const;
+        const Vector3&  getPosition3D() const;
+        State           getState() const { return _state; }
 
         bool        isLooped() const;
         bool        isPlaying() const;
@@ -68,10 +70,10 @@ namespace oxygine
         bool        isFadedOut() const;
 
         void    setVolume(float v);
-        void    setCoord(const Vector2& pos, float z = 0);
         void    setPitch(float v);
         void    setLoop(bool loop);
         void    seek(int tm);
+        void    setPosition3D(const Vector3 &);
 
         /**called when sound done*/
         void    setDoneCallback(EventCallback cb) {_cbDone = cb;}

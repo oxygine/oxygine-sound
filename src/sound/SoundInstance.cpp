@@ -299,12 +299,7 @@ namespace oxygine
         _volume = v;
         _updateVolume();
     }
-
-    void SoundInstance::setCoord(const Vector2& pos, float z)
-    {
-        OX_ASSERT(0);
-    }
-
+    
     void SoundInstance::setPitch(float v)
     {
         _handle->setPitch(v);
@@ -318,6 +313,11 @@ namespace oxygine
     void SoundInstance::seek(int tm)
     {
         _handle->setPosition(tm);
+    }
+
+    void SoundInstance::setPosition3D(const Vector3 &pos)
+    {
+        _handle->setPosition3D(pos);
     }
 
     void SoundInstance::update()
@@ -425,4 +425,10 @@ namespace oxygine
     {
         return _handle->getPosition();
     }
+
+    const Vector3& SoundInstance::getPosition3D() const
+    {
+        return _handle->getPosition3D();
+    }
+
 }

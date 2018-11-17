@@ -99,6 +99,7 @@ namespace oxygine
 
         s->setPitch(opt._pitch);
         s->setLoop(opt._looped);
+        s->setPosition3D(opt._position3D);
         if (opt._seek)
             s->seek(opt._seek);
         s->_updateVolume();
