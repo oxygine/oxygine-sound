@@ -19,7 +19,7 @@ namespace oxygine
     class PlayOptions
     {
     public:
-        PlayOptions() : _looped(false), _pitch(1.0f), _fadeIn(0), _fadeOut(0), _paused(false), _volume(-1.0f), _seek(0), _position3D(0, 0, 0) {}
+        PlayOptions() : _looped(false), _pitch(1.0f), _fadeIn(0), _fadeOut(0), _paused(false), _volume(1.0f), _seek(0), _position3D(0, 0, 0) {}
 
         PlayOptions& loop(bool loop = true) { _looped = loop; return *this; }
         PlayOptions& pitch(float v)  { _pitch = v; return *this; }

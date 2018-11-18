@@ -61,7 +61,6 @@ namespace oxygine
 
         float _volume;
         float _pitch;
-        float _coord;
         bool _looping;
         timeMS _duration;
 
