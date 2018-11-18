@@ -102,7 +102,7 @@ namespace oxygine
         s->setPosition3D(opt._position3D);
         if (opt._seek)
             s->seek(opt._seek);
-        s->_updateVolume();
+        s->setVolume(opt._volume);
 
         if (opt._fadeIn)
             s->fadeIn(opt._fadeIn);
