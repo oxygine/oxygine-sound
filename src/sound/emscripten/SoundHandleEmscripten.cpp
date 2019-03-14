@@ -27,7 +27,7 @@ namespace oxygine
 
         _handle = EM_ASM_INT(
         {
-            return sound.play(Pointer_stringify($0), $1, $2);
+            return sound.play(UTF8ToString($0), $1, $2);
         }, _path.c_str(), _volume, _looping);
     }
 
