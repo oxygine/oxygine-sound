@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (OXYGINESOUND)
 
-set(OXYGINESOUND_INCLUDE_DIRS 
+set(OXYGINESOUND_INCLUDE_DIRS
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 	${CMAKE_CURRENT_SOURCE_DIR}/dependencies/tremor/Tremor
 	${CMAKE_CURRENT_SOURCE_DIR}/dependencies/libogg/include
@@ -12,7 +12,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 message(status ${OXYGINESOUND_INCLUDE_DIRS})
 
-set(OXYGINESOUND_DEFINITIONS	
+set(OXYGINESOUND_DEFINITIONS
 	-DOXYGINE_SOUND=1)
 
 set(SRC
@@ -49,7 +49,7 @@ if(EMSCRIPTEN)
 else(EMSCRIPTEN)
 
 	add_subdirectory(dependencies/tremor tremor)
-	
+
 	set (SRC ${SRC}
 		src/sound/OggStream.cpp
 		src/sound/OggStream.h
@@ -79,7 +79,7 @@ add_library(oxygine-sound STATIC ${SRC})
 
 if(EMSCRIPTEN)
 	set(OXYGINESOUND_LIBS
-		oxygine-sound)	
+		oxygine-sound)
 
 	set(linkFlags "-Wno-warn-absolute-paths")
 
@@ -90,7 +90,7 @@ else(EMSCRIPTEN)
 		${CMAKE_CURRENT_SOURCE_DIR}/dependencies/openal/include)
 
 	if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	
+
 		set(OXYGINESOUND_LIBS oxygine-sound -lopenal tremor -logg)
 
 	else()
@@ -101,11 +101,11 @@ else(EMSCRIPTEN)
 			if(NOT (MSVC_VERSION LESS 1900))
 				set(LIBOGG ${LIBOGG}_vs2013)
 			endif()
-		endif()	
+		endif()
 
 		set(OXYGINESOUND_LIBS
 			${CMAKE_CURRENT_SOURCE_DIR}/libs/win32/OpenAL32.lib
-			${CMAKE_CURRENT_SOURCE_DIR}/libs/win32/${LIBOGG}.lib		
+			${CMAKE_CURRENT_SOURCE_DIR}/libs/win32/${LIBOGG}.lib
 			tremor
 			oxygine-sound)
 
@@ -118,11 +118,13 @@ include_directories(${OXYGINESOUND_INCLUDE_DIRS})
 
 
 target_link_libraries(oxygine-sound -lopenal)
-target_link_libraries(oxygine-sound -logg)
+if (NOT EMSCRIPTEN)
+   target_link_libraries(oxygine-sound -logg)
+endif(NOT EMSCRIPTEN)
 
 
 #target_link_libraries(oxyginemagicparticles)
-set(OXYGINESOUND_INCLUDE_DIRS 
+set(OXYGINESOUND_INCLUDE_DIRS
 	${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 set(OXYGINESOUND_INCLUDE_DIRS ${OXYGINESOUND_INCLUDE_DIRS} PARENT_SCOPE)
