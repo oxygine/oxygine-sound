@@ -1,6 +1,8 @@
+var assetsBase = typeof assetsBase !== 'undefined' ? assetsBase : "assets/";
+
 function preloadFile(file, onLoadCallback){
     var r = new XMLHttpRequest();
-    r.open("GET", file, true);
+    r.open("GET", assetsBase+file, true);
     r.responseType = "arraybuffer";
     r.onload = onLoadCallback;
     r.send();
