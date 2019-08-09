@@ -46,7 +46,6 @@ function Preloading(id){
             _preloadingCounter -=1;
         },
     	add: function(path){
-            console.log("preloading " + path);
     		this._num += 1;		
             var self = this;
 
@@ -71,7 +70,9 @@ function Preloading(id){
 }
 
 function preload_file(path){
-    var p = Preloading(path);
-    p.add(path);
-    p.start();
+   if (path != "") {
+       var p = Preloading(path);
+       p.add(path);
+       p.start();
+   }
 }
