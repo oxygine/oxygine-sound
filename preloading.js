@@ -1,4 +1,5 @@
 var assetsBase = typeof assetsBase !== 'undefined' ? assetsBase : "assets/";
+var Module = typeof Module !== 'undefined' ? Module : { };
 
 function preloadFile(file, onLoadCallback){
     var r = new XMLHttpRequest();
@@ -44,6 +45,9 @@ function Preloading(id){
             //var f = Module.cwrap('fromjs_preloaded', 'void', ['string']);
             //f(this._id);
             _preloadingCounter -=1;
+            if (typeof(Module["addFinishedFileCounter"]) === "function") {
+               Module["addFinishedFileCounter"]();
+            }
         },
     	add: function(path){
     		this._num += 1;		
@@ -65,6 +69,10 @@ function Preloading(id){
     	},
     	start: function(){
             _preloadingCounter +=1;
+            
+            if (typeof(Module["addExpectedFileCounter"]) === "function") {
+               Module["addExpectedFileCounter"]();
+            }
     	}
     }
 }
